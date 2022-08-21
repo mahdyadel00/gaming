@@ -15,7 +15,7 @@ Route::prefix('admin')->group(function () {
     Route::get('login-show', [AdminLoginController::class, 'login'])->name('admin.login');
     Route::post('login', [AdminLoginController::class, 'doLogin'])->name('admin.do.login');
 
-    // Route::group(['middleware' => ['auth:admin']], function () {
+    Route::group(['middleware' => ['auth:admin']], function () {
         // dd(0);
         Route::get('/', [DashboardController::class, 'index'])->name('admin.home');
 
@@ -26,5 +26,5 @@ Route::prefix('admin')->group(function () {
         Route::post('/users/delete', [UserController::class, 'delete'])->name('admin.users.delete');
 
 
-    // });
+    });
 });

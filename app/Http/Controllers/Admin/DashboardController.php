@@ -12,12 +12,10 @@ class DashboardController extends Controller
 
     public function __construct()
     {
-//		$this->middleware('guest')->except('logout');
-        $this->middleware('guest:admin')->except('logout');
+        $this->middleware('auth:admin')->except('logout');
     }
     protected function index()
     {
-        // dd(0);
         return view('admin.dashboard');
 
     }// end of index
