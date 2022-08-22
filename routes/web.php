@@ -22,6 +22,8 @@ use App\Http\Controllers\Frontend\ContactController;
 Auth::routes();
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+// ============================================================================** Content Route ** ==========================================================================
 Route::get('/contacts', [ContactController::class, 'index'])->name('conacts');
+Route::post('/contacts/create', [ContactController::class, 'store'])->name('contacts.store');
 
 
