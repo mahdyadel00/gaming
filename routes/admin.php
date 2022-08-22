@@ -24,7 +24,5 @@ Route::prefix('admin')->group(function () {
         Route::get('/users/create', [UserController::class, 'index'])->name('admin.users.create');
         Route::get('/users/edit', [UserController::class, 'edit'])->name('admin.users.edit');
         Route::post('/users/delete', [UserController::class, 'delete'])->name('admin.users.delete');
-
-
     });
 });
