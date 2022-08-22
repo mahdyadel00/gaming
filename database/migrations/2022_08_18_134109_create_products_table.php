@@ -22,15 +22,7 @@ class CreateProductsTable extends Migration
             $table->string('image');
             $table->string('price');
             $table->string('price_discount');
-<<<<<<< HEAD
-            // $table->integer('user_id')->unsigned();
-            // $table->foreign('user_id')->references('id')->on('users');
-            // $table->integer('category_id')->unsigned();
-            // $table->foreign('category_id')->references('id')->on('categories');
 
-            // $table->integer('country_id')->unsigned();
-            // $table->foreign('country_id')->references('id')->on('contries');
-=======
 
             $table->integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
@@ -38,9 +30,8 @@ class CreateProductsTable extends Migration
             $table->integer('category_id')->unsigned()->nullable();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
 
-            $table->integer('country_id')->unsigned()->nullable();
-            $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
->>>>>>> ea8405f8e69142278f1c3e5f0692978c6cd61436
+            // $table->integer('country_id')->unsigned()->nullable();
+            // $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
 
             $table->timestamps();
         });

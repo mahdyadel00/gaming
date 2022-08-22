@@ -20,12 +20,7 @@ class CreateCategoriesTable extends Migration
             $table->string('description_en');
             $table->string('description_ar');
             $table->string('image');
-<<<<<<< HEAD
-            // $table->integer('parent_id')->unsigned();
-            // $table->foreign('parent_id')->references('id')->on('categories');
-=======
             $table->integer('parent_id')->nullable();
->>>>>>> ea8405f8e69142278f1c3e5f0692978c6cd61436
             $table->timestamps();
         });
     }
