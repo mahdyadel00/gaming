@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
@@ -20,21 +19,27 @@ class CategoryController extends Controller
     {
         return view('admin.categories.create');
     }
-
-   
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required|unique:categories,name',
-            'title_en' => 'required|categories,title_en',
-            'title_ar' => 'required|categories,title_ar',
-            'description_en' => 'required|description_en',
-            'description_ar' => 'required|description_ar',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',        
+        $request->validate([
+
+            'title_en' => 'required',
+            'title_ar' => 'required',
+            'description_en' => 'required',
+            'description_ar' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048', 
         ]);
-        Category::create($request->all());
+
+        $categories = Category::create([
+
+            'title_en'  => $request->title_en,
+            'title_ar'  => $request->title_ar,
+            'description_en'  => $request->description_en,
+            'description_ar'  => $request->description_ar,
+            'image'  => $request->image,
+        ]);
         flash()->success("Category Added successfully");
-        return redirect()->route('category.index');
+        return redirect()->route('admin.categories.index');
     }
 
     public function show($id)
@@ -52,24 +57,44 @@ class CategoryController extends Controller
 
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'name' => 'filled|unique:categories,name,' . $id,
-            'title_en' => 'required|categories,title_en',
-            'title_ar' => 'required|categories,title_ar',
-            'description_en' => 'required|description_en',
-            'description_ar' => 'required|description_ar',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',    
-        ]);
-        return redirect()->route('category.index');
-    }
 
-    
-    flash()->success("Category updated successfully");
+        $category = Category::find($id);
+
+        $this->validate($request, [
+            'title_en' => 'filled',
+            'title_ar' => 'filled',
+            'description_en' => 'filled',
+            'description_ar' => 'filled',
+           
+        ]);
+
+        $category->update([
+            'title_en' => $request->title_en,
+            'title_ar' => $request->title_ar,
+            'description_en' => $request->description_en,
+            'description_ar' => $request->description_ar,
+        ]);
+
+        if ($request->hasFile('image')) {
+            $this->validate($request, [
+                'image' => 'filled|mimes:png,jpg,jpeg',
+            ]);
+            Storage::delete($category->image);
+            $image = $request->file('image')->store('public/posts');
+            $category->update([
+                'image' => $image
+            ]);
+        }
+        flash()->success("Category Updated successfully");
+        return redirect()->route('admin.categories.index');
+    }
 
     public function destroy($id)
     {
         Category::find($id)->delete();
         return back();
+        flash()->success("Category deleted successfully");
+
     }
+
 }
-flash()->success("Category deleted successfully");
