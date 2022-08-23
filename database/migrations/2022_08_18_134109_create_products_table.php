@@ -6,11 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateProductsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+   
     public function up()
     {
         Schema::create('products', function (Blueprint $table) {
@@ -22,6 +18,7 @@ class CreateProductsTable extends Migration
             $table->string('image');
             $table->string('price');
             $table->string('price_discount');
+
              $table->integer('user_id')->unsigned();
              $table->foreign('user_id')->references('id')->on('users');
              $table->integer('category_id')->unsigned();
@@ -30,13 +27,21 @@ class CreateProductsTable extends Migration
             // $table->integer('country_id')->unsigned();
             // $table->foreign('country_id')->references('id')->on('contries');
 
+>>>>>>> da09c182c598c5276c81aab8fe69d02f7ee67283
+
             $table->integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->integer('category_id')->unsigned()->nullable();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+
+            // $table->integer('country_id')->unsigned()->nullable();
+            // $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
+
             $table->integer('country_id')->unsigned()->nullable();
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
+
+
 
             $table->timestamps();
         });

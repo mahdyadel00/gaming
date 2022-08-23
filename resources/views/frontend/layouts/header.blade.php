@@ -3,7 +3,7 @@
         <div class="container-fluid container-two nav-container">
             <div class="responsive-mobile-menu">
                 <div class="logo-wrapper">
-                    <a href="index.html" class="logo">
+                    <a href="{{ route('home') }}" class="logo">
                         <img src="{{ asset('frontend') }}/assets/img/logo/logo1.png" alt="images">
                     </a>
                 </div>
@@ -568,7 +568,7 @@
                                 <li><a href="messages.html">Messages All</a></li>
                             </ul>
                         </li>
-                        <li><a href="contact.html">contact</a></li>
+                        <li><a href="{{ route('conacts') }}">contact</a></li>
                     </ul>
                 </div>
             </div>

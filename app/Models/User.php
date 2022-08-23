@@ -23,6 +23,7 @@ class User extends Authenticatable
     protected $guard = "web";
     protected $fillable = [
         'name',
+        'last_name',
         'email',
         'password',
     ];
@@ -45,4 +46,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function country()
+    {
+        return $this->hasMany(Country::class, 'country_id', 'id');
+    }
 }

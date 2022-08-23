@@ -65,6 +65,9 @@ class Admin extends Authenticatable
 //        return $this->hasMany(orders::class);
 //    }
 
+    public function country(){
+        return $this->hasMany(Country::class);
+    }
 
     public function getImageAttribute($value)
     {
