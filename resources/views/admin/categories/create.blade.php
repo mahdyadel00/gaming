@@ -15,25 +15,25 @@
             <div class="card">
                 <div class="card-body">
                     <form action="{{ route('admin.categories.store') }}" method="post" enctype="multipart/form-data"autocomplete="off">
-                        {{ csrf_field() }}   
+                        {{ csrf_field() }}
                             <div class="col">
                                 <label>English Title </label>
-                                <input class="form-control fc-datepicker" name="title_en" 
+                                <input class="form-control fc-datepicker" name="title_en"
                                     type="text"  required>
                             </div>
                             <div class="col">
                                 <label> Arabic Title</label>
-                                <input class="form-control fc-datepicker" name="title_en" 
+                                <input class="form-control fc-datepicker" name="title_ar"
                                     type="text" required>
                             </div>
                             <div class="col">
                                 <label> English Description</label>
-                                <input class="form-control fc-datepicker" name="description_en" 
+                                <input class="form-control fc-datepicker" name="description_en"
                                     type="text" required>
                             </div>
                             <div class="col">
                                 <label> Arabic Description</label>
-                                <input class="form-control fc-datepicker" name="description_ar" 
+                                <input class="form-control fc-datepicker" name="description_ar"
                                     type="text" required>
                             </div>
                         </div><br>

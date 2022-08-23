@@ -32,7 +32,7 @@ class ContactController extends Controller
 
     protected function store(Request $request){
 
-        // dd($request->all());
+        dd($request->all());
         if($request->published) {
             $request->published = 1;
         } else {
