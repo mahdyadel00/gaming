@@ -31,7 +31,7 @@
                             <div class="col-md-12">
                                 <label class="infoTitle">Password</label>
                                 <div class="input-form">
-                                    <input type="password" placeholder="Enter password">
+                                    <input type="password" name="password" placeholder="Enter password">
                                     <div class="icon"><i class="las la-lock icon"></i></div>
                                     <p>Password must be minimum 8 characters</p>
                                 </div>
@@ -40,7 +40,7 @@
                             <div class="col-sm-12">
                                 <div class="passRemember mt-20">
                                     <label class="checkWrap2">Remember me
-                                        <input class="effectBorder" type="checkbox" value="">
+                                        <input class="effectBorder" type="checkbox" value="1">
                                         <span class="checkmark"></span>
                                     </label>
                                     <!-- forgetPassword -->
@@ -51,7 +51,8 @@
                             </div>
                             <div class="col-sm-12">
                                 <div class="btn-wrapper text-center">
-                                    <a href="#" class="cmn-btn4 w-100 mb-60">Login</a>
+                                    {{-- <a href="#"  class="cmn-btn4 w-100 mb-60"> --}}
+                                    <button class="cmn-btn4 w-100 mb-60" type="submit">Login</button>
                                     <a href="#" class="cmn-btn-outline0  mb-20 w-100"><img
                                             src="{{ asset('frontend') }}/assets/img/icon/googleIocn.svg" alt="images"
                                             class="icon"> Log in With Google</a>
@@ -71,31 +72,4 @@
     </div>
 @endsection
 
-@push('js')
-    <script>
-        $('body').on('submit', '#add-form', function(e) {
-            e.preventDefault();
-            var url = $(this).attr('action');
-            $.ajax({
-                url: url,
-                method: "post",
-                data: new FormData(this),
-                dataType: 'json',
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function(response) {
-                    if (response == 'success') {
-                        new Noty({
-                            type: 'success',
-                            layout: 'topRight',
-                            text: "{{ 'Saved successfully' }}",
-                            timeout: 2000,
-                            killer: true
-                        }).show();
-                    }
-                },
-            });
-        });
-    </script>
-@endpush
+
