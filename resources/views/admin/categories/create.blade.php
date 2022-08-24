@@ -23,7 +23,7 @@
                             </div>
                             <div class="col">
                                 <label> Arabic Title</label>
-                                <input class="form-control fc-datepicker" name="title_en" 
+                                <input class="form-control fc-datepicker" name="title_ar" 
                                     type="text" required>
                             </div>
                             <div class="col">
