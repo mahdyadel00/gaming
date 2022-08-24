@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 
-class HomeController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -23,12 +23,10 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request , $id)
     {
-        $categories = Category::get();
+        $categories = Category::where('id' , $id)->get();
 
-        return view('frontend.layouts.index', compact('categories'));
+        return view('frontend.categories.single', compact('categories'));
     }
-
-
 }

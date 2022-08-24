@@ -9,7 +9,7 @@
                     <div class="contact-Wrapper">
                         <form action="{{ route('contacts.store') }}" method="post" class="form-control col-md-12"
                             id="add-form">
-                            {{-- @csrf --}}
+                            @csrf
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="section-tittle mb-40">
@@ -85,7 +85,6 @@
         $('body').on('submit', '#add-form', function(e) {
             e.preventDefault();
             var url = $(this).attr('action');
-            alert(url);
             $.ajax({
                 url: url,
                 method: "post",
@@ -103,8 +102,6 @@
                             timeout: 2000,
                             killer: true
                         }).show();
-                        $('.modal').modal('hide');
-                        $('.dataTable').DataTable().draw(false);
                     }
                 },
             });

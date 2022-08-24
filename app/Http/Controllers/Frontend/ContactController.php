@@ -32,7 +32,6 @@ class ContactController extends Controller
 
     protected function store(Request $request){
 
-        dd($request->all());
         if($request->published) {
             $request->published = 1;
         } else {
@@ -40,11 +39,11 @@ class ContactController extends Controller
         }
         $request->validate([
 
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'email' => 'required',
-            'phone' => 'required',
-            'message' => 'required',
+            // 'first_name' => 'required',
+            // 'last_name' => 'required',
+            // 'email' => 'required',
+            // 'phone' => 'required',
+            // 'message' => 'required',
         ]);
         $contact = Contact::query()->create([
 
@@ -56,5 +55,6 @@ class ContactController extends Controller
             'published' => $request->published ,
         ]);
 
-        return response()->json('success');    }
+        return response()->json('success');
+      }
 }
