@@ -24,7 +24,7 @@
                         <!-- Show Menu list -->
                         <div class="showSidebar">
                             <ul>
-                                <li class="singleList">
+                                {{-- <li class="singleList">
                                     <a href="ad_lists_category.html" class="tittle"><i class="las la-phone-volume icon"></i> Phone and Electronics</a>
                                 </li>
                                 <li class="singleList">
@@ -529,13 +529,13 @@
                                            </div>
                                        </div>
                                    </div>
-                               </li>
-                                <li class="singleList">
-                                     <a href="ad_lists_category.html" class="tittle"><i class="las la-mouse icon"></i> Mouse Electronics </a>
+                               </li> --}}
+                               @foreach ($categories as $category)
+
+                               <li class="singleList">
+                                   <a href="ad_lists_category.html" class="tittle"><i class="las la-laptop icon"></i>{{ $category->title_en }} </a>
                                 </li>
-                                <li class="singleList">
-                                     <a href="ad_lists_category.html" class="tittle"><i class="las la-laptop icon"></i>Jewelry Watches </a>
-                                </li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>

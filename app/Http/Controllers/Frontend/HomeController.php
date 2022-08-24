@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 
 class HomeController extends Controller
 {
@@ -24,6 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('frontend.layouts.index');
+        $categories = Category::get();
+
+        return view('frontend.layouts.index', compact('categories'));
     }
 }
