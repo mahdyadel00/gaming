@@ -48,12 +48,11 @@ class RegisterController extends Controller
 
         ]);
 
-        if($users){
-         return redirect()->to(route('home'))->with('sucess', 'Successfully Register');
-        }else{
-            return redirect(route('register'))
-            ->withErrors([('Data Error !')]);
+        if ($users) {
 
+            return redirect()->to(route('home'))->with('sucess', 'Successfully Register');
+        } else {
+            return redirect(route('register'))->withErrors([('Data Error !')]);
         }
     }
 }
