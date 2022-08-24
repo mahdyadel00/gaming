@@ -25,8 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $categories = Category::get();
-
-        return view('frontend.layouts.index', compact('categories'));
+        return view('frontend.layouts.index');
     }
+
+
 }

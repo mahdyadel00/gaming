@@ -33,6 +33,7 @@ Route::prefix(LaravelLocalization::setLocale())
         // ============================================================================** Login Route ** ==========================================================================
         Route::get('login/show', [LoginController::class, 'login'])->name('login.show');
         Route::post('login/post', [LoginController::class, 'doLogin'])->name('login.do');
+        Route::get('logout', [LoginController::class, 'logout'])->name('logout');
         // ============================================================================** Register Route ** ==========================================================================
         Route::get('register/show', [RegisterController::class, 'register'])->name('register');
         Route::post('register/post', [RegisterController::class, 'doRegister'])->name('register.do');

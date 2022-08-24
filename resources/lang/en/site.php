@@ -13,6 +13,14 @@ return [
     'add_details' => 'Add Details',
     'add_lists_category' => 'Add Lists Category',
     'message_all' => 'Message All',
+    'all_message' => 'All Message',
+    'logout' => 'Logout',
+    'my_account' => 'My Account',
+    'membership' => 'Member Ship',
+    'promoted_ads' => 'Promoted Ads',
+    'wish_list' => 'Wish List',
+    'help' => 'Help',
+    'user_account' => 'User Account',
 
 ];
 ?>

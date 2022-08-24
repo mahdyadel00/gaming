@@ -1,3 +1,6 @@
+@php
+$categories = App\Models\Category::get();
+@endphp
 <header class="header-style-01">
     <nav class="navbar navbar-area headerBg1 navbar-expand-lg  plr">
         <div class="container-fluid container-two nav-container">
@@ -125,183 +128,184 @@
                                         </div>
                                     </div>
                                 </li> --}}
+
                                 @foreach ($categories as $category)
-                                <li class="singleList menu-item-has-children current-menu-item">
-                                    <a href="{{ route('single_category' , $category->id) }}" class="tittle"> <i
-                                            class="las la-headphones icon"></i> {{$category->title_en}} </a>
-                                    <div class="megamenuWrapper">
-                                        <div class="singleMegamenu">
-                                            <div class="megamenu-product">
-                                                <div class="product-img">
-                                                    <a href="ad_lists_category.html"> <img
-                                                            src="{{ asset('frontend') }}/assets/img/gallery/catitems1.jpg"
-                                                            alt="images"> </a>
+                                    <li class="singleList menu-item-has-children current-menu-item">
+                                        <a href="{{ route('single_category', $category->id) }}" class="tittle"> <i
+                                                class="las la-headphones icon"></i> {{ $category->title_en }} </a>
+                                        <div class="megamenuWrapper">
+                                            <div class="singleMegamenu">
+                                                <div class="megamenu-product">
+                                                    <div class="product-img">
+                                                        <a href="ad_lists_category.html"> <img
+                                                                src="{{ asset('frontend') }}/assets/img/gallery/catitems1.jpg"
+                                                                alt="images"> </a>
+                                                    </div>
+                                                    <div class="megamenu-contents">
+                                                        <h4> <a href="ad_lists_category.html" class="megamenu-title">
+                                                                items Tittle </a> </h4>
+                                                        <div class="price">
+                                                            <h5 class="newPrice"> $33.00 </h5>
+                                                            <span class="prevPrice"> $50.00 </span>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="megamenu-contents">
-                                                    <h4> <a href="ad_lists_category.html" class="megamenu-title">
-                                                            items Tittle </a> </h4>
-                                                    <div class="price">
-                                                        <h5 class="newPrice"> $33.00 </h5>
-                                                        <span class="prevPrice"> $50.00 </span>
+                                            </div>
+                                            <div class="singleMegamenu">
+                                                <div class="megamenu-product">
+                                                    <div class="product-img">
+                                                        <a href="ad_lists_category.html"> <img
+                                                                src="{{ asset('frontend') }}/assets/img/gallery/catitems2.jpg"
+                                                                alt="images"> </a>
+                                                    </div>
+                                                    <div class="megamenu-contents">
+                                                        <h4> <a href="ad_lists_category.html" class="megamenu-title">
+                                                                items Tittle </a> </h4>
+                                                        <div class="price">
+                                                            <h5 class="newPrice"> $33.00 </h5>
+                                                            <span class="prevPrice"> $50.00 </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="singleMegamenu">
+                                                <div class="megamenu-product">
+                                                    <div class="product-img">
+                                                        <a href="ad_lists_category.html"> <img
+                                                                src="{{ asset('frontend') }}/assets/img/gallery/catitems3.jpg"
+                                                                alt="images"> </a>
+                                                    </div>
+                                                    <div class="megamenu-contents">
+                                                        <h4> <a href="ad_lists_category.html" class="megamenu-title">
+                                                                items Tittle </a> </h4>
+                                                        <div class="price">
+                                                            <h5 class="newPrice"> $33.00 </h5>
+                                                            <span class="prevPrice"> $50.00 </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="singleMegamenu">
+                                                <div class="megamenu-product">
+                                                    <div class="product-img">
+                                                        <a href="ad_lists_category.html"> <img
+                                                                src="{{ asset('frontend') }}/assets/img/gallery/catitems4.jpg"
+                                                                alt="images"> </a>
+                                                    </div>
+                                                    <div class="megamenu-contents">
+                                                        <h4> <a href="ad_lists_category.html" class="megamenu-title">
+                                                                items Tittle </a> </h4>
+                                                        <div class="price">
+                                                            <h5 class="newPrice"> $33.00 </h5>
+                                                            <span class="prevPrice"> $50.00 </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="singleMegamenu">
+                                                <div class="megamenu-product">
+                                                    <div class="product-img">
+                                                        <a href="ad_lists_category.html"> <img
+                                                                src="{{ asset('frontend') }}/assets/img/gallery/catitems5.jpg"
+                                                                alt="images"> </a>
+                                                    </div>
+                                                    <div class="megamenu-contents">
+                                                        <h4> <a href="ad_lists_category.html" class="megamenu-title">
+                                                                items Tittle </a> </h4>
+                                                        <div class="price">
+                                                            <h5 class="newPrice"> $33.00 </h5>
+                                                            <span class="prevPrice"> $50.00 </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="singleMegamenu">
+                                                <div class="megamenu-product">
+                                                    <div class="product-img">
+                                                        <a href="ad_lists_category.html"> <img
+                                                                src="{{ asset('frontend') }}/assets/img/gallery/catitems6.jpg"
+                                                                alt="images"> </a>
+                                                    </div>
+                                                    <div class="megamenu-contents">
+                                                        <h4> <a href="ad_lists_category.html" class="megamenu-title">
+                                                                items Tittle </a> </h4>
+                                                        <div class="price">
+                                                            <h5 class="newPrice"> $33.00 </h5>
+                                                            <span class="prevPrice"> $50.00 </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="singleMegamenu">
+                                                <div class="megamenu-product">
+                                                    <div class="product-img">
+                                                        <a href="ad_lists_category.html"> <img
+                                                                src="{{ asset('frontend') }}/assets/img/gallery/catitems7.jpg"
+                                                                alt="images"> </a>
+                                                    </div>
+                                                    <div class="megamenu-contents">
+                                                        <h4> <a href="ad_lists_category.html" class="megamenu-title">
+                                                                items Tittle </a> </h4>
+                                                        <div class="price">
+                                                            <h5 class="newPrice"> $33.00 </h5>
+                                                            <span class="prevPrice"> $50.00 </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="singleMegamenu">
+                                                <div class="megamenu-product">
+                                                    <div class="product-img">
+                                                        <a href="ad_lists_category.html"> <img
+                                                                src="{{ asset('frontend') }}/assets/img/gallery/phoneCat1.jpg"
+                                                                alt="images"> </a>
+                                                    </div>
+                                                    <div class="megamenu-contents">
+                                                        <h4> <a href="ad_lists_category.html" class="megamenu-title">
+                                                                items Tittle </a> </h4>
+                                                        <div class="price">
+                                                            <h5 class="newPrice"> $33.00 </h5>
+                                                            <span class="prevPrice"> $50.00 </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="singleMegamenu">
+                                                <div class="megamenu-product">
+                                                    <div class="product-img">
+                                                        <a href="ad_lists_category.html"> <img
+                                                                src="{{ asset('frontend') }}/assets/img/gallery/catitems9.jpg"
+                                                                alt="images"> </a>
+                                                    </div>
+                                                    <div class="megamenu-contents">
+                                                        <h4> <a href="ad_lists_category.html" class="megamenu-title">
+                                                                items Tittle </a> </h4>
+                                                        <div class="price">
+                                                            <h5 class="newPrice"> $33.00 </h5>
+                                                            <span class="prevPrice"> $50.00 </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="singleMegamenu">
+                                                <div class="megamenu-product">
+                                                    <div class="product-img">
+                                                        <a href="ad_lists_category.html"> <img
+                                                                src="{{ asset('frontend') }}/assets/img/gallery/catitems4.jpg"
+                                                                alt="images"> </a>
+                                                    </div>
+                                                    <div class="megamenu-contents">
+                                                        <h4> <a href="ad_lists_category.html" class="megamenu-title">
+                                                                items Tittle </a> </h4>
+                                                        <div class="price">
+                                                            <h5 class="newPrice"> $33.00 </h5>
+                                                            <span class="prevPrice"> $50.00 </span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="singleMegamenu">
-                                            <div class="megamenu-product">
-                                                <div class="product-img">
-                                                    <a href="ad_lists_category.html"> <img
-                                                            src="{{ asset('frontend') }}/assets/img/gallery/catitems2.jpg"
-                                                            alt="images"> </a>
-                                                </div>
-                                                <div class="megamenu-contents">
-                                                    <h4> <a href="ad_lists_category.html" class="megamenu-title">
-                                                            items Tittle </a> </h4>
-                                                    <div class="price">
-                                                        <h5 class="newPrice"> $33.00 </h5>
-                                                        <span class="prevPrice"> $50.00 </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="singleMegamenu">
-                                            <div class="megamenu-product">
-                                                <div class="product-img">
-                                                    <a href="ad_lists_category.html"> <img
-                                                            src="{{ asset('frontend') }}/assets/img/gallery/catitems3.jpg"
-                                                            alt="images"> </a>
-                                                </div>
-                                                <div class="megamenu-contents">
-                                                    <h4> <a href="ad_lists_category.html" class="megamenu-title">
-                                                            items Tittle </a> </h4>
-                                                    <div class="price">
-                                                        <h5 class="newPrice"> $33.00 </h5>
-                                                        <span class="prevPrice"> $50.00 </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="singleMegamenu">
-                                            <div class="megamenu-product">
-                                                <div class="product-img">
-                                                    <a href="ad_lists_category.html"> <img
-                                                            src="{{ asset('frontend') }}/assets/img/gallery/catitems4.jpg"
-                                                            alt="images"> </a>
-                                                </div>
-                                                <div class="megamenu-contents">
-                                                    <h4> <a href="ad_lists_category.html" class="megamenu-title">
-                                                            items Tittle </a> </h4>
-                                                    <div class="price">
-                                                        <h5 class="newPrice"> $33.00 </h5>
-                                                        <span class="prevPrice"> $50.00 </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="singleMegamenu">
-                                            <div class="megamenu-product">
-                                                <div class="product-img">
-                                                    <a href="ad_lists_category.html"> <img
-                                                            src="{{ asset('frontend') }}/assets/img/gallery/catitems5.jpg"
-                                                            alt="images"> </a>
-                                                </div>
-                                                <div class="megamenu-contents">
-                                                    <h4> <a href="ad_lists_category.html" class="megamenu-title">
-                                                            items Tittle </a> </h4>
-                                                    <div class="price">
-                                                        <h5 class="newPrice"> $33.00 </h5>
-                                                        <span class="prevPrice"> $50.00 </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="singleMegamenu">
-                                            <div class="megamenu-product">
-                                                <div class="product-img">
-                                                    <a href="ad_lists_category.html"> <img
-                                                            src="{{ asset('frontend') }}/assets/img/gallery/catitems6.jpg"
-                                                            alt="images"> </a>
-                                                </div>
-                                                <div class="megamenu-contents">
-                                                    <h4> <a href="ad_lists_category.html" class="megamenu-title">
-                                                            items Tittle </a> </h4>
-                                                    <div class="price">
-                                                        <h5 class="newPrice"> $33.00 </h5>
-                                                        <span class="prevPrice"> $50.00 </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="singleMegamenu">
-                                            <div class="megamenu-product">
-                                                <div class="product-img">
-                                                    <a href="ad_lists_category.html"> <img
-                                                            src="{{ asset('frontend') }}/assets/img/gallery/catitems7.jpg"
-                                                            alt="images"> </a>
-                                                </div>
-                                                <div class="megamenu-contents">
-                                                    <h4> <a href="ad_lists_category.html" class="megamenu-title">
-                                                            items Tittle </a> </h4>
-                                                    <div class="price">
-                                                        <h5 class="newPrice"> $33.00 </h5>
-                                                        <span class="prevPrice"> $50.00 </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="singleMegamenu">
-                                            <div class="megamenu-product">
-                                                <div class="product-img">
-                                                    <a href="ad_lists_category.html"> <img
-                                                            src="{{ asset('frontend') }}/assets/img/gallery/phoneCat1.jpg"
-                                                            alt="images"> </a>
-                                                </div>
-                                                <div class="megamenu-contents">
-                                                    <h4> <a href="ad_lists_category.html" class="megamenu-title">
-                                                            items Tittle </a> </h4>
-                                                    <div class="price">
-                                                        <h5 class="newPrice"> $33.00 </h5>
-                                                        <span class="prevPrice"> $50.00 </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="singleMegamenu">
-                                            <div class="megamenu-product">
-                                                <div class="product-img">
-                                                    <a href="ad_lists_category.html"> <img
-                                                            src="{{ asset('frontend') }}/assets/img/gallery/catitems9.jpg"
-                                                            alt="images"> </a>
-                                                </div>
-                                                <div class="megamenu-contents">
-                                                    <h4> <a href="ad_lists_category.html" class="megamenu-title">
-                                                            items Tittle </a> </h4>
-                                                    <div class="price">
-                                                        <h5 class="newPrice"> $33.00 </h5>
-                                                        <span class="prevPrice"> $50.00 </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="singleMegamenu">
-                                            <div class="megamenu-product">
-                                                <div class="product-img">
-                                                    <a href="ad_lists_category.html"> <img
-                                                            src="{{ asset('frontend') }}/assets/img/gallery/catitems4.jpg"
-                                                            alt="images"> </a>
-                                                </div>
-                                                <div class="megamenu-contents">
-                                                    <h4> <a href="ad_lists_category.html" class="megamenu-title">
-                                                            items Tittle </a> </h4>
-                                                    <div class="price">
-                                                        <h5 class="newPrice"> $33.00 </h5>
-                                                        <span class="prevPrice"> $50.00 </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
+                                    </li>
                                 @endforeach
                                 {{-- <li class="singleList menu-item-has-children current-menu-item">
                                     <a href="ad_lists_category.html" class="tittle"><i class="las la-tv icon"></i> TV
@@ -688,11 +692,12 @@
                                 <li><a href="promoted_add_list.html">Promoted add_list</a></li>
                                 <li><a href="image_uploded.html">Image Uploded</a></li>
                                 <li><a href="payment.html">Payment</a></li>
-                                <li><a href="{{ route('login.show') }}">@lang('site.login')</a></li>
+
                                 <li><a href="messages.html">@lang('site.message_all')</a></li>
                             </ul>
                         </li>
                         <li><a href="{{ route('conacts') }}">@lang('site.contacts')</a></li>
+
                     </ul>
                 </div>
             </div>
@@ -784,35 +789,36 @@
                             User AC Wrapper
                         -->
                         @auth
-                        <div class="userAccount-wrapper">
-                            <h6 class="ac-title">@lang('site.user_account')</h6>
-                            <ul class="ac-list">
-                                <li class="list">
-                                    <a class="list-title" href="my_account.html"> <i
-                                            class="lar la-user-circle icon"></i> @lang('site.my_account') </a>
-                                </li>
-                                <li class="list">
-                                    <a class="list-title" href="memberShip.html"> <i
-                                            class="las la-address-card icon"></i> @lang('site.membership') </a>
-                                </li>
-                                <li class="list">
-                                    <a class="list-title" href="promoted_add_list.html"><i
-                                            class="las la-ad icon"></i> @lang('site.promoted_ads') </a>
-                                </li>
-                                <li class="list">
-                                    <a class="list-title" href="wish_list.html"><i class="lar la-heart icon"></i>
-                                        @lang('site.wish_list') </a>
-                                </li>
-                                <li class="list">
-                                    <a class="list-title" href="help.html"> <i
-                                            class="lar la-question-circle icon"></i> @lang('site.help')</a>
-                                </li>
-                                <li class="list">
-                                    <a class="list-title" href="login.html"> <i class="las la-sign-out-alt icon"></i>
-                                        @lang('site.logout')</a>
-                                </li>
-                            </ul>
-                        </div>
+                            <div class="userAccount-wrapper">
+                                <h6 class="ac-title">@lang('site.user_account')</h6>
+                                <ul class="ac-list">
+                                    <li class="list">
+                                        <a class="list-title" href="my_account.html"> <i
+                                                class="lar la-user-circle icon"></i> @lang('site.my_account') </a>
+                                    </li>
+                                    <li class="list">
+                                        <a class="list-title" href="memberShip.html"> <i
+                                                class="las la-address-card icon"></i> @lang('site.membership') </a>
+                                    </li>
+                                    <li class="list">
+                                        <a class="list-title" href="promoted_add_list.html"><i
+                                                class="las la-ad icon"></i> @lang('site.promoted_ads') </a>
+                                    </li>
+                                    <li class="list">
+                                        <a class="list-title" href="wish_list.html"><i class="lar la-heart icon"></i>
+                                            @lang('site.wish_list') </a>
+                                    </li>
+                                    <li class="list">
+                                        <a class="list-title" href="help.html"> <i
+                                                class="lar la-question-circle icon"></i> @lang('site.help')</a>
+                                    </li>
+                                    <li class="list">
+                                        <a class="list-title" href="{{ route('logout') }}"> <i
+                                                class="las la-sign-out-alt icon"></i>
+                                            @lang('site.logout')</a>
+                                    </li>
+                                </ul>
+                            </div>
                         @endauth
 
                         <!--
@@ -840,19 +846,14 @@
                     <li class="single">
                         <!-- Select Language -->
                         <div class="select-itms">
-                            @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                                <select name="select" class="niceSelect">
-
+                            <select name="select" class="niceSelect">
+                                @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
                                     <option value=""> <a rel="alternate" hreflang="{{ $localeCode }}"
                                             href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
                                             {{ $properties['native'] }}
                                         </a></option>
-                                </select>
-                            @endforeach
-                            {{-- <select name="select" class="niceSelect">
-                                <option value="">English</option>
-                                <option value="">Arabic</option>
-                            </select> --}}
+                                @endforeach
+                            </select>
                         </div>
                     </li>
                 </ul>

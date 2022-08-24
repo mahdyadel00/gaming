@@ -43,4 +43,11 @@ class LoginController extends Controller
                 ->withErrors([('Data Error !')]);
         }
     }
+
+    protected function logout(){
+
+        auth()->logout();
+
+        return redirect('/');
+    }
 }

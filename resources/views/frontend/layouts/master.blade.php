@@ -23,7 +23,9 @@
 </head>
 
 <body>
-    @include('frontend.layouts.header')
+    {{-- @if (!$categories->isEmpty()) --}}
+        @include('frontend.layouts.header')
+    {{-- @endif --}}
     <main>
         @yield('content')
         <!-- Modal -->
