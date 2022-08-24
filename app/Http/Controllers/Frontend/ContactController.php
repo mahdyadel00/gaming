@@ -39,11 +39,11 @@ class ContactController extends Controller
         }
         $request->validate([
 
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'email' => 'required',
+            // 'first_name' => 'required',
+            // 'last_name' => 'required',
+            // 'email' => 'required',
             // 'phone' => 'required',
-            'message' => 'required',
+            // 'message' => 'required',
         ]);
         $contact = Contact::query()->create([
 

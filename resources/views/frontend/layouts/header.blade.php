@@ -564,7 +564,7 @@
                                 <li><a href="promoted_add_list.html">Promoted add_list</a></li>
                                 <li><a href="image_uploded.html">Image Uploded</a></li>
                                 <li><a href="payment.html">Payment</a></li>
-                                <li><a href="login.html">Login</a></li>
+                                <li><a href="{{ route('login') }}">Login</a></li>
                                 <li><a href="messages.html">Messages All</a></li>
                             </ul>
                         </li>
