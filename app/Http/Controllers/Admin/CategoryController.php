@@ -7,14 +7,14 @@ use App\Models\Category;
 
 class CategoryController extends Controller
 {
-    
+
     public function index()
     {
         $categories = Category::paginate(20);
         return view('admin.categories.index', compact('categories'));
     }
 
- 
+
     public function create()
     {
         return view('admin.categories.create');
@@ -28,7 +28,7 @@ class CategoryController extends Controller
             'title_ar' => 'required',
             'description_en' => 'required',
             'description_ar' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048', 
+            // 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048|nullable',
         ]);
 
         $categories = Category::create([
@@ -37,15 +37,15 @@ class CategoryController extends Controller
             'title_ar'  => $request->title_ar,
             'description_en'  => $request->description_en,
             'description_ar'  => $request->description_ar,
-            'image'  => $request->image,
+
         ]);
-        flash()->success("Category Added successfully");
-        return redirect()->route('admin.categories.index');
+        // Session::flash()->success("Category Added successfully");
+        return redirect()->route('admin.categories.index')->with('Successfilly' , 'Category Added Successfullt');
     }
 
     public function show($id)
     {
-        
+
     }
 
 
@@ -66,7 +66,7 @@ class CategoryController extends Controller
             'title_ar' => 'filled',
             'description_en' => 'filled',
             'description_ar' => 'filled',
-           
+
         ]);
 
         $category->update([

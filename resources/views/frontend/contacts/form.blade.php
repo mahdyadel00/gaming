@@ -47,13 +47,14 @@
                                     <label class="infoTitle">Message</label>
                                     <div class="input-form">
                                         {{-- <textarea name="message " id="message" placeholder="About your project"></textarea> --}}
-                                        <textarea class="form-control" name="message" rows="5" placeholder="About your project"  required></textarea>
+                                        <textarea class="form-control" name="message" rows="5" placeholder="About your project" required></textarea>
                                     </div>
                                 </div>
                                 <!-- user Message -->
                                 <div class="col-sm-12">
                                     <label class="checkWrap2">You agree to our privacy policy.
-                                        <input class="effectBorder" name="published" type="checkbox" value="1" required>
+                                        <input class="effectBorder" name="published" type="checkbox" value="1"
+                                            required>
                                         <span class="checkmark"></span>
                                     </label>
                                 </div>
@@ -62,8 +63,8 @@
                         <div class="col-sm-12">
                             <div class="btn-wrapper mb-10">
                                 {{-- <button type="submit" form="add-form" class="cmn-btn4 w-100">Send message</button> --}}
-                                <button type="submit" class="btn btn-primary waves-effect waves-light"
-                                form='add-form'>Send Message</button>
+                                <button type="submit" class="btn btn-primary waves-effect waves-light" form='add-form'>Send
+                                    Message</button>
 
                             </div>
                         </div>
@@ -80,33 +81,30 @@
 @endsection
 
 @push('js')
-$('body').on('submit', '#add-form', function (e)
-{
-    e.preventDefault();
-    var url = $(this).attr('action');
-    $.ajax({
-        url: url,
-        method: "post",
-        data: new FormData(this),
-        dataType: 'json',
-        cache       : false,
-        contentType : false,
-        processData : false,
-        success: function (response) {
-            if( response == 'success' )
-            {
-                new Noty({
-                    type: 'success',
-                    layout: 'topRight',
-                    text: "{{ ('Saved successfully')}}",
-                    timeout: 2000,
-                    killer: true
-                }).show();
-                $('.modal').modal('hide');
-                $('.dataTable').DataTable().draw(false);
-            }
-        },
-    });
-});
-
+    <script>
+        $('body').on('submit', '#add-form', function(e) {
+            e.preventDefault();
+            var url = $(this).attr('action');
+            $.ajax({
+                url: url,
+                method: "post",
+                data: new FormData(this),
+                dataType: 'json',
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    if (response == 'success') {
+                        new Noty({
+                            type: 'success',
+                            layout: 'topRight',
+                            text: "{{ 'Saved successfully' }}",
+                            timeout: 2000,
+                            killer: true
+                        }).show();
+                    }
+                },
+            });
+        });
+    </script>
 @endpush
