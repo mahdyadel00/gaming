@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Validator;
 
 use function GuzzleHttp\Promise\all;
 
@@ -30,14 +31,13 @@ class RegisterController extends Controller
     protected function doRegister(Request $request)
     {
 
-        $request->validate([
+        // $request->validate([
 
-            'first_name' => 'required',
-            'last_name' => 'required',
-            // 'phone' => 'required',
-            'email' => 'required|users',
-            'password' => 'required',
-        ]);
+        //     'first_name' => 'required',
+        //     'last_name' => 'required',
+        //     'email' => 'required|users',
+        //     'password' => 'required',
+        // ]);
 
         $users = User::query()->create([
 

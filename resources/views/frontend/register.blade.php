@@ -36,14 +36,14 @@
                             <div class="col-md-12">
                                 <label class="infoTitle">Email</label>
                                 <div class="input-form input-form2">
-                                    <input type="text" name="email" placeholder="info.sai4ul@gmail.com">
+                                    <input type="email" name="email" placeholder="info.sai4ul@gmail.com">
                                 </div>
                             </div>
 
                             <div class="col-lg-6 col-md-12">
                                 <label class="infoTitle">Password</label>
                                 <div class="input-form">
-                                    <input type="text" name="password" placeholder="Enter password">
+                                    <input type="password" name="password" placeholder="Enter password">
                                     <div class="icon"><i class="las la-lock icon"></i></div>
                                     <p>Password must be minimum 8 characters</p>
                                 </div>
