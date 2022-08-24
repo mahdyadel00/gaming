@@ -670,7 +670,7 @@
                 <div class="collapse navbar-collapse" id="bizcoxx_main_menu">
                     <ul class="navbar-nav">
                         <li><a href="ad_Lists.html">@lang('site.all_ads')</a></li>
-                        <li><a href="about.html">@lang('about_us')</a></li>
+                        <li><a href="about.html">@lang('site.about_us')</a></li>
                         <li class="menu-item-has-children">
                             <a href="#" class="menuArrow">@lang('site.pages')</a>
                             <ul class="sub-menu">
@@ -686,8 +686,8 @@
                                 <li><a href="promoted_add_list.html">Promoted add_list</a></li>
                                 <li><a href="image_uploded.html">Image Uploded</a></li>
                                 <li><a href="payment.html">Payment</a></li>
-                                <li><a href="{{ route('login') }}">@lang('site.login')</a></li>
-                                <li><a href="messages.html">@lang('message_all')</a></li>
+                                <li><a href="{{ route('login.show') }}">@lang('site.login')</a></li>
+                                <li><a href="messages.html">@lang('site.message_all')</a></li>
                             </ul>
                         </li>
                         <li><a href="{{ route('conacts') }}">@lang('site.contacts')</a></li>

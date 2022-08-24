@@ -30,7 +30,7 @@ Route::prefix(LaravelLocalization::setLocale())
 
         Route::get('/', [HomeController::class, 'index'])->name('home');
         // ============================================================================** Login Route ** ==========================================================================
-        Route::get('login/show', [LoginController::class, 'login'])->name('login');
+        Route::get('login/show', [LoginController::class, 'login'])->name('login.show');
         Route::post('login/post', [LoginController::class, 'doLogin'])->name('login.do');
         // ============================================================================** Register Route ** ==========================================================================
         Route::get('register/show', [RegisterController::class, 'register'])->name('register');
