@@ -59,7 +59,7 @@
                                     <a href="#" class="cmn-btn-outline0 mb-20  w-100"><img
                                             src="{{ asset('frontend') }}/assets/img/icon/fbIcon.svg" alt="images"
                                             class="icon">Log in With Facebook</a>
-                                    <p class="sinUp"><span>Don’t have an account? </span><a href="register.html"
+                                    <p class="sinUp"><span>Don’t have an account? </span><a href="{{ route('register') }}"
                                             class="singApp">Sign Up</a></p>
                                 </div>
                             </div>
