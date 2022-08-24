@@ -26,15 +26,15 @@
                         <!-- Show Menu list -->
                         <div class="showSidebar">
                             <ul>
-                                <li class="singleList">
+                                {{-- <li class="singleList">
                                     <a href="ad_lists_category.html" class="tittle"><i
                                             class="las la-phone-volume icon"></i> Phone and Electronics</a>
                                 </li>
                                 <li class="singleList">
                                     <a href="ad_lists_category.html" class="tittle"><i
                                             class="las la-phone-volume icon"></i> Phone and Electronics</a>
-                                </li>
-                                <li class="singleList menu-item-has-children current-menu-item">
+                                </li> --}}
+                                {{-- <li class="singleList menu-item-has-children current-menu-item">
                                     <a href="ad_lists_category.html" class="tittle"><i
                                             class="las la-sort-amount-up icon"></i>Best Seller</a>
                                     <div class="megamenuWrapper">
@@ -124,10 +124,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                </li>
+                                </li> --}}
+                                @foreach ($categories as $category)
                                 <li class="singleList menu-item-has-children current-menu-item">
-                                    <a href="ad_lists_category.html" class="tittle"> <i
-                                            class="las la-headphones icon"></i> Top 10 Offers </a>
+                                    <a href="{{ route('single_category' , $category->id) }}" class="tittle"> <i
+                                            class="las la-headphones icon"></i> {{$category->title_en}} </a>
                                     <div class="megamenuWrapper">
                                         <div class="singleMegamenu">
                                             <div class="megamenu-product">
@@ -301,7 +302,8 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li class="singleList menu-item-has-children current-menu-item">
+                                @endforeach
+                                {{-- <li class="singleList menu-item-has-children current-menu-item">
                                     <a href="ad_lists_category.html" class="tittle"><i class="las la-tv icon"></i> TV
                                         &amp; Audio </a>
                                     <div class="megamenuWrapper">
@@ -660,7 +662,7 @@
                                 <li class="singleList">
                                     <a href="ad_lists_category.html" class="tittle"><i
                                             class="las la-laptop icon"></i>Jewelry Watches </a>
-                                </li>
+                                </li> --}}
                             </ul>
                         </div>
                     </div>
