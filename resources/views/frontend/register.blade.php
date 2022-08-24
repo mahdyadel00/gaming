@@ -24,26 +24,26 @@
                             <div class="col-lg-6 col-md-12">
                                 <label class="infoTitle">First Name</label>
                                 <div class="input-form input-form2">
-                                    <input type="text" name="first_name" placeholder="First Name">
+                                    <input type="text" name="first_name" placeholder="First Name" required>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-12">
                                 <label class="infoTitle">Last Name</label>
                                 <div class="input-form input-form2">
-                                    <input type="text" name="last_name" placeholder="Last Name">
+                                    <input type="text" name="last_name" placeholder="Last Name" required>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <label class="infoTitle">Email</label>
                                 <div class="input-form input-form2">
-                                    <input type="email" name="email" placeholder="info.sai4ul@gmail.com">
+                                    <input type="email" name="email" placeholder="info.sai4ul@gmail.com" required>
                                 </div>
                             </div>
 
                             <div class="col-lg-6 col-md-12">
                                 <label class="infoTitle">Password</label>
                                 <div class="input-form">
-                                    <input type="password" name="password" placeholder="Enter password">
+                                    <input type="password" name="password" placeholder="Enter password" required>
                                     <div class="icon"><i class="las la-lock icon"></i></div>
                                     <p>Password must be minimum 8 characters</p>
                                 </div>
