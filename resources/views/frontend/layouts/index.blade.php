@@ -6,15 +6,17 @@
     <main>
         <!-- Modal -->
         <div class="body-overlay-desktop"></div>
-        <div class="modal-wrapper text-center">
+        {{-- <div class="modal-wrapper text-center">
             <div class="close-icon">
                 <i class="las la-times"></i>
             </div>
             <h2 class="modialTittle">Post Your <span>Ad</span> ?</h2>
-            <div class="btn-wrapper">
-                <a href="add_listing_Details.html" class="cmn-btn02">Yes , Post ad</a>
-            </div>
-        </div>
+
+                <div class="btn-wrapper">
+                    <a href="{{ route('product.create') }}" class="cmn-btn02">Yes , Post ad</a>
+                </div>
+
+        </div> --}}
 
         <!-- Hero Area S t a r t -->
         @include('frontend.layouts.sidbar')

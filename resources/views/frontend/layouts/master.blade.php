@@ -24,7 +24,7 @@
 
 <body>
     {{-- @if (!$categories->isEmpty()) --}}
-        @include('frontend.layouts.header')
+    @include('frontend.layouts.header')
     {{-- @endif --}}
     <main>
         @yield('content')
@@ -34,9 +34,9 @@
             <div class="close-icon">
                 <i class="las la-times"></i>
             </div>
-            <h2 class="modialTittle">Post Your <span>Ad</span> ?</h2>
+            <h2 class="modialTittle">@lang('site.post_your') <span>@lang('site.ad')</span> ?</h2>
             <div class="btn-wrapper">
-                <a href="add_listing_Details.html" class="cmn-btn02">Yes , Post ad</a>
+                <a href="{{ route('product.create') }}" class="cmn-btn02">@lang('site.yes_post_ad')</a>
             </div>
         </div>
     </main>
@@ -49,20 +49,19 @@
                             <div class="footer-widget widget  mb-24">
                                 <div class="footer-tittle footer-tittle2">
                                     <div class="footer-logo mb-40">
-                                        <a href="index.html"><img
+                                        <a href="{{ route('home') }}"><img
                                                 src="{{ asset('frontend') }}/assets/img/logo/h1FooterLogo.png"
                                                 alt="images"></a>
                                     </div>
                                     <ul class="listing">
                                         <li class="listItem wow fadeInUp" data-wow-delay="0.0s"><a href="#"
-                                                class="singleLinks"><i class="las la-map-marker icon"></i>631 Elgin St.
-                                                Celina, Delaware</a></li>
+                                                class="singleLinks"><i class="las la-map-marker icon"></i>Al Mansoura</a></li>
                                         <li class="listItem wow fadeInUp" data-wow-delay="0.1s"><a href="#"
-                                                class="singleLinks"><i class="las la-phone icon"></i>(702) 555-0122</a>
+                                                class="singleLinks"><i class="las la-phone icon"></i>01122907742</a>
                                         </li>
                                         <li class="listItem wow fadeInUp" data-wow-delay="0.2s"><a href="#"
                                                 class="singleLinks"><i
-                                                    class="las la-envelope icon"></i>Xgenious@mail.com</a></li>
+                                                    class="las la-envelope icon"></i>admin@email.com</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -70,22 +69,22 @@
                         <div class="col-xxl-2 col-xl-2 col-lg-6 col-md-6 col-sm-6">
                             <div class="footer-widget widget  mb-24">
                                 <div class="footer-tittle">
-                                    <h4 class="footerTittle">Categories</h4>
+                                    <h4 class="footerTittle">@lang('site.categories')</h4>
                                     <ul class="listing">
                                         <li class="listItem wow fadeInUp" data-wow-delay="0.0s"><a href="#"
-                                                class="singleLinks"> Electronics</a></li>
+                                                class="singleLinks"> @lang('site.electronics')</a></li>
                                         <li class="listItem wow fadeInUp" data-wow-delay="0.0s"><a href="#"
-                                                class="singleLinks"> Mobile</a></li>
+                                                class="singleLinks"> @lang('site.mobile')</a></li>
                                         <li class="listItem wow fadeInUp" data-wow-delay="0.1s"><a href="#"
-                                                class="singleLinks"> Vehicles</a></li>
+                                                class="singleLinks"> @lang('site.vehicles')</a></li>
                                         <li class="listItem wow fadeInUp" data-wow-delay="0.1s"><a href="#"
-                                                class="singleLinks"> Appliances</a></li>
+                                                class="singleLinks"> @lang('site.application')</a></li>
                                         <li class="listItem wow fadeInUp" data-wow-delay="0.2s"><a href="#"
-                                                class="singleLinks"> Fashions</a></li>
+                                                class="singleLinks"> @lang('site.fashions')</a></li>
                                         <li class="listItem wow fadeInUp" data-wow-delay="0.2s"><a href="#"
-                                                class="singleLinks"> Eductation</a></li>
+                                                class="singleLinks"> @lang('site.education')</a></li>
                                         <li class="listItem wow fadeInUp" data-wow-delay="0.2s"><a href="#"
-                                                class="singleLinks"> Property</a></li>
+                                                class="singleLinks"> @lang('site.property')</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -93,22 +92,22 @@
                         <div class="col-xxl-2 col-xl-2 col-lg-6 col-md-6 col-sm-6">
                             <div class="footer-widget widget  mb-24">
                                 <div class="footer-tittle">
-                                    <h4 class="footerTittle">About</h4>
+                                    <h4 class="footerTittle">@lang('site.about')</h4>
                                     <ul class="listing">
                                         <li class="listItem wow fadeInUp" data-wow-delay="0.0s"><a href="#"
-                                                class="singleLinks"> About us</a></li>
+                                                class="singleLinks"> @lang('site.about_us')</a></li>
                                         <li class="listItem wow fadeInUp" data-wow-delay="0.0s"><a href="#"
-                                                class="singleLinks"> Blog</a></li>
+                                                class="singleLinks"> @lang('site.blog')</a></li>
                                         <li class="listItem wow fadeInUp" data-wow-delay="0.1s"><a href="#"
-                                                class="singleLinks"> Press</a></li>
+                                                class="singleLinks"> @lang('site.press')</a></li>
                                         <li class="listItem wow fadeInUp" data-wow-delay="0.1s"><a href="#"
-                                                class="singleLinks"> Jobs</a></li>
+                                                class="singleLinks"> @lang('site.jobs')</a></li>
                                         <li class="listItem wow fadeInUp" data-wow-delay="0.2s"><a href="#"
-                                                class="singleLinks"> In Press</a></li>
+                                                class="singleLinks"> @lang('site.in_press')</a></li>
                                         <li class="listItem wow fadeInUp" data-wow-delay="0.2s"><a href="#"
-                                                class="singleLinks"> Terms & Conditions</a></li>
+                                                class="singleLinks"> @lang('site.terms_condition')</a></li>
                                         <li class="listItem wow fadeInUp" data-wow-delay="0.2s"><a href="#"
-                                                class="singleLinks"> Privacy Policy</a></li>
+                                                class="singleLinks"> @lang('site.praivcy_policy')</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -116,14 +115,14 @@
                         <div class="col-xxl-2 col-xl-2 col-lg-6 col-md-6 col-sm-6">
                             <div class="footer-widget widget  mb-24">
                                 <div class="footer-tittle">
-                                    <h4 class="footerTittle">Help & support</h4>
+                                    <h4 class="footerTittle">@lang('site.help_support')</h4>
                                     <ul class="listing">
-                                        <li class="listItem wow fadeInUp" data-wow-delay="0.0s"><a href="#"
-                                                class="singleLinks"> Contact</a></li>
+                                        <li class="listItem wow fadeInUp" data-wow-delay="0.0s"><a href="{{ route('conacts') }}"
+                                                class="singleLinks"> @lang('site.contacts')</a></li>
                                         <li class="listItem wow fadeInUp" data-wow-delay="0.2s"><a href="#"
-                                                class="singleLinks"> Faq</a></li>
+                                                class="singleLinks"> @lang('site.faq')</a></li>
                                         <li class="listItem wow fadeInUp" data-wow-delay="0.3s"><a href="#"
-                                                class="singleLinks"> Safety Informations</a></li>
+                                                class="singleLinks"> @lang('site.safty_information')</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -131,7 +130,7 @@
                         <div class="col-xxl-3 col-xl-3 col-lg-6">
                             <div class="footer-widget widget  mb-24">
                                 <div class="footer-tittle footer-tittle2">
-                                    <h4 class="footerTittle">Newsletter</h4>
+                                    <h4 class="footerTittle">@lang('site.news_letter')</h4>
                                     <div class="footer-pera footer-pera2">
                                         <p class="pera wow fadeInUp" data-wow-delay="0.0s">Be the first one to know
                                             news, offers and events weekly in your. Unsubscribe whenever you like with
@@ -147,14 +146,14 @@
                                                 placeholder="Your Email Address">
                                             <div class="btn-wrapper form-icon">
                                                 <button class="btn-default btn-rounded" type="submit"
-                                                    name="submit"> Submit</button>
+                                                    name="submit"> @lang('site.submit')</button>
                                             </div>
                                         </form>
                                     </div>
                                     <div class="footer-social2 ">
-                                        <a href="#" class="wow fadeInUp social" data-wow-delay="0.2s"><i
+                                        <a href="http://facebook.com/h" class="wow fadeInUp social" data-wow-delay="0.2s"><i
                                                 class="lab la-facebook-f icon"></i></a>
-                                        <a href="#" class="wow fadeInUp social" data-wow-delay="0.2s"><i
+                                        <a href="http://youtube.com/h" class="wow fadeInUp social" data-wow-delay="0.2s"><i
                                                 class="lab la-youtube icon"></i></a>
                                     </div>
                                 </div>

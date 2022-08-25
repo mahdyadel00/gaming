@@ -41,7 +41,7 @@ class CategoryController extends Controller
 
         ]);
         // Session::flash()->success("Category Added successfully");
-        return redirect()->route('admin.categories.index')->with('Successfilly' , 'Category Added Successfullt');
+        return redirect()->route('admin.categories.index')->with('Successfully' , 'Category Added Successfully');
     }
 
     public function show($id)
