@@ -74,7 +74,7 @@
                             </div>
                         </div>
                         <div class="btn-wrapper mb-20">
-                            <a href="wish_list.html" class="cmn-btn-outline5"><i class="las la-heart icon"></i>Favourite</a>
+                            <a href="wish_list.html" class="cmn-btn-outline5"><i class="las la-heart icon"></i>@lang('site.favourite')</a>
                         </div>
                     </div>
                 </div>
