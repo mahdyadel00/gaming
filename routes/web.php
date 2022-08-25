@@ -51,6 +51,7 @@ Route::prefix(LaravelLocalization::setLocale())
 
         Route::get('/my-account', [AccountController::class, 'myAccount'])->name('my_account');
         Route::get('/help', [AccountController::class, 'help'])->name('help');
+        Route::get('/wish-list', [AccountController::class, 'favourite'])->name('wish_list');
         // ============================================================================** Account Route ** ==========================================================================
 
         Route::get('/product-create', [ProductController::class, 'create'])->name('product.create');

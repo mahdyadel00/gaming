@@ -42,4 +42,9 @@ class AccountController extends Controller
 
         return view('frontend.accounts.help');
     }
+
+    protected function favourite(){
+
+        return view('frontend.accounts.favourite');
+    }
 }

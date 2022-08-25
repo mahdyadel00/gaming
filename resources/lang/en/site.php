@@ -73,6 +73,7 @@ return [
     'how_we_work' => 'How we work',
     'join_us' => 'Join us',
     'growing_positive_environment' => 'Want to work in a great, growing positive environment?',
+    'explore_categories' => 'Explore Categories',
 
 ];
 ?>

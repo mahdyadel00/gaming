@@ -3,7 +3,7 @@
         <div class="row justify-content-center">
             <div class="col-xl-8 col-lg-7 col-md-10 col-sm-10">
                 <div class="section-tittle text-center mb-50">
-                    <h2 class="tittle  "><span class="shape"></span>Explore Categories</h2>
+                    <h2 class="tittle  "><span class="shape"></span>@lang('site.explore_categories')</h2>
                 </div>
             </div>
         </div>

@@ -10,24 +10,23 @@
                 <div class="accountSidebar">
                     <ul class="listing listScroll">
                         <li class="listItem">
-                            <a href="my_account.html" class="items active"> <i class="lar la-user-circle icon"></i> My Account</a>
+                            <a href="{{route('my_account')}}" class="items"> <i class="lar la-user-circle icon"></i> @lang('site.my_account')</a>
                         </li>
                         <li class="listItem">
-                            <a href="memberShip.html" class="items"><i class="las la-address-card icon"></i> Membership</a>
+                            <a href="memberShip.html" class="items"><i class="las la-address-card icon"></i> @lang('site.membership')</a>
                         </li>
                         <li class="listItem">
-                            <a href="promoted_add_list.html" class="items"><i class="las la-ad icon"></i> Promoted Ads</a>
+                            <a href="promoted_add_list.html" class="items"><i class="las la-ad icon"></i> @lang('site.promoted_ads')</a>
                         </li>
                         <li class="listItem">
-                            <a href="wish_list.html" class="items"> <i class="lar la-heart icon"></i> Wishlist</a>
+                            <a href="route('wish_list')" class="items"> <i class="lar la-heart icon"></i> @lang('site.wish_list')</a>
                         </li>
                         <li class="listItem">
-                            <a href="{{ route('help') }}" class="items"> <i class="lar la-question-circle icon"></i> @lang('site.help')</a>
+                            <a href="route('help')" class="items active"> <i class="lar la-question-circle icon"></i> @lang('site.help')</a>
                         </li>
-
                     </ul>
                     <div class="accessAccount">
-                        <a href="#" class="account-btn"><i class="las la-sign-out-alt icon"></i> Logout</a>
+                        <a href="{{ route('logout') }}" class="account-btn"><i class="las la-sign-out-alt icon"></i> @lang('site.logout')</a>
                     </div>
                 </div>
             </div>
@@ -37,8 +36,8 @@
                     <div class="col-sm-12">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                <li class="breadcrumb-item"><a href="#">My Account</a></li>
+                                <li class="breadcrumb-item"><a href="{{ route('home') }}">@lang('site.home')</a></li>
+                                <li class="breadcrumb-item"><a href="{{ route('my_account') }}">@lang('site.my_account')</a></li>
                             </ol>
                         </nav>
                     </div>
