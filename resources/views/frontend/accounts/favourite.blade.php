@@ -49,7 +49,7 @@
                     <div class="singlePromoteAds mb-24  wow fadeInUp social" data-wow-delay="0.0s">
                         <div class="adsCap">
                             <div class="adsImg">
-                                <img   src="assets/img/gallery/wishlist1.jpg" alt="images">
+                                <img   src="{{ asset('frontend') }}/assets/img/gallery/wishlist1.jpg" alt="images">
                             </div>
                             <div class="adsCaption">
                                <h5><a href="add_details.html" class="adsTittle">A pair of sneakers for sell</a></h5>
@@ -65,7 +65,7 @@
                     <div class="singlePromoteAds mb-24  wow fadeInUp social" data-wow-delay="0.2s">
                         <div class="adsCap">
                             <div class="adsImg">
-                                <img   src="assets/img/gallery/wishlist2.jpg" alt="images">
+                                <img   src="{{ asset('frontend') }}/assets/img/gallery/wishlist2.jpg" alt="images">
                             </div>
                             <div class="adsCaption">
                                <h5><a href="add_details.html" class="adsTittle">Luxury couple apartment</a></h5>
