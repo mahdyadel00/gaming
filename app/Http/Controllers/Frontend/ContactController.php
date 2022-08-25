@@ -57,4 +57,9 @@ class ContactController extends Controller
 
         return response()->json('success');
       }
+
+      protected function aboutUs(){
+
+        return view('frontend.about_us');
+      }
 }
