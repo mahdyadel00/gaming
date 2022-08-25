@@ -10,16 +10,7 @@ use function GuzzleHttp\Promise\all;
 
 class LoginController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
+
     protected function login()
     {
         return view('frontend.login');

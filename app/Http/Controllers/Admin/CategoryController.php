@@ -28,7 +28,7 @@ class CategoryController extends Controller
             'title_ar' => 'required',
             'description_en' => 'required',
             'description_ar' => 'required',
-            // 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048|nullable',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048|nullable',
         ]);
 
         $categories = Category::create([
@@ -36,7 +36,8 @@ class CategoryController extends Controller
             'title_en'  => $request->title_en,
             'title_ar'  => $request->title_ar,
             'description_en'  => $request->description_en,
-            'description_ar'  => $request->description_ar,
+            'description_ar'  => $request->description_ar, 
+            'image'  => $request->image, 
 
         ]);
         // Session::flash()->success("Category Added successfully");
@@ -80,8 +81,8 @@ class CategoryController extends Controller
             $this->validate($request, [
                 'image' => 'filled|mimes:png,jpg,jpeg',
             ]);
-            Storage::delete($category->image);
-            $image = $request->file('image')->store('public/posts');
+            
+            $image = $request->file('image')->store('public/categories');
             $category->update([
                 'image' => $image
             ]);

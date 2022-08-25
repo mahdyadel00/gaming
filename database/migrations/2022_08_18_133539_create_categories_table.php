@@ -20,16 +20,11 @@ class CreateCategoriesTable extends Migration
             $table->string('description_en');
             $table->string('description_ar');
             $table->string('image');
-            $table->integer('parent_id')->nullable();
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+    
     public function down()
     {
         Schema::dropIfExists('categories');

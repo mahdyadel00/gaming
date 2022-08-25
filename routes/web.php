@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -8,18 +7,6 @@ use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\LoginController;
 use App\Http\Controllers\Frontend\RegisterController;
 use App\Http\Controllers\Frontend\CategoryController;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::prefix(LaravelLocalization::setLocale())
     ->middleware([
         'localeSessionRedirect',
@@ -28,9 +15,8 @@ Route::prefix(LaravelLocalization::setLocale())
     ])
     ->group(function () {
         Auth::routes();
-
         Route::get('/', [HomeController::class, 'index'])->name('home');
-        // ============================================================================** Login Route ** ==========================================================================
+       // ============================================================================** Login Route ** ==========================================================================
         Route::get('login/show', [LoginController::class, 'login'])->name('login.show');
         Route::post('login/post', [LoginController::class, 'doLogin'])->name('login.do');
         Route::get('logout', [LoginController::class, 'logout'])->name('logout');
