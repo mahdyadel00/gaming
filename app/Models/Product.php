@@ -12,12 +12,12 @@ class Product extends Model
 
     public function user(){
 
-        return $this->hasMany(User::class);
+        return $this->hasMany(User::class , 'id' , 'user_id');
     }
 
     public function category(){
 
-        return $this->hasMany(Category::class);
+        return $this->hasMany(Category::class , 'id' , 'category_id');
     }
 
     public function favourite(){

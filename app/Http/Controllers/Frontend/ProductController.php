@@ -30,19 +30,34 @@ class ProductController extends Controller
     {
         $categories =  Category::get();
 
-        return view('frontend.products.create' , compact('categories'));
+        return view('frontend.products.create', compact('categories'));
     }
 
-    protected function store(Request $request){
+    protected function store(Request $request)
+    {
 
-        $request->validate([
+        // dd($request->all());
+        // $request->validate([
 
-            'title_en' => 'required',
-            'title_ar' => 'required',
-            'description_en' => 'required',
-            'description_ar' => 'required',
-            'price' => 'required',
-        ]);
+        //     'title_en' => 'required',
+        //     'title_ar' => 'required',
+        //     'description_en' => 'required',
+        //     'description_ar' => 'required',
+        //     'price' => 'required',
+        // ]);
+        $image_in_db = NULL;
+        if ($request->has('image')) {
+            $request->validate([
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp',
+            ]);
+
+            $path = public_path() . '/uploads/products';
+            $image = request('image');
+            $image_name = time() . request('image')->getClientOriginalName();
+            $image->move($path, $image_name);
+            $image_in_db = '/uploads/products/' . $image_name;
+        }
+
 
         $product = Product::query()->create([
 
@@ -52,12 +67,14 @@ class ProductController extends Controller
             'description_en' => $request->description_en,
             'description_ar' => $request->description_ar,
             'price' => $request->price,
+            'image' => $image_in_db,
+            'user_id' => Auth::user()->id,
+            'condition' => $request->condition ? 1 : 0,
+            'authanticate' => $request->authanticate ? 1 : 0,
             'nigotiable' => $request->nigotiable ? 1 : 0,
         ]);
-
-        if($product){
-
+        if ($product) {
+            return redirect()->back()->with('flash_message', 'Added Successfully !');
         }
     }
-
 }

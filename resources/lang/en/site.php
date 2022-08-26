@@ -75,6 +75,7 @@ return [
     'growing_positive_environment' => 'Want to work in a great, growing positive environment?',
     'explore_categories' => 'Explore Categories',
     'favourite' => 'Favourite',
+    'image' => 'Image',
 
 ];
 ?>

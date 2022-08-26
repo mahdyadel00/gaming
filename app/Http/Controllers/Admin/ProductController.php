@@ -9,10 +9,13 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
-   
+
     public function index()
     {
-        $products = Product::paginate(20);
+        $products = Product::with([
+            'category',
+            'user',
+        ])->paginate(20);
         return view('admin.products.index', compact('products'));
     }
 
@@ -22,19 +25,19 @@ class ProductController extends Controller
         //
     }
 
-  
+
     public function store(Request $request)
     {
         //
     }
 
-  
+
     public function show($id)
     {
         //
     }
 
- 
+
     public function edit($id)
     {
         //

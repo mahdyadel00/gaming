@@ -23,9 +23,8 @@
                             </div>
                             <div class="col">
                                 <label> Arabic Title</label>
-                                <input class="form-control fc-datepicker" name="title_ar" 
-                                <input class="form-control fc-datepicker" name="title_ar"
-                                    type="text" required>
+                                <input class="form-control fc-datepicker" name="title_ar" required>
+
                             </div>
                             <div class="col">
                                 <label> English Description</label>
@@ -37,13 +36,14 @@
                                 <input class="form-control fc-datepicker" name="description_ar"
                                     type="text" required>
                             </div>
-                        </div><br>
-                        <div class="col-sm-12 col-md-12">
-                            <input type="file" name="image" class="dropify" accept=".jpg, .png, image/jpeg, image/png"
-                                data-height="70" />
-                        </div><br>
+                            <div class="col">
+                                <label> Image</label>
+                                    <input type="file" class="form-control modal-title" name='image'
+                                    accept="image/jpeg,image/jpg,image/png">
+                            </div>
+                        </div>
                         <div class="d-flex justify-content-center">
-                            <button type="submit" class="btn btn-primary">حفظ البيانات</button>
+                            <button type="submit" class="btn btn-primary">Add</button>
                         </div>
                     </form>
                 </div>

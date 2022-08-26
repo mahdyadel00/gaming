@@ -21,26 +21,37 @@ class CategoryController extends Controller
     }
     public function store(Request $request)
     {
-        // dd($request->all());
         $request->validate([
 
             'title_en' => 'required',
             'title_ar' => 'required',
             'description_en' => 'required',
             'description_ar' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048|nullable',
+            // 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048|nullable',
         ]);
+        $image_in_db = NULL;
+        if( $request->has('image') )
+        {
+            $request->validate([
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp',
+            ]);
+
+            $path = public_path().'/uploads/categories';
+            $image = request('image');
+            $image_name = time().request('image')->getClientOriginalName();
+            $image->move($path , $image_name);
+            $image_in_db = '/uploads/categories/'.$image_name;
+        }
 
         $categories = Category::create([
 
             'title_en'  => $request->title_en,
             'title_ar'  => $request->title_ar,
             'description_en'  => $request->description_en,
-            'description_ar'  => $request->description_ar, 
-            'image'  => $request->image, 
+            'description_ar'  => $request->description_ar,
+            'image'  => $image_in_db,
 
         ]);
-        // Session::flash()->success("Category Added successfully");
         return redirect()->route('admin.categories.index')->with('Successfully' , 'Category Added Successfully');
     }
 
@@ -69,26 +80,29 @@ class CategoryController extends Controller
             'description_ar' => 'filled',
 
         ]);
+        $image_in_db = NULL;
+        if ($request->has('image')) {
+            $request->validate([
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp',
+            ]);
+
+            $path = public_path() . '/uploads/products';
+            $image = request('image');
+            $image_name = time() . request('image')->getClientOriginalName();
+            $image->move($path, $image_name);
+            $image_in_db = '/uploads/products/' . $image_name;
+        }
+
 
         $category->update([
             'title_en' => $request->title_en,
             'title_ar' => $request->title_ar,
             'description_en' => $request->description_en,
             'description_ar' => $request->description_ar,
+            'image' => $image_in_db,
         ]);
 
-        if ($request->hasFile('image')) {
-            $this->validate($request, [
-                'image' => 'filled|mimes:png,jpg,jpeg',
-            ]);
-            
-            $image = $request->file('image')->store('public/categories');
-            $category->update([
-                'image' => $image
-            ]);
-        }
-        flash()->success("Category Updated successfully");
-        return redirect()->route('admin.categories.index');
+        return redirect()->route('admin.categories.index')->with('flash_message', 'Category Updated successfully !');
     }
 
     public function destroy($id)

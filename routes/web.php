@@ -7,8 +7,6 @@ use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\LoginController;
 use App\Http\Controllers\Frontend\RegisterController;
 use App\Http\Controllers\Frontend\CategoryController;
-<<<<<<< HEAD
-=======
 use App\Http\Controllers\Frontend\AccountController;
 use App\Http\Controllers\Frontend\ProductController;
 
@@ -23,7 +21,6 @@ use App\Http\Controllers\Frontend\ProductController;
 |
 */
 
->>>>>>> e189cb250152e20057a5a2ddd8a0965e6726a886
 Route::prefix(LaravelLocalization::setLocale())
     ->middleware([
         'localeSessionRedirect',
@@ -56,7 +53,7 @@ Route::prefix(LaravelLocalization::setLocale())
         // ============================================================================** Account Route ** ==========================================================================
 
         Route::get('/product-create', [ProductController::class, 'create'])->name('product.create');
-        Route::get('/product-store', [ProductController::class, 'store'])->name('product.store');
+        Route::post('/product-store', [ProductController::class, 'store'])->name('product.store');
 
 
     });
