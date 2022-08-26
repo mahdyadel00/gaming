@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Product;
 
 class CategoryController extends Controller
 {
@@ -25,8 +26,9 @@ class CategoryController extends Controller
      */
     public function index(Request $request , $id)
     {
-        $categories = Category::where('id' , $id)->get();
+        $category = Category::where('id' , $id)->first();
+        $products = Product::where('category_id' , $category->id)->get();
 
-        return view('frontend.categories.single', compact('categories'));
+        return view('frontend.categories.single', compact('category' , 'products'));
     }
 }
