@@ -15,6 +15,7 @@
             <table class="table align-items-center mb-0">
               <thead>
                 <tr>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Image</th>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">First Name</th>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Last Name</th>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Email</th>
@@ -29,6 +30,9 @@
               <tbody>
                 @foreach ($users as $user)
                 <tr>
+                  <td>
+                  <img src="{{ $user->image }}" width="100px" height="100px" alt="">
+                  </td>
                   <td>
                   <p class="text-xs font-weight-bold mb-0">{{ $user->first_name }}</p>
                   </td>

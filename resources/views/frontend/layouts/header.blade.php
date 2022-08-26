@@ -1,5 +1,5 @@
 @php
-$categories = App\Models\Category::get();
+$categories = App\Models\Category::paginate(12);
 @endphp
 <header class="header-style-01">
     <nav class="navbar navbar-area headerBg1 navbar-expand-lg  plr">

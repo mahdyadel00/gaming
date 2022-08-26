@@ -76,6 +76,10 @@ return [
     'explore_categories' => 'Explore Categories',
     'favourite' => 'Favourite',
     'image' => 'Image',
+    'select_country' => 'Select Your Country',
+    'phone' => 'Phone',
+    'status' => 'Status',
+    'country' => 'Country',
 
 ];
 ?>

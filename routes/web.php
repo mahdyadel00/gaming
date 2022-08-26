@@ -25,7 +25,7 @@ Route::prefix(LaravelLocalization::setLocale())
         Route::post('login/post', [LoginController::class, 'doLogin'])->name('login.do');
         Route::get('logout', [LoginController::class, 'logout'])->name('logout');
         // ============================================================================** Register Route ** ==========================================================================
-        Route::get('register/show', [RegisterController::class, 'register'])->name('register');
+        Route::get('register/show', [RegisterController::class, 'register'])->name('register.show');
         Route::post('register/post', [RegisterController::class, 'doRegister'])->name('register.do');
         // ============================================================================** Content Route ** ==========================================================================
         Route::get('/contacts', [ContactController::class, 'index'])->name('conacts');
@@ -43,7 +43,7 @@ Route::prefix(LaravelLocalization::setLocale())
         // ============================================================================** Account Route ** ==========================================================================
 
         Route::get('/product-create', [ProductController::class, 'create'])->name('product.create');
-        Route::get('/product-store', [ProductController::class, 'store'])->name('product.store');
+        Route::post('/product-store', [ProductController::class, 'store'])->name('product.store');
 
 
     });
