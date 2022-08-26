@@ -105,9 +105,10 @@ class CategoryController extends Controller
         return redirect()->route('admin.categories.index')->with('flash_message', 'Category Updated successfully !');
     }
 
-    public function destroy($id)
+    public function delete($id)
     {
-        Category::find($id)->delete();
+        $category = Category::where('id' , $id)->first();
+        $category->delete();
         return back();
         flash()->success("Category deleted successfully");
 

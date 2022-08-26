@@ -19,7 +19,7 @@ Route::prefix('admin')->group(function () {
         Route::post('/users/store', [UserController::class, 'store'])->name('admin.users.store');
         Route::get('/users/edit/{id}', [UserController::class, 'edit'])->name('admin.users.edit');
         Route::post('/users/update/{id}', [UserController::class, 'update'])->name('admin.users.update');
-        Route::post('/users/delete/{id}', [UserController::class, 'delete'])->name('admin.users.delete');
+        Route::delete   ('/users/delete/{id}', [UserController::class, 'delete'])->name('admin.users.delete');
     //  Category Route
     //  Route::resource('admin.categories', CategoryController::class);
      Route::get('/categories', [CategoryController::class, 'index'])->name('admin.categories.index');
@@ -27,7 +27,7 @@ Route::prefix('admin')->group(function () {
      Route::post('/categories/store', [CategoryController::class, 'store'])->name('admin.categories.store');
      Route::get('/categories/edit/{id}', [CategoryController::class, 'edit'])->name('admin.categories.edit');
      Route::post('/categories/update/{id}', [CategoryController::class, 'update'])->name('admin.categories.update');
-     Route::post('/categories/delete/{id}', [CategoryController::class, 'delete'])->name('admin.categories.delete');
+     Route::delete('/categories/delete/{id}', [CategoryController::class, 'delete'])->name('admin.categories.delete');
 
 
 

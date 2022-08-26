@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
+use App\Models\Country;
 use App\Models\User;
 
 class UserController extends Controller
@@ -26,7 +27,9 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('admin.users.create');
+        $countries = Country::get();
+
+        return view('admin.users.create' , compact('countries'));
     }
     public function store(Request $request)
     {
@@ -40,22 +43,35 @@ class UserController extends Controller
             'status' => 'required',
             'country_id' => 'required',
         ]);
-       
+
+        $image_in_db = NULL;
+        if ($request->has('image')) {
+            $request->validate([
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp',
+            ]);
+
+            $path = public_path() . '/uploads/users';
+            $image = request('image');
+            $image_name = time() . request('image')->getClientOriginalName();
+            $image->move($path, $image_name);
+            $image_in_db = '/uploads/users/' . $image_name;
+        }
+
         $users = User::create([
             'first_name'  => $request->first_name,
             'last_name'  => $request->last_name,
             'email'  => $request->email,
             'password'  => $request->password,
             'phone'  => $request->phone,
-            'status'  => $request->status,
+            'status'  => $request->status ? 1 : 0,
             'country_id'  => $request->country_id,
+            'image'  => $image_in_db,
         ]);
-        return redirect()->route('admin.users.index')->with('Successfully' , 'User Added Successfully');
+        return redirect()->route('admin.users.index')->with('Successfully', 'User Added Successfully');
     }
 
     public function show($id)
     {
-
     }
 
 
@@ -78,8 +94,8 @@ class UserController extends Controller
             'password'  => $request->password,
 
         ]);
-       
-        
+
+
 
 
         $user->update([
@@ -92,12 +108,12 @@ class UserController extends Controller
         return redirect()->route('admin.users.index')->with('flash_message', 'User Updated successfully !');
     }
 
-    public function destroy($id)
+    public function delete($id)
     {
-        User::find($id)->delete();
+       $user = User::where('id' , $id)->first();
+       $user->delete();
+
         return back();
         flash()->success("User deleted successfully");
-
     }
-
 }//end of controller

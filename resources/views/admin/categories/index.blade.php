@@ -67,9 +67,16 @@
                                             <a class="btn btn-primary"
                                                 href="{{ route('admin.categories.edit', [$category->id]) }}"><i
                                                     class="fas fa-edit">Edit</i></a>
-                                            <a class="btn btn-danger"
-                                                href="{{ route('admin.categories.delete', [$category->id]) }}"><i
-                                                    class="fas fa-edit">Delete</i></a>
+                                            <form action="{{ route('admin.categories.delete', $category->id) }}" method="post"
+                                                style="display: inline-block">
+                                                {{ csrf_field() }}
+                                                {{ method_field('delete') }}
+                                                <button class="btn btn-danger" type="submit">
+                                                    <a href="#" class="text-secondary font-weight-bold text-xs"
+                                                        data-toggle="tooltip" data-original-title="Delete user">
+                                                        <i class="fa fa-trash">Delete</i>
+                                                    </a></button>
+                                            </form><!-- end of form -->
                                         </td>
 
 

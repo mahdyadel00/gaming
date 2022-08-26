@@ -63,10 +63,18 @@
                     <a href="{{ route('admin.users.edit', [$user->id]) }}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
                       <i class="fa fa-edit">Edit</i>
                     </a></button>
-                    <button class="btn btn-danger">
-                    <a href="{{ route('admin.users.delete', [$user->id]) }}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Delete user">
-                      <i class="fa fa-trash">Delete</i>
-                    </a></button>
+                    <form action="{{ route('admin.users.delete', [$user->id]) }}" method="post" style="display: inline-block">
+                      {{ csrf_field() }}
+                      {{ method_field('delete') }}
+                      {{-- <button type="submit" class="btn btn-danger delete btn-sm"><i class="fa fa-trash"></i> @lang('site.delete')</button> --}}
+                      <button class="btn btn-danger" type="submit">
+                      <a href="#" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Delete user">
+                        <i class="fa fa-trash">Delete</i>
+                      </a></button>
+                  </form><!-- end of form -->
+
+                  {{-- <button class="btn btn-danger btn-sm disabled"><i class="fa fa-trash"></i> @lang('site.delete')</button> --}}
+
                   </td>
                 </tr>
                 @endforeach
