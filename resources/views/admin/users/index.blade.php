@@ -1,7 +1,5 @@
 @extends('layouts.admin.app')
-
 @section('content')
-
 <div class="row">
     <div class="col-12">
       <div class="card mb-4">
@@ -17,9 +15,13 @@
             <table class="table align-items-center mb-0">
               <thead>
                 <tr>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">First Name</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Last Name</th>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Email</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Phone</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Country_id</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Created_at</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                   <th class="text-secondary opacity-7"></th>
                 </tr>
@@ -28,17 +30,19 @@
                 @foreach ($users as $user)
                 <tr>
                   <td>
-                    <div class="d-flex px-2 py-1">
-                      <div>
-                        <img src="{{ asset('dashboard') }}/assets/img/team-2.jpg" class="avatar avatar-sm me-3" alt="user1">
-                      </div>
-                      <div class="d-flex flex-column justify-content-center">
-                        <h6 class="mb-0 text-sm">{{ $user->name }}</h6>
-                      </div>
-                    </div>
+                  <p class="text-xs font-weight-bold mb-0">{{ $user->first_name }}</p>
+                  </td>
+                  <td>
+                  <p class="text-xs font-weight-bold mb-0">{{ $user->last_name }}</p>
                   </td>
                   <td>
                     <p class="text-xs font-weight-bold mb-0">{{ $user->email }}</p>
+                  </td>
+                  <td>
+                    <p class="text-xs font-weight-bold mb-0">{{ $user->phone }}</p>
+                  </td>
+                  <td>
+                    <p class="text-xs font-weight-bold mb-0">{{ $user->country_id }}</p>
                   </td>
                   <td class="align-middle text-center text-sm">
                     @if($user->status == 1)
@@ -52,17 +56,16 @@
                   </td>
                   <td class="align-middle">
                     <button class="btn btn-info">
-                    <a href="{{ route('admin.users.edit') }}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                    <a href="{{ route('admin.users.edit', [$user->id]) }}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
                       <i class="fa fa-edit">Edit</i>
                     </a></button>
                     <button class="btn btn-danger">
-                    <a href="{{ route('admin.users.delete') }}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Delete user">
+                    <a href="{{ route('admin.users.delete', [$user->id]) }}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Delete user">
                       <i class="fa fa-trash">Delete</i>
                     </a></button>
                   </td>
                 </tr>
                 @endforeach
-
               </tbody>
             </table>
           </div>
