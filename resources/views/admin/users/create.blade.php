@@ -54,11 +54,11 @@
                                         </select>
                                     </div>
                                     <div class="col-md-12">
-                                <label class="infoTitle">@lang('site.status')</label>
+                                        <label class="infoTitle">@lang('site.status')</label>
 
-                                    <input type="checkbox" value="1" name="status" >
+                                        <input type="checkbox" value="1" name="status">
 
-                            </div>
+                                    </div>
                             </div>
                             <div class="d-flex justify-content-center">
                                 <button type="submit" class="btn btn-primary">Add</button>

@@ -75,36 +75,50 @@ class UserController extends Controller
     }
 
 
-    public function edit($id)
+    protected function edit($id)
     {
-        $user = User::find($id);
-        return view('admin.users.edit', compact('user'));
+        $user = User::where('id' , $id)->first();
+        $countries = Country::get();
+        return view('admin.users.edit', compact('user' , 'countries'));
     }
 
 
-    public function update(Request $request, $id)
+    protected function update(Request $request, $id)
     {
+        //    dd($request->all());
+        $user = User::where('id' , $id)->first();
+        $request->validate([
 
-        $user = User::find($id);
-
-        $this->validate($request, [
-            'first_name'  => $request->first_name,
-            'last_name'  => $request->last_name,
-            'email'  => $request->email,
-            'password'  => $request->password,
-
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'status' => 'required',
+            'country_id' => 'required',
         ]);
 
+        $image_in_db = NULL;
+        if ($request->has('image')) {
+            $request->validate([
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp',
+            ]);
 
-
+            $path = public_path() . '/uploads/users';
+            $image = request('image');
+            $image_name = time() . request('image')->getClientOriginalName();
+            $image->move($path, $image_name);
+            $image_in_db = '/uploads/users/' . $image_name;
+        }
 
         $user->update([
             'first_name'  => $request->first_name,
             'last_name'  => $request->last_name,
             'email'  => $request->email,
-            'password'  => $request->password,
+            'phone'  => $request->phone,
+            'status'  => $request->status ? 1 : 0,
+            'country_id'  => $request->country_id,
+            'image'  => $image_in_db,
         ]);
-
         return redirect()->route('admin.users.index')->with('flash_message', 'User Updated successfully !');
     }
 
