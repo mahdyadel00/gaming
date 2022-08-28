@@ -80,6 +80,7 @@ return [
     'phone' => 'Phone',
     'status' => 'Status',
     'country' => 'Country',
+    'description' => 'Description',
 
 ];
 ?>
