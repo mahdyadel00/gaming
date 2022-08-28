@@ -1,5 +1,4 @@
 @extends('frontend.layouts.master')
-
 @section('content')
     <!--addList-Details S t a r t-->
     <div class="addList-Details section-padding2">

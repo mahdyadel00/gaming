@@ -6,6 +6,7 @@ use  App\Http\Controllers\Admin\DashboardController;
 use  App\Http\Controllers\Admin\UserController;
 use  App\Http\Controllers\Admin\CategoryController;
 use  App\Http\Controllers\Admin\ProductController;
+use  App\Http\Controllers\Admin\ContactController;
 Auth::routes(['except' => 'register']);
 // Route::name('admin.')->prefix('admin')->group(function () {
 Route::prefix('admin')->group(function () {
@@ -20,6 +21,8 @@ Route::prefix('admin')->group(function () {
         Route::get('/users/edit/{id}', [UserController::class, 'edit'])->name('admin.users.edit');
         Route::post('/users/update/{id}', [UserController::class, 'update'])->name('admin.users.update');
         Route::delete   ('/users/delete/{id}', [UserController::class, 'delete'])->name('admin.users.delete');
+        Route::get('logout', [UserController::class, 'logout'])->name('logout');
+
     //  Category Route
     //  Route::resource('admin.categories', CategoryController::class);
      Route::get('/categories', [CategoryController::class, 'index'])->name('admin.categories.index');
@@ -33,6 +36,9 @@ Route::prefix('admin')->group(function () {
 
      //Products Route
      Route::get('/products', [ProductController::class, 'index'])->name('admin.products.index');
+
+     //Contacts Route
+     Route::get('/contacts', [ContactController::class, 'index'])->name('admin.contacts.index');
 
     });
 });
