@@ -16,13 +16,13 @@
                             <a href="memberShip.html" class="items"><i class="las la-address-card icon"></i> @lang('site.membership')</a>
                         </li>
                         <li class="listItem">
-                            <a href="promoted_add_list.html" class="items"><i class="las la-ad icon"></i> @lang('site.promoted_ads')</a>
+                            <a href="{{ route('promoted_add') }}" class="items"><i class="las la-ad icon"></i> @lang('site.promoted_ads')</a>
                         </li>
                         <li class="listItem">
-                            <a href="route('wish_list')" class="items"> <i class="lar la-heart icon"></i> @lang('site.wish_list')</a>
+                            <a href="{{ route('wish_list') }}" class="items"> <i class="lar la-heart icon"></i> @lang('site.wish_list')</a>
                         </li>
                         <li class="listItem">
-                            <a href="route('help')" class="items active"> <i class="lar la-question-circle icon"></i> @lang('site.help')</a>
+                            <a href="{{ route('help') }}" class="items active"> <i class="lar la-question-circle icon"></i> @lang('site.help')</a>
                         </li>
                     </ul>
                     <div class="accessAccount">
@@ -48,7 +48,7 @@
                     <!-- user -->
                     <div class="userProfile mb-24">
                         <div class="recentImg">
-                            <img src="{{ asset('frontend') }}/assets/img/gallery/myAccout.png" alt="images">
+                            <img src="{{ asset($user->image) }}" width="100px" height="100px" alt="images">
                         </div>
                         <div class="recentCaption">
                             <div class="cap">
@@ -56,14 +56,14 @@
                                 <p class="featureCap">@lang('site.member_since') {{ \Carbon\Carbon::parse($user->created_at)->format('Y-m-d')}}</p>
                             </div>
                             <div class="btn-wrapper">
-                                <a href="#" class="cmn-btn-outline2">Edit Profile</a>
+                                <a href="{{ route('profile.edit') }}" class="cmn-btn-outline2">@lang('site.edit_profile')</a>
                             </div>
                         </div>
                     </div>
                     <!-- infoSingle -->
                     <div class="infoSingle">
                         <ul class="listing">
-                            <li class="listItem"><i class="las la-map-marker-alt icon"></i>Ash Dr. San Jose, South Dakota</li>
+                            <li class="listItem"><i class="las la-map-marker-alt icon"></i>{{ $user->country[0]->name_en }}</li>
                             <li class="listItem"><i class="lar la-envelope-open icon"></i>{{ $user->email }}</li>
                             <li class="listItem"><i class="las la-phone icon"></i>{{ $user->phone }}</li>
                         </ul>
