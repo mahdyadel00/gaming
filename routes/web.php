@@ -44,6 +44,7 @@ Route::prefix(LaravelLocalization::setLocale())
 
         Route::get('/product-create', [ProductController::class, 'create'])->name('product.create');
         Route::post('/product-store', [ProductController::class, 'store'])->name('product.store');
+        Route::get('/product-single/{id}', [ProductController::class, 'single'])->name('product.single');
 
 
     });

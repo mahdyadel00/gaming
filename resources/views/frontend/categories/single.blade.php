@@ -27,7 +27,7 @@
                             <a href="#"><img  src="{{ asset($product->image) }}" alt="images"></a>
                         </div>
                         <div class="featureCaption">
-                           <h4><a href="add_details.html" class="featureTittle">{{ $product->title_en }}</a></h4>
+                           <h4><a href="{{ route('product.single' , $product->id) }}" class="featureTittle">{{ $product->title_en }}</a></h4>
                             <p class="featureCap">Los Angels, CA · <strong class="subCap">{{ date_format($product->created_at,'D M Y')}}</strong></p>
                             <span class="featurePricing">${{ $product->price }}</span>
                             <div class="btn-wrapper">
