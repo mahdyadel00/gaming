@@ -181,7 +181,7 @@
                     <section class="recentListing">
                         <div class="borderStyle style1 wow fadeInLeft social" data-wow-delay="0.1s">
                             @foreach ($product_related as $related)
-<<<<<<< HEAD
+
                             <div class="singleFlexitem mb-24">
                                 <div class="recentImg">
                                     <img src="{{ asset($related->image) }}" width="150px" height="150px"
@@ -194,7 +194,6 @@
                                     <div class="btn-wrapper">
                                         <span class="pro-btn1">RENOVETED</span>
                                         <span class="pro-btn2">PROMOTED</span>
-=======
                                 <div class="singleFlexitem mb-24">
                                     <div class="recentImg">
                                         <img src="{{ asset($related->image) }}" width="150px" height="150px"
@@ -211,7 +210,6 @@
                                             <span class="pro-btn1">RENOVETED</span>
                                             <span class="pro-btn2">PROMOTED</span>
                                         </div>
->>>>>>> d80cd04bac068e6a13dbd2d530419af0e8d96568
                                     </div>
                                 </div>
                             @endforeach
