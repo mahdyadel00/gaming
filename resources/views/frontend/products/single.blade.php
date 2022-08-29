@@ -1,5 +1,4 @@
 @extends('frontend.layouts.master')
-
 @section('content')
     <!--Product Details  S t a r t-->
     <div class="proDetails section-padding2">
@@ -28,8 +27,6 @@
                             data-prevArrow='<div class="prev-icon"><i class="las la-angle-left"></i></div>'
                             data-nextArrow='<div class="next-icon"><i class="las la-angle-right"></i></div>'
                             data-responsive='[{"breakpoint": 1800,"settings": {"slidesToShow": 1}},{"breakpoint": 1600,"settings": {"slidesToShow": 1}},{"breakpoint": 1400,"settings": {"slidesToShow": 1}},{"breakpoint": 1200,"settings": {"slidesToShow": 1}},{"breakpoint": 991,"settings": {"slidesToShow": 1}},{"breakpoint": 768, "settings": {"slidesToShow": 1}},{"breakpoint": 576, "settings": {"slidesToShow": 1}}]'>
-
-
                             <div class="single-main-image">
                                 <a href="#" class="long-img">
                                     <img src="{{ asset($product->image) }}" class="img-fluid" alt="image">
@@ -177,7 +174,6 @@
                     <section class="recentListing">
                         <div class="borderStyle style1 wow fadeInLeft social" data-wow-delay="0.1s">
                             @foreach ($product_related as $related)
-
                             <div class="singleFlexitem mb-24">
                                 <div class="recentImg">
                                     <img src="{{ asset($related->image) }}" width="150px" height="150px"
