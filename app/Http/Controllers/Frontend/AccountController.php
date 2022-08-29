@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Country;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
@@ -24,17 +25,58 @@ class AccountController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function myAccount(Request $request)
+    protected function myAccount(Request $request)
     {
         if (Auth::check()) {
 
-            $user = Auth::user();
-
+            $user = User::with('country')->first();
+            
             return view('frontend.accounts.my_account', compact('user'));
         } else {
 
             return redirect()->route('login.show')->with('Un Authanticated!');
         }
+    }
+
+    protected function edit()
+    {
+        if (Auth::check()) {
+
+            $user = User::first();
+            $countries = Country::get();
+
+            return view('frontend.accounts.edit_profile', compact('user' , 'countries'));
+        }
+    }//End of Edit Profile
+
+    protected function update(Request $request , $id){
+
+        // dd($request->all());
+        $user = User::where('id' , $id)->first();
+
+        $image_in_db = NULL;
+        if ($request->has('image')) {
+            $request->validate([
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp',
+            ]);
+
+            $path = public_path() . '/uploads/user';
+            $image = request('image');
+            $image_name = time() . request('image')->getClientOriginalName();
+            $image->move($path, $image_name);
+            $image_in_db = '/uploads/user/' . $image_name;
+        }
+        $user->where('id' , $id)->update([
+
+            'first_name'  => $request->first_name,
+            'last_name'  => $request->last_name,
+            'email'  => $request->email,
+            'phone'  => $request->phone,
+            'country_id'  => $request->country_id,
+            'image'  => $image_in_db,
+        ]);
+
+        return redirect()->back()->with('success' , 'Updated Profile Sucessfully');
     }
 
     protected function help()
@@ -43,8 +85,20 @@ class AccountController extends Controller
         return view('frontend.accounts.help');
     }
 
-    protected function favourite(){
+    protected function favourite()
+    {
 
         return view('frontend.accounts.favourite');
+
+    }//End of favourite
+
+    protected function promoted(){
+
+        return view('frontend.accounts.promotede_add');
     }
+    protected function memberShip(){
+
+        return view('frontend.accounts.member_ship');
+    }
+
 }

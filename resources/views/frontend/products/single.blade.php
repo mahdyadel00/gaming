@@ -141,10 +141,17 @@
                                     alt="images">
                             </div>
                             <div class="recentCaption">
-                                <h5><a href="add_details.html" class="featureTittle">{{ $product->user[0]->first_name }}
+                                <h5><a href="#" class="featureTittle">{{ $product->user[0]->first_name }}
                                         {{ $product->user[0]->last_name }}<img
                                             src="{{ asset('frontend') }}/assets/img/icon/checkMark.svg" class="icon"
-                                            alt="images"></a></h5>
+                                            alt="images">
+                                        @if (auth()->check())
+                                            <i class="btn btn-success"></i>
+                                        @else
+                                            <i class="btn btn-danger"></i>
+                                        @endif
+                                    </a>
+                                </h5>
                                 <p class="featureCap">@lang('site.member_since')
                                     {{ date_format($product->user[0]->created_at, 'D M Y') }}</p>
                             </div>
@@ -174,6 +181,7 @@
                     <section class="recentListing">
                         <div class="borderStyle style1 wow fadeInLeft social" data-wow-delay="0.1s">
                             @foreach ($product_related as $related)
+<<<<<<< HEAD
                             <div class="singleFlexitem mb-24">
                                 <div class="recentImg">
                                     <img src="{{ asset($related->image) }}" width="150px" height="150px"
@@ -186,9 +194,26 @@
                                     <div class="btn-wrapper">
                                         <span class="pro-btn1">RENOVETED</span>
                                         <span class="pro-btn2">PROMOTED</span>
+=======
+                                <div class="singleFlexitem mb-24">
+                                    <div class="recentImg">
+                                        <img src="{{ asset($related->image) }}" width="150px" height="150px"
+                                            alt="images">
+                                    </div>
+                                    <div class="recentCaption">
+                                        <h5><a href="add_details.html" class="featureTittle">{{ $related->title_en }}</a>
+                                        </h5>
+                                        <p class="featureCap">@lang('site.member_since')<strong
+                                                class="subCap">{{ date_format($related->created_at, 'D M Y') }}</strong>
+                                        </p>
+                                        <span class="featurePricing">${{ $related->price }}</span>
+                                        <div class="btn-wrapper">
+                                            <span class="pro-btn1">RENOVETED</span>
+                                            <span class="pro-btn2">PROMOTED</span>
+                                        </div>
+>>>>>>> d80cd04bac068e6a13dbd2d530419af0e8d96568
                                     </div>
                                 </div>
-                            </div>
                             @endforeach
                         </div>
                     </section>

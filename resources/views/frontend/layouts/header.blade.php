@@ -58,7 +58,7 @@ $categories = App\Models\Category::paginate(12);
                                 <li><a href="add_setting.html">Add Setting</a></li>
                                 <li><a href="{{ route('my_account') }}">My Account</a></li>
                                 <li><a href="memberShip.html">Member Ship</a></li>
-                                <li><a href="wish_list.html">Wish list</a></li>
+                                <li><a href="{{ route('wish_list') }}">@lang('site.wish_list')</a></li>
                                 <li><a href="promoted_add_list.html">Promoted add_list</a></li>
                                 <li><a href="image_uploded.html">Image Uploded</a></li>
                                 <li><a href="payment.html">Payment</a></li>
@@ -152,11 +152,11 @@ $categories = App\Models\Category::paginate(12);
                         <!-- end Chat List -->
                     </li>
                     @if (auth()->check())
-                        <li class="single"><a href="{{route('wish_list')}}" class="heart"><i
+                        <li class="single"><a href="{{ route('wish_list') }}" class="heart"><i
                                     class="lar la-heart icon"></i></a>
                         </li>
                     @else
-                        <li class="single"><a href="{{route('login.show')}}" class="heart"><i
+                        <li class="single"><a href="{{ route('login.show') }}" class="heart"><i
                                     class="lar la-heart icon"></i></a>
                         </li>
                     @endif
@@ -172,19 +172,20 @@ $categories = App\Models\Category::paginate(12);
                                                 class="lar la-user-circle icon"></i> @lang('site.my_account') </a>
                                     </li>
                                     <li class="list">
-                                        <a class="list-title" href="memberShip.html"> <i
+                                        <a class="list-title" href="{{route('member_ship')}}"> <i
                                                 class="las la-address-card icon"></i> @lang('site.membership') </a>
                                     </li>
                                     <li class="list">
-                                        <a class="list-title" href="promoted_add_list.html"><i
+                                        <a class="list-title" href="{{ route('promoted_add') }}"><i
                                                 class="las la-ad icon"></i> @lang('site.promoted_ads') </a>
                                     </li>
                                     <li class="list">
-                                        <a class="list-title" href="wish_list.html"><i class="lar la-heart icon"></i>
+                                        <a class="list-title" href="{{ route('wish_list') }}"><i
+                                                class="lar la-heart icon"></i>
                                             @lang('site.wish_list') </a>
                                     </li>
                                     <li class="list">
-                                        <a class="list-title" href="help.html"> <i
+                                        <a class="list-title" href="{{route('help')}}"> <i
                                                 class="lar la-question-circle icon"></i> @lang('site.help')</a>
                                     </li>
                                     <li class="list">
