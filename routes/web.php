@@ -43,6 +43,7 @@ Route::prefix(LaravelLocalization::setLocale())
         Route::get('/help', [AccountController::class, 'help'])->name('help');
         Route::get('/wish-list', [AccountController::class, 'favourite'])->name('wish_list');
         Route::get('/promoted-add', [AccountController::class, 'promoted'])->name('promoted_add');
+        Route::get('/member-ship', [AccountController::class, 'memberShip'])->name('member_ship');
         // ============================================================================** Account Route ** ==========================================================================
 
         Route::get('/product-create', [ProductController::class, 'create'])->name('product.create');

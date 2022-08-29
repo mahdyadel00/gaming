@@ -30,7 +30,7 @@ class AccountController extends Controller
         if (Auth::check()) {
 
             $user = User::with('country')->first();
-
+            
             return view('frontend.accounts.my_account', compact('user'));
         } else {
 
@@ -95,6 +95,10 @@ class AccountController extends Controller
     protected function promoted(){
 
         return view('frontend.accounts.promotede_add');
+    }
+    protected function memberShip(){
+
+        return view('frontend.accounts.member_ship');
     }
 
 }

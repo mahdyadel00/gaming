@@ -10,23 +10,29 @@
                     <div class="accountSidebar">
                         <ul class="listing listScroll">
                             <li class="listItem">
-                                <a href="{{route('my_account')}}" class="items"> <i class="lar la-user-circle icon"></i> @lang('site.my_account')</a>
+                                <a href="{{ route('my_account') }}" class="items"> <i class="lar la-user-circle icon"></i>
+                                    @lang('site.my_account')</a>
                             </li>
                             <li class="listItem">
-                                <a href="memberShip.html" class="items"><i class="las la-address-card icon"></i> @lang('site.membership')</a>
+                                <a href="{{ route('member_ship') }}" class="items"><i class="las la-address-card icon"></i>
+                                    @lang('site.membership')</a>
                             </li>
                             <li class="listItem">
-                                <a href="{{ route('promoted_add') }}" class="items"><i class="las la-ad icon"></i> @lang('site.promoted_ads')</a>
+                                <a href="{{ route('promoted_add') }}" class="items"><i class="las la-ad icon"></i>
+                                    @lang('site.promoted_ads')</a>
                             </li>
                             <li class="listItem">
-                                <a href="{{ route('wish_list') }}" class="items"> <i class="lar la-heart icon"></i> @lang('site.wish_list')</a>
+                                <a href="{{ route('wish_list') }}" class="items"> <i class="lar la-heart icon"></i>
+                                    @lang('site.wish_list')</a>
                             </li>
                             <li class="listItem">
-                                <a href="{{ route('help') }}" class="items active"> <i class="lar la-question-circle icon"></i> @lang('site.help')</a>
+                                <a href="{{ route('help') }}" class="items active"> <i
+                                        class="lar la-question-circle icon"></i> @lang('site.help')</a>
                             </li>
                         </ul>
                         <div class="accessAccount">
-                            <a href="{{ route('logout') }}" class="account-btn"><i class="las la-sign-out-alt icon"></i> @lang('site.logout')</a>
+                            <a href="{{ route('logout') }}" class="account-btn"><i class="las la-sign-out-alt icon"></i>
+                                @lang('site.logout')</a>
                         </div>
                     </div>
                 </div>
@@ -37,7 +43,7 @@
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="index.html">@lang('site.home')</a></li>
-                                    <li class="breadcrumb-item"><a href="#">@lang('promoted_ad_list')</a></li>
+                                    <li class="breadcrumb-item"><a href="#">@lang('site.promoted_ad_list')</a></li>
                                 </ol>
                             </nav>
                         </div>
@@ -53,11 +59,12 @@
                         <div class="singleAds mb-24  wow fadeInUp social" data-wow-delay="0.1s">
                             <div class="adsCap">
                                 <div class="adsImg">
-                                     <img   src="assets/img/gallery/currentlyPromoting1.jpg" alt="images">
+                                    <img src="{{ asset('frontend') }}/assets/img/gallery/currentlyPromoting1.jpg"
+                                        alt="images">
                                 </div>
                                 <div class="adsCaption">
-                                   <div class="cap">
-                                       <h5><a href="add_details.html" class="adsTittle">Luxury couple apartment</a></h5>
+                                    <div class="cap">
+                                        <h5><a href="add_details.html" class="adsTittle">Luxury couple apartment</a></h5>
                                         <p class="adsPera">Dallas, Texas · <strong class="subCap">24hrs ago</strong></p>
                                         <div class="adsPricingWrapper">
                                             <span class="adsPricing">$124.80</span>
@@ -66,14 +73,14 @@
                                                 <span class="adsDateTime">15 Mar 2022</span>
                                             </div>
                                         </div>
-                                   </div>
+                                    </div>
                                 </div>
                             </div>
                             <!-- ads ON-OFF -->
                             <div class="ad-ON-OFF mb-10">
                                 <ul class="tg-list">
                                     <li class="tg-list-item">
-                                        <input class="tgl tgl-ios" id="cb2" type="checkbox"/>
+                                        <input class="tgl tgl-ios" id="cb2" type="checkbox" />
                                         <label class="tgl-btn" for="cb2"></label>
                                     </li>
                                 </ul>
@@ -91,10 +98,10 @@
                         <div class="singlePromoteAds mb-24  wow fadeInUp social" data-wow-delay="0.0s">
                             <div class="adsCap">
                                 <div class="adsImg">
-                                    <img   src="assets/img/gallery/promoteAds2.jpg" alt="images">
+                                    <img src="{{ asset('frontend') }}/assets/img/gallery/promoteAds2.jpg" alt="images">
                                 </div>
                                 <div class="adsCaption">
-                                   <h5><a href="add_details.html" class="adsTittle">Luxury couple apartment</a></h5>
+                                    <h5><a href="add_details.html" class="adsTittle">Luxury couple apartment</a></h5>
                                     <p class="adsPera">Dallas, Texas · <strong class="subCap">24hrs ago</strong></p>
                                     <span class="adsPricing">$124.80</span>
                                 </div>
@@ -107,10 +114,10 @@
                         <div class="singlePromoteAds mb-24  wow fadeInUp social" data-wow-delay="0.1s">
                             <div class="adsCap">
                                 <div class="adsImg">
-                                    <img   src="assets/img/gallery/promoteAds2.jpg" alt="images">
+                                    <img src="{{ asset('frontend') }}/assets/img/gallery/promoteAds2.jpg" alt="images">
                                 </div>
                                 <div class="adsCaption">
-                                   <h5><a href="add_details.html" class="adsTittle">Luxury couple apartment</a></h5>
+                                    <h5><a href="add_details.html" class="adsTittle">Luxury couple apartment</a></h5>
                                     <p class="adsPera">Dallas, Texas · <strong class="subCap">24hrs ago</strong></p>
                                     <span class="adsPricing">$124.80</span>
                                 </div>
