@@ -87,6 +87,7 @@ return [
     'last_name' => 'Last Name',
     'email' => 'Email',
     'promoted_ad_list' => 'Promoted Ad List',
+    'all_category' => 'All Category',
 
 ];
 ?>

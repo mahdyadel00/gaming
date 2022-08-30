@@ -45,7 +45,7 @@ $categories = App\Models\Category::paginate(12);
                 <!-- Main Menu -->
                 <div class="collapse navbar-collapse" id="bizcoxx_main_menu">
                     <ul class="navbar-nav">
-                        <li><a href="ad_Lists.html">@lang('site.all_ads')</a></li>
+                        <li><a href="{{ route('product.index') }}">@lang('site.all_ads')</a></li>
                         <li><a href="{{ route('about_us') }}">@lang('site.about_us')</a></li>
                         <li class="menu-item-has-children">
                             <a href="#" class="menuArrow">@lang('site.pages')</a>

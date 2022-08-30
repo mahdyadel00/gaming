@@ -96,14 +96,14 @@
                                     <div class="col-lg-12">
                                         <label class="infoTitle">@lang('site.description_en')</label>
                                         <div class="input-form">
-                                            <textarea  name="description_en" id="message" placeholder="About your project"></textarea>
+                                            <textarea name="description_en" id="message" placeholder="About your project"></textarea>
                                         </div>
                                     </div>
                                     <!-- Description En -->
                                     <div class="col-lg-12">
                                         <label class="infoTitle">@lang('site.description_ar')</label>
                                         <div class="input-form">
-                                            <textarea  name="description_ar" id="message" placeholder="About your project"></textarea>
+                                            <textarea name="description_ar" id="message" placeholder="About your project"></textarea>
                                         </div>
                                     </div>
                                     <!-- Price -->
@@ -117,16 +117,21 @@
                                     <!-- image -->
                                     <div class="col-lg-12">
                                         <label class="infoTitle">@lang('site.image')</label>
+                                        <div class="dropzone" id="file-dropzone"></div>
+                                    </div>
+                                    {{-- <div class="col-lg-12">
+                                        <label class="infoTitle">@lang('site.image')</label>
                                         <div class="input-form">
                                             <input type="file" class="form-control modal-title" name='image'
-                                            accept="image/jpeg,image/jpg,image/png">
+                                                accept="image/jpeg,image/jpg,image/png">
 
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <!-- user Message -->
                                     <div class="col-sm-12">
                                         <label class="checkWrap2">@lang('site.negotiable')
-                                            <input class="effectBorder" name="nigotiable" type="checkbox" value="">
+                                            <input class="effectBorder" name="nigotiable" type="checkbox"
+                                                value="">
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
@@ -146,3 +151,41 @@
     </div>
     <!-- End-of addList-Details -->
 @endsection
+@push('js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.0/min/dropzone.min.js"></script>
+
+    <script>
+        Dropzone.options.fileDropzone = {
+            url: '{{ route('product.store') }}',
+            acceptedFiles: ".jpeg,.jpg,.png,.gif",
+            addRemoveLinks: true,
+            maxFilesize: 8,
+            headers: {
+                'X-CSRF-TOKEN': "{{ csrf_token() }}"
+            },
+            removedfile: function(file) {
+                var name = file.upload.filename;
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ route('product.store') }}',
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        name: name
+                    },
+                    success: function(data) {
+                        console.log("File has been successfully removed!!");
+                    },
+                    error: function(e) {
+                        console.log(e);
+                    }
+                });
+                var fileRef;
+                return (fileRef = file.previewElement) != null ?
+                    fileRef.parentNode.removeChild(file.previewElement) : void 0;
+            },
+            success: function(file, response) {
+                console.log(file);
+            },
+        }
+    </script>
+@endpush
