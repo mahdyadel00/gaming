@@ -129,4 +129,11 @@ class UserController extends Controller
         return back();
         flash()->success("User deleted successfully");
     }
+    
+    protected function logout(){
+
+        auth()->logout();
+
+        return redirect('/');
+    }
 }//end of controller
