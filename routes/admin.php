@@ -7,6 +7,12 @@ use  App\Http\Controllers\Admin\UserController;
 use  App\Http\Controllers\Admin\CategoryController;
 use  App\Http\Controllers\Admin\ProductController;
 use  App\Http\Controllers\Admin\ContactController;
+use  App\Http\Controllers\Admin\BannerController;
+use  App\Http\Controllers\Admin\SliderController;
+use  App\Http\Controllers\Admin\SubscriptionsController;
+use  App\Http\Controllers\Admin\SettingsController;
+
+
 Auth::routes(['except' => 'register']);
 // Route::name('admin.')->prefix('admin')->group(function () {
 Route::prefix('admin')->group(function () {
@@ -37,8 +43,39 @@ Route::prefix('admin')->group(function () {
      //Products Route
      Route::get('/products', [ProductController::class, 'index'])->name('admin.products.index');
 
+
+     //email_subscriptions Route
+     Route::get('/email_subscriptions', [SubscriptionsController::class, 'index'])->name('admin.subscriptions.index');
+
      //Contacts Route
      Route::get('/contacts', [ContactController::class, 'index'])->name('admin.contacts.index');
+
+     //Banners Route
+     Route::get('/banners', [BannerController::class, 'index'])->name('admin.banners.index');
+     Route::get('/banners/create', [BannerController::class, 'create'])->name('admin.banners.create');
+     Route::post('/banners/store', [BannerController::class, 'store'])->name('admin.banners.store');
+     Route::get('/banners/edit/{id}', [BannerController::class, 'edit'])->name('admin.banners.edit');
+     Route::post('/banners/update/{id}', [BannerController::class, 'update'])->name('admin.banners.update');
+     Route::delete('/banners/delete/{id}', [BannerController::class, 'delete'])->name('admin.banners.delete');
+
+     
+     //Banners Route
+     Route::get('/sliders', [SliderController::class, 'index'])->name('admin.sliders.index');
+     Route::get('/sliders/create', [SliderController::class, 'create'])->name('admin.sliders.create');
+     Route::post('/sliders/store', [SliderController::class, 'store'])->name('admin.sliders.store');
+     Route::get('/sliders/edit/{id}', [SliderController::class, 'edit'])->name('admin.sliders.edit');
+     Route::post('/sliders/update/{id}', [SliderController::class, 'update'])->name('admin.sliders.update');
+     Route::delete('/sliders/delete/{id}', [SliderController::class, 'delete'])->name('admin.sliders.delete');
+
+
+
+     //Settings Route
+     Route::get('/settings', [SettingsController::class, 'index'])->name('admin.settings.index');
+     Route::get('/settings/create', [SettingsController::class, 'create'])->name('admin.settings.create');
+     Route::post('/settings/store', [SettingsController::class, 'store'])->name('admin.settings.store');
+     Route::get('/settings/edit/{id}', [SettingsController::class, 'edit'])->name('admin.settings.edit');
+     Route::post('/settings/update/{id}', [SettingsController::class, 'update'])->name('admin.settings.update');
+     Route::delete('/settings/delete/{id}', [SettingsController::class, 'delete'])->name('admin.settings.delete');
 
     });
 });
