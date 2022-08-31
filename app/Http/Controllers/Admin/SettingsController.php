@@ -7,7 +7,7 @@ use App\Models\Settings;
 
 class SettingsController extends Controller
 {
-    
+
     public function index()
     {
         $settings = Settings::get();
@@ -21,15 +21,16 @@ class SettingsController extends Controller
     }
     public function store(Request $request)
     {
-        $request->validate([
+        // dd($request->all());
+        // $request->validate([
 
-            'title_en' => 'required',
-            'title_ar' => 'required',
-            'email' => 'required',
-            'phone' => 'required',
-            'start_from' => 'required',
-            'end_at' => 'required',
-        ]);
+        //     'title_en' => 'required',
+        //     'title_ar' => 'required',
+        //     'email' => 'required',
+        //     'phone' => 'required',
+        //     'start_from' => 'required',
+        //     'end_at' => 'required',
+        // ]);
 
         $logo_in_db = NULL;
         if( $request->has('logo') )
@@ -84,7 +85,7 @@ class SettingsController extends Controller
             'phone' => 'filled',
             'start_from' => 'filled',
             'end_at' => 'filled',
-        
+
 
         ]);
         $logo_in_db = NULL;
@@ -106,7 +107,7 @@ class SettingsController extends Controller
             'phone' => $request->phone,
             'start_from' => $request->start_from,
             'end_at' => $request->end_at,
-            
+
             'logo' => $logo_in_db,
         ]);
 
