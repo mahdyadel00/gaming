@@ -26,7 +26,7 @@
                                     <div class="col">
                                         <label> Arabic Title</label>
                                         <input class="form-control fc-datepicker" name="title_ar"
-                                            value="{{ $category->title_en }}" type="text">
+                                            value="{{ $category->title_ar }}" type="text">
                                     </div>
                                     <div class="col">
                                         <label> English Description</label>

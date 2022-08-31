@@ -20,6 +20,13 @@ class ProductController extends Controller
     // {
     //     $this->middleware('auth');
     // }
+    protected function index(){
+
+        $products = Product::with('user')->get();
+        $categories = Category::get();
+
+        return view('frontend.products.index' , compact('products' , 'categories'));
+    }
 
     /**
      * Show the application dashboard.
@@ -36,7 +43,7 @@ class ProductController extends Controller
     protected function store(Request $request)
     {
 
-        // dd($request->all());
+        dd($request->all());
         // $request->validate([
 
         //     'title_en' => 'required',
@@ -76,5 +83,14 @@ class ProductController extends Controller
         if ($product) {
             return redirect()->back()->with('flash_message', 'Added Successfully !');
         }
+    }//End of Store
+
+    protected function single(Request $request , $id)
+    {
+        $product = Product::with('user')->where('id' , $id)->first();
+        $product_related = Product::where('id' , '!=' , $id)->limit(3)->get();
+
+
+        return view('frontend.products.single' , compact('product' , 'product_related'));
     }
 }

@@ -80,6 +80,14 @@ return [
     'phone' => 'Phone',
     'status' => 'Status',
     'country' => 'Country',
+    'description' => 'Description',
+    'edit_profile' => 'Edit Profile',
+    'edit' => 'Edit',
+    'first_name' => 'First Name',
+    'last_name' => 'Last Name',
+    'email' => 'Email',
+    'promoted_ad_list' => 'Promoted Ad List',
+    'all_category' => 'All Category',
 
 ];
 ?>

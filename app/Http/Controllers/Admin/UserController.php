@@ -29,7 +29,7 @@ class UserController extends Controller
     {
         $countries = Country::get();
 
-        return view('admin.users.create' , compact('countries'));
+        return view('admin.users.create', compact('countries'));
     }
     public function store(Request $request)
     {
@@ -77,16 +77,15 @@ class UserController extends Controller
 
     protected function edit($id)
     {
-        $user = User::where('id' , $id)->first();
+        $user = User::where('id', $id)->first();
         $countries = Country::get();
-        return view('admin.users.edit', compact('user' , 'countries'));
+        return view('admin.users.edit', compact('user', 'countries'));
     }
 
 
     protected function update(Request $request, $id)
     {
-        //    dd($request->all());
-        $user = User::where('id' , $id)->first();
+        $user = User::where('id', $id)->first();
         $request->validate([
 
             'first_name' => 'required',
@@ -124,10 +123,17 @@ class UserController extends Controller
 
     public function delete($id)
     {
-       $user = User::where('id' , $id)->first();
-       $user->delete();
+        $user = User::where('id', $id)->first();
+        $user->delete();
 
         return back();
         flash()->success("User deleted successfully");
+    }
+    
+    protected function logout(){
+
+        auth()->logout();
+
+        return redirect('/');
     }
 }//end of controller

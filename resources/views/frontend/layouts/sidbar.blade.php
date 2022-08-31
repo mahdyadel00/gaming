@@ -5,8 +5,9 @@
                 <div class="row justify-content-between align-items-center">
                     <div class="col-xxl-6 col-xl-7 col-lg-7 ">
                         <div class="heroCaption">
-                            <h1 class="tittle" data-animation="fadeInUp" data-delay="0.1s"><span class="tittleBg">Buy and sell </span><span class="lineBrack">anything you want</span></h1>
-                            <p class="pera" data-animation="fadeInUp" data-delay="0.3s">Countrys most loved and trusted classified ad listing website classified ad.randomised words which don't look even slightly Browse thousand of items near you.</p>
+
+                            <h1 class="tittle" data-animation="fadeInUp" data-delay="0.1s"><span class="tittleBg"></span><span class="lineBrack">{{ $slider->title_em }}</span></h1>
+                            <p class="pera" data-animation="fadeInUp" data-delay="0.3s">{{ $slider->description_en }}</p>
                         </div>
                         <!-- form -->
                         <form action="#" class="search-box">
@@ -30,7 +31,7 @@
                                     <input type="text" class="input keyup-input" placeholder="Search...">
                                 </div>
                                 <!-- search-suggestions -->
-                                <div class="category-searchbar search-showHide">
+                                {{-- <div class="category-searchbar search-showHide">
                                     <!-- Closed Icon -->
                                     <span class="closed-icon"><i class="las la-times"></i></span>
                                     <div class="search-suggestions" id="search_suggestions_wrap">
@@ -73,7 +74,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <!-- End suggestions -->
                             </div>
 
@@ -84,18 +85,19 @@
                     </div>
                     <div class="col-xxl-5 col-xl-5 col-lg-5">
                         <div class="hero-man d-none d-lg-block f-right" >
-                            <img src="{{ asset('frontend') }}/assets/img/hero/hero-man.jpg" alt="images" class="tilt-effect  " data-animation="fadeInRight" data-delay="0.2s">
+                            <img src="{{ asset($slider->image) }}" alt="images" class="tilt-effect  " data-animation="fadeInRight" data-delay="0.2s">
                             <!-- Shape 01-->
+
                             <div class=" shapeHero shapeHero1" data-animation="fadeInLeft" data-delay="0.8s">
-                                <img src="{{ asset('frontend') }}/assets/img/hero/heroShape1.png" alt="images" class="bouncingAnimation">
+                                <img src="{{ asset($slider_left->image) }} " style =" max-width: 20%;height: auto;" alt="images" class="bouncingAnimation">
                             </div>
                             <!-- Shape 02-->
                             <div class=" shapeHero shapeHero2" data-animation="fadeInDown" data-delay="0.6s">
-                                <img src="{{ asset('frontend') }}/assets/img/hero/heroShape2.png" alt="images" class="routedOne">
+                                <img src="{{ asset($slider_top->image) }} " style="width: 220px" alt="images" class="routedOne">
                             </div>
                             <!-- Shape 03-->
                             <div class=" shapeHero shapeHero3" data-animation="fadeInRight" data-delay="0.5s">
-                                <img src="{{ asset('frontend') }}/assets/img/hero/heroShape3.png" alt="images" class="bounce-animate">
+                                <img src="{{ asset($slider_right->image) }} " style="width:120px" alt="images" class="bounce-animate">
                             </div>
                         </div>
                     </div>
