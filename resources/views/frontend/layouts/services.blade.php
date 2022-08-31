@@ -18,7 +18,13 @@
                             <div class="serviceCap">
                                 <h4><a href="{{ route('single_category', $category->id) }}"
                                         class="title">{{ $category->title_en }}</a></h4>
-                                <p class="info">{{ $category->count() }}</p>
+                                <p class="info">
+                                    {{-- @if ($products->category_id == $category->id) --}}
+                                    {{-- {{ $products  }} --}}
+                                    {{-- @else --}}
+
+                                    {{-- @endif --}}
+                                </p>
                             </div>
                         </li>
                     @endforeach

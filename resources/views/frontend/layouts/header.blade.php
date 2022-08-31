@@ -162,8 +162,13 @@ $categories = App\Models\Category::paginate(12);
                     @endif
                     @auth
                         <li class="single userAccount">
+                            @if (auth()->check())
+                                <button class="user"><img src="{{ asset(auth()->user()->image) }}"
+                                        alt="images"></button>
+                            @else
                             <button class="user"><img src="{{ asset('frontend') }}/assets/img/gallery/user.png"
-                                    alt="images"></button>
+                                alt="images"></button>
+                            @endif
                             <div class="userAccount-wrapper">
                                 <h6 class="ac-title">@lang('site.user_account')</h6>
                                 <ul class="ac-list">
@@ -172,7 +177,7 @@ $categories = App\Models\Category::paginate(12);
                                                 class="lar la-user-circle icon"></i> @lang('site.my_account') </a>
                                     </li>
                                     <li class="list">
-                                        <a class="list-title" href="{{route('member_ship')}}"> <i
+                                        <a class="list-title" href="{{ route('member_ship') }}"> <i
                                                 class="las la-address-card icon"></i> @lang('site.membership') </a>
                                     </li>
                                     <li class="list">
@@ -185,11 +190,11 @@ $categories = App\Models\Category::paginate(12);
                                             @lang('site.wish_list') </a>
                                     </li>
                                     <li class="list">
-                                        <a class="list-title" href="{{route('help')}}"> <i
+                                        <a class="list-title" href="{{ route('help') }}"> <i
                                                 class="lar la-question-circle icon"></i> @lang('site.help')</a>
                                     </li>
                                     <li class="list">
-                                        <a class="list-title" href="{{ route('logout') }}"> <i
+                                        <a class="list-title" href="{{ route('logout.front') }}"> <i
                                                 class="las la-sign-out-alt icon"></i>
                                             @lang('site.logout')</a>
                                     </li>

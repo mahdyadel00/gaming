@@ -9,7 +9,8 @@ use App\Http\Controllers\Frontend\RegisterController;
 use App\Http\Controllers\Frontend\CategoryController;
 use App\Http\Controllers\Frontend\AccountController;
 use App\Http\Controllers\Frontend\ProductController;
-
+use App\Http\Controllers\Frontend\FavouriteController;
+use App\Http\Controllers\Frontend\EmailSubscriptionController;
 
 Route::prefix(LaravelLocalization::setLocale())
     ->middleware([
@@ -23,7 +24,7 @@ Route::prefix(LaravelLocalization::setLocale())
        // ============================================================================** Login Route ** ==========================================================================
         Route::get('login/show', [LoginController::class, 'login'])->name('login.show');
         Route::post('login/post', [LoginController::class, 'doLogin'])->name('login.do');
-        Route::get('logout', [LoginController::class, 'logout'])->name('logout');
+        Route::get('logout', [LoginController::class, 'logout'])->name('logout.front');
         // ============================================================================** Register Route ** ==========================================================================
         Route::get('register/show', [RegisterController::class, 'register'])->name('register.show');
         Route::post('register/post', [RegisterController::class, 'doRegister'])->name('register.do');
@@ -35,6 +36,9 @@ Route::prefix(LaravelLocalization::setLocale())
         // ============================================================================** Category Route ** ==========================================================================
         Route::get('/single-category/{id}', [CategoryController::class, 'index'])->name('single_category');
 
+        // ============================================================================** Email Subscribtion Route ** ==========================================================================
+        Route::post('/email-subscription', [EmailSubscriptionController::class, 'store'])->name('email.subscribtion');
+
         // ============================================================================** Account Route ** ==========================================================================
 
         Route::get('/my-account', [AccountController::class, 'myAccount'])->name('my_account');
@@ -44,12 +48,18 @@ Route::prefix(LaravelLocalization::setLocale())
         Route::get('/wish-list', [AccountController::class, 'favourite'])->name('wish_list');
         Route::get('/promoted-add', [AccountController::class, 'promoted'])->name('promoted_add');
         Route::get('/member-ship', [AccountController::class, 'memberShip'])->name('member_ship');
-        // ============================================================================** Account Route ** ==========================================================================
+        // ============================================================================** Product Route ** ==========================================================================
 
         Route::get('/product-create', [ProductController::class, 'create'])->name('product.create');
         Route::post('/product-store', [ProductController::class, 'store'])->name('product.store');
         Route::get('/product-single/{id}', [ProductController::class, 'single'])->name('product.single');
         Route::get('/products', [ProductController::class, 'index'])->name('product.index');
+        // ============================================================================** Favourite Route ** ==========================================================================
+
+        Route::post('favorite/{product}/create', [FavouriteController::class, 'create'])->name('favorite.store');
+        Route::delete('favorite/{product}', [FavouriteController::class, 'destroy'])->name('favorite.destroy');
+
+
 
 
     });

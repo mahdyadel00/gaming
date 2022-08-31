@@ -58,7 +58,8 @@
                                     </div>
                                     <ul class="listing">
                                         <li class="listItem wow fadeInUp" data-wow-delay="0.0s"><a href="#"
-                                                class="singleLinks"><i class="las la-map-marker icon"></i>Al Mansoura</a></li>
+                                                class="singleLinks"><i class="las la-map-marker icon"></i>Al
+                                                Mansoura</a></li>
                                         <li class="listItem wow fadeInUp" data-wow-delay="0.1s"><a href="#"
                                                 class="singleLinks"><i class="las la-phone icon"></i>01122907742</a>
                                         </li>
@@ -120,8 +121,9 @@
                                 <div class="footer-tittle">
                                     <h4 class="footerTittle">@lang('site.help_support')</h4>
                                     <ul class="listing">
-                                        <li class="listItem wow fadeInUp" data-wow-delay="0.0s"><a href="{{ route('conacts') }}"
-                                                class="singleLinks"> @lang('site.contacts')</a></li>
+                                        <li class="listItem wow fadeInUp" data-wow-delay="0.0s"><a
+                                                href="{{ route('conacts') }}" class="singleLinks">
+                                                @lang('site.contacts')</a></li>
                                         <li class="listItem wow fadeInUp" data-wow-delay="0.2s"><a href="#"
                                                 class="singleLinks"> @lang('site.faq')</a></li>
                                         <li class="listItem wow fadeInUp" data-wow-delay="0.3s"><a href="#"
@@ -143,21 +145,20 @@
                                 <!-- Form -->
                                 <div class="footer-form mt-10 wow fadeInRight" data-wow-delay="0.1s">
                                     <div class="form-row mb-20">
-                                        <form class="newsletter-footer" target="_blank" action="#"
-                                            method="get">
+                                        <form class="newsletter-footer" action="{{ route('email.subscribtion') }}" method="post">
+                                            @csrf
                                             <input class="input" type="email" name="email"
                                                 placeholder="Your Email Address">
                                             <div class="btn-wrapper form-icon">
-                                                <button class="btn-default btn-rounded" type="submit"
-                                                    name="submit"> @lang('site.submit')</button>
+                                                <button class="btn-default btn-rounded" type="submit"> @lang('site.submit')</button>
                                             </div>
                                         </form>
                                     </div>
                                     <div class="footer-social2 ">
-                                        <a href="http://facebook.com/h" class="wow fadeInUp social" data-wow-delay="0.2s"><i
-                                                class="lab la-facebook-f icon"></i></a>
-                                        <a href="http://youtube.com/h" class="wow fadeInUp social" data-wow-delay="0.2s"><i
-                                                class="lab la-youtube icon"></i></a>
+                                        <a href="http://facebook.com/h" class="wow fadeInUp social"
+                                            data-wow-delay="0.2s"><i class="lab la-facebook-f icon"></i></a>
+                                        <a href="http://youtube.com/h" class="wow fadeInUp social"
+                                            data-wow-delay="0.2s"><i class="lab la-youtube icon"></i></a>
                                     </div>
                                 </div>
                             </div>

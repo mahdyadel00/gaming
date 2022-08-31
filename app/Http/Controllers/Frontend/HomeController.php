@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
 use App\Models\Category;
+use App\Models\FavouriteProduct;
 use App\Models\Slider;
+use App\Models\Product;
 
 class HomeController extends Controller
 {
@@ -34,7 +36,13 @@ class HomeController extends Controller
         $slider_top = Slider::skip(3)->first();
         $banners = Banner::get();
 
-        return view('frontend.layouts.index', compact('categories' , 'slider' , 'slider_right' , 'slider_left' , 'slider_top' , 'banners'));
+        foreach($categories as $category){
+
+            $products = Product::where('category_id' , $category->id)->sum('category_id');
+        }
+        // dd($products);
+
+        return view('frontend.layouts.index', compact('categories' , 'products' , 'slider' , 'slider_right' , 'slider_left' , 'slider_top' , 'banners'));
     }
 
 

@@ -43,7 +43,7 @@ class AdminLoginController extends Controller
 
     protected function logout() {
         auth()->logout();
-        return redirect('/admin/login');
+        return redirect()->route('home');
     }//End of Logout
 
 }//end of controller

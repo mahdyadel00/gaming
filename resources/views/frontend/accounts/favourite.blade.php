@@ -1,5 +1,8 @@
 @extends('frontend.layouts.master')
 
+@php
+      $favourite = App\Models\FavouriteProduct::with('product')->where('user_id' , auth()->user()->id)->get();
+@endphp
 @section('content')
     <!--My Account  S t a r t-->
     <div class="myAccout section-padding2">
@@ -53,39 +56,29 @@
                     <!-- promoteAds -->
                     <div class="promoteAds">
                         <!-- Single -->
+                        @foreach ($favourite as $fav)
+                        @foreach ($fav->product as $product)
+
                         <div class="singlePromoteAds mb-24  wow fadeInUp social" data-wow-delay="0.0s">
                             <div class="adsCap">
                                 <div class="adsImg">
-                                    <img src="{{ asset('frontend') }}/assets/img/gallery/wishlist1.jpg" alt="images">
+                                    <img src="{{ asset($product->image) }}" width="100px" height="100px" alt="images">
                                 </div>
                                 <div class="adsCaption">
-                                    <h5><a href="add_details.html" class="adsTittle">A pair of sneakers for sell</a></h5>
-                                    <p class="adsPera">Dallas, Texas · <strong class="subCap">24hrs ago</strong></p>
-                                    <span class="adsPricing">$330.80</span>
+                                    <h5><a href="{{ route('product.single' , $product->id) }}" class="adsTittle">{{ $product->title_en }}</a></h5>
+                                    <p class="adsPera">Dallas, Texas · <strong class="subCap">{{ date_format($fav->created_at, 'D M Y') }}</strong></p>
+                                    <span class="adsPricing">${{ $product->price }}</span>
                                 </div>
                             </div>
                             <div class="btn-wrapper mb-20">
-                                <a href="wish_list.html" class="cmn-btn-outline5"><i
-                                        class="las la-heart icon"></i>Favourite</a>
-                            </div>
-                        </div>
-                        <!-- Single -->
-                        <div class="singlePromoteAds mb-24  wow fadeInUp social" data-wow-delay="0.2s">
-                            <div class="adsCap">
-                                <div class="adsImg">
-                                    <img src="{{ asset('frontend') }}/assets/img/gallery/wishlist2.jpg" alt="images">
-                                </div>
-                                <div class="adsCaption">
-                                    <h5><a href="add_details.html" class="adsTittle">Luxury couple apartment</a></h5>
-                                    <p class="adsPera">Dallas, Texas · <strong class="subCap">24hrs ago</strong></p>
-                                    <span class="adsPricing">$120.34</span>
-                                </div>
-                            </div>
-                            <div class="btn-wrapper mb-20">
-                                <a href="wish_list.html" class="cmn-btn-outline5"><i
+                                <a href="#" data-id="{{ $product->id }}" class="cmn-btn-outline5 delete-product-from-favorite"
+                                    data-url="{{ route('favorite.destroy', [$product->id]) }}"><i
                                         class="las la-heart icon"></i>@lang('site.favourite')</a>
                             </div>
                         </div>
+                        @endforeach
+                        @endforeach
+                        <!-- Single -->
                     </div>
                     <!-- END -->
                 </div>
@@ -94,3 +87,80 @@
     </div>
     <!--End-of My Account-->
 @endsection
+
+@push('js')
+    <script>
+
+        //remove favourite
+        $(document).on('click', '.delete-product-from-favorite', function(e) {
+            e.preventDefault();
+            var _url = $(this).attr('data-url');
+            var id = $(this).attr('data-id');
+            var $this = $(this);
+            $.ajax({
+                url: _url,
+                type: 'DELETE',
+                data: {
+                    "_token": "{{ csrf_token() }}"
+                },
+                success: function(response) {
+                    // console.log(response);
+                    if (response == 'error') {
+                        new Noty({
+                            type: 'error',
+                            layout: 'topRight',
+                            text: "{{ ('Thank You, Your Review Has Been Submitted') }}",
+                            timeout: 2000,
+                            killer: true
+                        }).show();
+                    } else {
+                        new Noty({
+                            type: 'success',
+                            layout: 'topRight',
+                            text: response.message,
+                            timeout: 2000,
+                            killer: true
+                        }).show();
+                    }
+                },
+            });
+        })
+        //added favourite
+
+
+        // $(document).on('click', '.add-product-to-favorite', function(e) {
+        //     e.preventDefault();
+        //     var _url = $(this).attr('data-url');
+        //     var id = $(this).attr('data-id');
+        //     var $this = $(this);
+        //     $.ajax({
+        //         url: _url,
+        //         method: "post",
+        //         data: {
+        //             "_token": "{{ csrf_token() }}"
+        //         },
+        //         success: function(response) {
+        //             // console.log(response);
+        //             if (response == 'error') {
+        //                 new Noty({
+        //                     type: 'error',
+        //                     layout: 'topRight',
+        //                     text: "{{ ('Thank You, Your Review Has Been Submitted') }}",
+        //                     timeout: 2000,
+        //                     killer: true
+        //                 }).show();
+        //             } else {
+        //                 new Noty({
+        //                     type: 'success',
+        //                     layout: 'topRight',
+        //                     text: response.message,
+        //                     timeout: 2000,
+        //                     killer: true
+        //                 }).show();
+        //             }
+        //         },
+        //     });
+        // })
+    </script>
+@endpush
+
