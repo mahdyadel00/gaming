@@ -53,7 +53,7 @@
                                 <div class="footer-tittle footer-tittle2">
                                     <div class="footer-logo mb-40">
                                         <a href="{{ route('home') }}"><img
-                                                src="{{ asset('frontend') }}/assets/img/logo/h1FooterLogo.png"
+                                                src="{{ asset($setting->logo) }}" width="100px" style="height:50px"
                                                 alt="images"></a>
                                     </div>
                                     <ul class="listing">
