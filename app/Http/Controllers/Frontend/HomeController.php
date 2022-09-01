@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\FavouriteProduct;
 use App\Models\Slider;
 use App\Models\Product;
+use App\Models\Settings;
 
 class HomeController extends Controller
 {
@@ -35,14 +36,14 @@ class HomeController extends Controller
         $slider_left = Slider::skip(2)->first();
         $slider_top = Slider::skip(3)->first();
         $banners = Banner::get();
-
+        $setting = Settings::first();
         foreach($categories as $category){
 
             $products = Product::where('category_id' , $category->id)->sum('category_id');
         }
         // dd($products);
 
-        return view('frontend.layouts.index', compact('categories' , 'products' , 'slider' , 'slider_right' , 'slider_left' , 'slider_top' , 'banners'));
+        return view('frontend.layouts.index', compact( 'setting' , 'categories' , 'products' , 'slider' , 'slider_right' , 'slider_left' , 'slider_top' , 'banners'));
     }
 
 

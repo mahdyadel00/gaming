@@ -58,14 +58,13 @@
                                     </div>
                                     <ul class="listing">
                                         <li class="listItem wow fadeInUp" data-wow-delay="0.0s"><a href="#"
-                                                class="singleLinks"><i class="las la-map-marker icon"></i>Al
-                                                Mansoura</a></li>
+                                                class="singleLinks"><i class="las la-map-marker icon"></i>{{ $setting->address }}</a></li>
                                         <li class="listItem wow fadeInUp" data-wow-delay="0.1s"><a href="#"
-                                                class="singleLinks"><i class="las la-phone icon"></i>01122907742</a>
+                                                class="singleLinks"><i class="las la-phone icon"></i>{{$setting->phone}}</a>
                                         </li>
                                         <li class="listItem wow fadeInUp" data-wow-delay="0.2s"><a href="#"
                                                 class="singleLinks"><i
-                                                    class="las la-envelope icon"></i>admin@email.com</a></li>
+                                                    class="las la-envelope icon"></i>{{$setting->email}}</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -82,7 +81,7 @@
                                         <li class="listItem wow fadeInUp" data-wow-delay="0.1s"><a href="#"
                                                 class="singleLinks"> @lang('site.vehicles')</a></li>
                                         <li class="listItem wow fadeInUp" data-wow-delay="0.1s"><a href="#"
-                                                class="singleLinks"> @lang('site.application')</a></li>
+                                                class="singleLinks" > @lang('site.application')</a></li>
                                         <li class="listItem wow fadeInUp" data-wow-delay="0.2s"><a href="#"
                                                 class="singleLinks"> @lang('site.fashions')</a></li>
                                         <li class="listItem wow fadeInUp" data-wow-delay="0.2s"><a href="#"

@@ -30,6 +30,11 @@
                                             value="{{ $setting ? $setting->email : '' }}" type="text">
                                     </div>
                                     <div class="col">
+                                        <label> Address </label>
+                                        <input class="form-control fc-datepicker" name="address"
+                                            value="{{ $setting ? $setting->address : '' }}" type="text">
+                                    </div>
+                                    <div class="col">
                                         <label>Phone</label>
                                         <input class="form-control fc-datepicker" name="phone"
                                             value="{{ $setting ? $setting->phone : ''  }}" type="text">

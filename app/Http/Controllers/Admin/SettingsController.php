@@ -38,6 +38,7 @@ class SettingsController extends Controller
         $setting->title_en = $request->title_en;
         $setting->title_ar = $request->title_ar;
         $setting->email = $request->email;
+        $setting->address = $request->address;
         $setting->phone = $request->phone;
         $setting->start_from = $request->start_from;
         $setting->end_at = $request->end_at;
