@@ -52,6 +52,7 @@
                             <div class="col-sm-12">
                                 <div class="btn-wrapper text-center">
                                     {{-- <a href="#"  class="cmn-btn4 w-100 mb-60"> --}}
+                                        {!! NoCaptcha::display() !!}
                                     <button class="cmn-btn4 w-100 mb-60" type="submit">@lang('site.login')</button>
                                     <a href="#" class="cmn-btn-outline0  mb-20 w-100"><img
                                             src="{{ asset('frontend') }}/assets/img/icon/googleIocn.svg" alt="images"

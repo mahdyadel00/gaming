@@ -1,5 +1,7 @@
 @php
 $categories = App\Models\Category::paginate(12);
+$setting = App\Models\Settings::first();
+
 @endphp
 <header class="header-style-01">
     <nav class="navbar navbar-area headerBg1 navbar-expand-lg  plr">
@@ -7,7 +9,7 @@ $categories = App\Models\Category::paginate(12);
             <div class="responsive-mobile-menu">
                 <div class="logo-wrapper">
                     <a href="{{ route('home') }}" class="logo">
-                        <img src="{{ asset('frontend') }}/assets/img/logo/logo1.png" alt="images">
+                        <img src="{{ asset($setting->logo) }}" width="100px" style="height:50px" alt="images">
                     </a>
                 </div>
                 <!-- Click Menu Mobile right menu -->

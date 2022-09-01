@@ -2,6 +2,7 @@
 
 @php
       $favourite = App\Models\FavouriteProduct::with('product')->where('user_id' , auth()->user()->id)->get();
+    //   dd($favourite);
 @endphp
 @section('content')
     <!--My Account  S t a r t-->

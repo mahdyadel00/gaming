@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+@php
+$categories = App\Models\Category::paginate(12);
+$setting = App\Models\Settings::first();
+
+@endphp
 
 <head>
     <meta charset="UTF-8">
@@ -20,11 +25,8 @@
     {{-- Noty --}}
     <link rel="stylesheet" href="{{ asset('css/noty/noty.css') }}">
     {{-- dropzone --}}
-    {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/min/dropzone.min.css">
-    {{-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.js"></script>
-
 </head>
 
 <body>
@@ -52,19 +54,20 @@
                             <div class="footer-widget widget  mb-24">
                                 <div class="footer-tittle footer-tittle2">
                                     <div class="footer-logo mb-40">
-                                        <a href="{{ route('home') }}"><img
-                                                src="{{ asset($setting->logo) }}" width="100px" style="height:50px"
-                                                alt="images"></a>
+                                        <a href="{{ route('home') }}"><img src="{{ asset($setting->logo) }}"
+                                                width="100px" style="height:50px" alt="images"></a>
                                     </div>
                                     <ul class="listing">
                                         <li class="listItem wow fadeInUp" data-wow-delay="0.0s"><a href="#"
-                                                class="singleLinks"><i class="las la-map-marker icon"></i>{{ $setting->address }}</a></li>
+                                                class="singleLinks"><i
+                                                    class="las la-map-marker icon"></i>{{ $setting->address }}</a></li>
                                         <li class="listItem wow fadeInUp" data-wow-delay="0.1s"><a href="#"
-                                                class="singleLinks"><i class="las la-phone icon"></i>{{$setting->phone}}</a>
+                                                class="singleLinks"><i
+                                                    class="las la-phone icon"></i>{{ $setting->phone }}</a>
                                         </li>
                                         <li class="listItem wow fadeInUp" data-wow-delay="0.2s"><a href="#"
                                                 class="singleLinks"><i
-                                                    class="las la-envelope icon"></i>{{$setting->email}}</a></li>
+                                                    class="las la-envelope icon"></i>{{ $setting->email }}</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -81,7 +84,7 @@
                                         <li class="listItem wow fadeInUp" data-wow-delay="0.1s"><a href="#"
                                                 class="singleLinks"> @lang('site.vehicles')</a></li>
                                         <li class="listItem wow fadeInUp" data-wow-delay="0.1s"><a href="#"
-                                                class="singleLinks" > @lang('site.application')</a></li>
+                                                class="singleLinks"> @lang('site.application')</a></li>
                                         <li class="listItem wow fadeInUp" data-wow-delay="0.2s"><a href="#"
                                                 class="singleLinks"> @lang('site.fashions')</a></li>
                                         <li class="listItem wow fadeInUp" data-wow-delay="0.2s"><a href="#"
@@ -144,12 +147,14 @@
                                 <!-- Form -->
                                 <div class="footer-form mt-10 wow fadeInRight" data-wow-delay="0.1s">
                                     <div class="form-row mb-20">
-                                        <form class="newsletter-footer" action="{{ route('email.subscribtion') }}" method="post">
+                                        <form class="newsletter-footer" action="{{ route('email.subscribtion') }}"
+                                            method="post">
                                             @csrf
                                             <input class="input" type="email" name="email"
                                                 placeholder="Your Email Address">
                                             <div class="btn-wrapper form-icon">
-                                                <button class="btn-default btn-rounded" type="submit"> @lang('site.submit')</button>
+                                                <button class="btn-default btn-rounded" type="submit">
+                                                    @lang('site.submit')</button>
                                             </div>
                                         </form>
                                     </div>
@@ -199,9 +204,12 @@
     <script src="{{ asset('frontend') }}/assets/js/popper.min.js"></script>
     <script src="{{ asset('frontend') }}/assets/js/bootstrap.js"></script>
     <!-- Plugin JS -->
+    {{-- mahdy --}}
+{!! \Anhskohbo\NoCaptcha\Facades\NoCaptcha::renderJs() !!}
     <script src="{{ asset('frontend') }}/assets/js/plugin.js"></script>
     <!-- Main js -->
     <script src="{{ asset('frontend') }}/assets/js/main.js"></script>
+
 
     @stack('js')
 </body>

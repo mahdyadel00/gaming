@@ -17,7 +17,7 @@
                     <!-- /END-->
                     <div class="listingDetails-Wrapper">
                         <div class="listingDetails">
-                            <form action="{{ route('product.store') }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('product.store') }}" id="add-form" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12">
@@ -31,17 +31,6 @@
                                             </select>
                                         </div>
                                     </div>
-                                    {{-- <div class="col-lg-6 col-md-6">
-                                    <div class="select-itms">
-                                        <label class="infoTitle">Item subcategory</label>
-                                        <select name="select"  class="niceSelect">
-                                            <option value="">Subcategory</option>
-                                            <option value="">Subcategory 1</option>
-                                            <option value="">Subcategory 2</option>
-                                            <option value="">Subcategory 3</option>
-                                        </select>
-                                    </div>
-                                </div> --}}
                                     <!-- condition -->
                                     <div class="col-lg-6 col-md-6">
                                         <div class="condition">
@@ -116,7 +105,7 @@
                                     <!-- image -->
                                     <div class="col-lg-12">
                                         <label class="infoTitle">@lang('site.image')</label>
-                                        <div class="dropzone" id="file-dropzone"></div>
+                                        <div name="image" class="dropzone" id="file-dropzone"></div>
                                     </div>
                                     {{-- <div class="col-lg-12">
                                         <label class="infoTitle">@lang('site.image')</label>
@@ -134,13 +123,14 @@
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
-                                    <div class="col-sm-12">
-                                        <div class="btn-wrapper mb-10">
-                                            <button type="submit" class="cmn-btn4 w-100">@lang('site.continue')</button>
-                                        </div>
-                                    </div>
                                 </div>
                             </form>
+                            <div class="col-sm-12">
+                                <div class="btn-wrapper mb-10">
+                                    <button form="add-form" type="submit"
+                                        class="cmn-btn4 w-100">@lang('site.continue')</button>
+                                </div>
+                            </div>
 
                         </div>
                     </div>
@@ -162,8 +152,8 @@
             headers: {
                 'X-CSRF-TOKEN': "{{ csrf_token() }}"
             },
-            removedfile: function(file) {
-                var name = file.upload.filename;
+            removedfile: function(image) {
+                var name = image.upload.filename;
                 $.ajax({
                     type: 'POST',
                     url: '{{ route('product.store') }}',
