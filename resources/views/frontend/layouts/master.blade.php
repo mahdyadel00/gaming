@@ -25,8 +25,8 @@ $setting = App\Models\Settings::first();
     {{-- Noty --}}
     <link rel="stylesheet" href="{{ asset('css/noty/noty.css') }}">
     {{-- dropzone --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/min/dropzone.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.js"></script>
+    <link rel="stylesheet" href="{{ asset('frontend/dropzone.css') }}">
+
 </head>
 
 <body>
@@ -209,6 +209,7 @@ $setting = App\Models\Settings::first();
     <script src="{{ asset('frontend') }}/assets/js/plugin.js"></script>
     <!-- Main js -->
     <script src="{{ asset('frontend') }}/assets/js/main.js"></script>
+    <script src="{{ asset('frontend/dropzone.js') }}"></script>
 
 
     @stack('js')

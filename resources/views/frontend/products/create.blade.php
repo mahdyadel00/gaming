@@ -1,5 +1,6 @@
 @extends('frontend.layouts.master')
 @section('content')
+
     <!--addList-Details S t a r t-->
     <div class="addList-Details section-padding2">
         <div class="container">
@@ -105,8 +106,9 @@
                                     <!-- image -->
                                     <div class="col-lg-12">
                                         <label class="infoTitle">@lang('site.image')</label>
-                                        <div name="image" class="dropzone" id="file-dropzone"></div>
+                                        <div class="dropzone options" id="dropzonefield" style="border: 1px solid #452A6F;margin: 10px"></div>
                                     </div>
+
                                     {{-- <div class="col-lg-12">
                                         <label class="infoTitle">@lang('site.image')</label>
                                         <div class="input-form">
@@ -144,37 +146,56 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.0/min/dropzone.min.js"></script>
 
     <script>
-        Dropzone.options.fileDropzone = {
-            url: '{{ route('product.store') }}',
-            acceptedFiles: ".jpeg,.jpg,.png,.gif",
-            addRemoveLinks: true,
-            maxFilesize: 8,
-            headers: {
-                'X-CSRF-TOKEN': "{{ csrf_token() }}"
-            },
-            removedfile: function(image) {
-                var name = image.upload.filename;
-                $.ajax({
-                    type: 'POST',
-                    url: '{{ route('product.store') }}',
-                    data: {
-                        "_token": "{{ csrf_token() }}",
-                        name: name
-                    },
-                    success: function(data) {
-                        console.log("File has been successfully removed!!");
-                    },
-                    error: function(e) {
-                        console.log(e);
+         function initDrop() {
+            drop = $('#dropzonefield').dropzone({
+                url: "{{ route('product.store') }}",
+                paramName: 'file',
+                uploadMultiple: true,
+                maxFiles: 10,
+                maxFilesize: 5,
+                dictDefaultMessage: "{{ ('Click here to upload files or drag and drop files here') }}",
+                dictRemoveFile: "{{ ('Delete') }}",
+                acceptedFiles: 'image/*',
+                autoProcessQueue: true,
+                parallelUploads: 1,
+                removeType: "server",
+                params: {
+                    _token: '{{ csrf_token() }}',
+                    product_id: $("#frm_photo").find("input[name='product_id']").val(),
+
+                },
+                addRemoveLinks: true,
+                removedfile: function(file) {
+                    if (drop[0].dropzone.options.removeType == "server") {
+                        console.log(file.id);
+                        $.ajax({
+                            dataType: 'json',
+                            type: 'POST',
+
+                            url: '{{ route('product.store') }}',
+                            data: {
+                                file: file.name,
+                                _token: '{{ csrf_token() }}',
+                                id: file.id,
+                            },
+                        });
+                        var fmock;
+
+                        if ((fmock = file.previewElement) != null) {
+                            if (fmock.parentNode !== null)
+                                return fmock.parentNode.removeChild(file.previewElement);
+
+                        }
+                        return void 0;
+                        //  return (fmock = file.previewElement) != null ? fmock.parentNode.removeChild(file.previewElement):void 0;
+                    } else {
+                        file.previewElement.remove();
                     }
-                });
-                var fileRef;
-                return (fileRef = file.previewElement) != null ?
-                    fileRef.parentNode.removeChild(file.previewElement) : void 0;
-            },
-            success: function(file, response) {
-                console.log(file);
-            },
+                },
+                success: function(file, response) {
+                    file.id = response.id;
+                },
+            });
         }
     </script>
 @endpush

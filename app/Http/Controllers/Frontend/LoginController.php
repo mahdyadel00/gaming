@@ -25,7 +25,7 @@ class LoginController extends Controller
 
             'email' => 'required',
             'password' => 'required',
-            'g-recaptcha-response' => 'required|captcha',
+            // 'g-recaptcha-response' => 'required|captcha',
         ]);
         $remember_me = request('remember_me') == 1 ? true : false;
 
