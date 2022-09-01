@@ -58,7 +58,7 @@ Route::prefix('admin')->group(function () {
      Route::post('/banners/update/{id}', [BannerController::class, 'update'])->name('admin.banners.update');
      Route::delete('/banners/delete/{id}', [BannerController::class, 'delete'])->name('admin.banners.delete');
 
-     
+
      //Banners Route
      Route::get('/sliders', [SliderController::class, 'index'])->name('admin.sliders.index');
      Route::get('/sliders/create', [SliderController::class, 'create'])->name('admin.sliders.create');
@@ -70,12 +70,8 @@ Route::prefix('admin')->group(function () {
 
 
      //Settings Route
-     Route::get('/settings', [SettingsController::class, 'index'])->name('admin.settings.index');
-     Route::get('/settings/create', [SettingsController::class, 'create'])->name('admin.settings.create');
-     Route::post('/settings/store', [SettingsController::class, 'store'])->name('admin.settings.store');
-     Route::get('/settings/edit/{id}', [SettingsController::class, 'edit'])->name('admin.settings.edit');
-     Route::post('/settings/update/{id}', [SettingsController::class, 'update'])->name('admin.settings.update');
-     Route::delete('/settings/delete/{id}', [SettingsController::class, 'delete'])->name('admin.settings.delete');
+     Route::get('/settings/edit', [SettingsController::class, 'edit'])->name('admin.settings.edit');
+     Route::post('/settings/update', [SettingsController::class, 'update'])->name('admin.settings.update');
 
     });
 });
