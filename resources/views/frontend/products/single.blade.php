@@ -1,5 +1,13 @@
 @extends('frontend.layouts.master')
 @section('content')
+    @php
+    if (auth()->check()) {
+        $favourite = App\Models\FavouriteProduct::with('product')
+            ->where('user_id', auth()->user()->id)
+            ->where('product_id', $product->id)
+            ->first();
+    }
+    @endphp
     <!--Product Details  S t a r t-->
     <div class="proDetails section-padding2">
         <div class="container">
@@ -10,7 +18,7 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">@lang('site.home')</a></li>
                             <li class="breadcrumb-item"><a href="#">@lang('site.category')</a></li>
-                            <li class="breadcrumb-item"><a href="#">| Phones</a></li>
+                            <li class="breadcrumb-item"><a href="#">Phones</a></li>
                         </ol>
                     </nav>
                 </div>
@@ -91,10 +99,27 @@
                     <div class="proDescription">
                         <!-- Top -->
                         <div class="descriptionTop">
-                            <h4><a href="#" data-id="{{ $product->id }}"
-                                    data-url="{{ route('favorite.store', [$product->id]) }}"
-                                    class="detailsTittle add-product-to-favorite">{{ $product->title_en }} <i
-                                        class="lar la-heart icon"></i></a>
+                            <h4>
+
+                                @if (Auth::user())
+                                    @if (!$favourite == null)
+                                        <a href="#" data-id="{{ $product->id }}"
+                                            data-url="{{ route('favorite.destroy', [$product->id]) }}"
+                                            class="detailsTittle delete-product-from-favorite">{{ $product->title_en }}
+                                            <i style="background:#f76631" class="las la-heart icon"></i></a>
+                                        </a>
+                                    @else
+                                        <a href="#" data-id="{{ $product->id }}"
+                                            data-url="{{ route('favorite.store', [$product->id]) }}"
+                                            class="detailsTittle add-product-to-favorite">{{ $product->title_en }}
+                                            <i class="lar la-heart icon"></i></a>
+                                    @endif
+                                @else
+                                    <a href="{{ route('login.show') }}" data-id="{{ $product->id }}"
+                                        data-url="{{ route('favorite.store', [$product->id]) }}"
+                                        class="detailsTittle add-product-to-favorite">{{ $product->title_en }}
+                                        <i class="lar la-heart icon"></i></a>
+                                @endif
                             </h4>
                             <p class="detailsCap">@lang('site.posted_on') {{ date_format($product->created_at, 'D M Y') }}</p>
                             <span class="detailsPricing">${{ $product->price }}
@@ -164,7 +189,7 @@
                                 <div class="col-lg-8">
                                     <div class="input-form">
                                         <input type="text" placeholder="(704) *** ***"
-                                            value="{{ $product->user[0]->phone }}">
+                                            value="{{ $product->user[0]->phone }}" disabled>
                                         <!-- icon -->
                                         <div class="icon"><i class="las la-phone"></i></div>
                                     </div>
@@ -193,7 +218,7 @@
                                                         height="150px" alt="images">
                                                 </div>
                                                 <div class="recentCaption">
-                                                    <h5><a href="add_details.html"
+                                                    <h5><a href="{{ route('product.single', $related->id) }}"
                                                             class="featureTittle">{{ $related->title_en }}</a>
                                                     </h5>
                                                     <p class="featureCap">@lang('site.member_since')<strong
@@ -221,7 +246,6 @@
 
 @push('js')
     <script>
-
         //remove favourite
         $(document).on('click', '.delete-product-from-favorite', function(e) {
             e.preventDefault();
@@ -240,7 +264,7 @@
                         new Noty({
                             type: 'error',
                             layout: 'topRight',
-                            text: "{{ ('Thank You, Your Review Has Been Submitted') }}",
+                            text: "{{ 'Thank You, Your Review Has Been Submitted' }}",
                             timeout: 2000,
                             killer: true
                         }).show();
@@ -276,7 +300,7 @@
                         new Noty({
                             type: 'error',
                             layout: 'topRight',
-                            text: "{{ ('Thank You, Your Review Has Been Submitted') }}",
+                            text: "{{ 'Thank You, Your Review Has Been Submitted' }}",
                             timeout: 2000,
                             killer: true
                         }).show();
@@ -294,4 +318,3 @@
         })
     </script>
 @endpush
-
