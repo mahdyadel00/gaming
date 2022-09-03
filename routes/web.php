@@ -34,6 +34,7 @@ Route::prefix(LaravelLocalization::setLocale())
         Route::get('/about-us', [ContactController::class, 'aboutUs'])->name('about_us');
 
         // ============================================================================** Category Route ** ==========================================================================
+        Route::get('/categories', [CategoryController::class, 'category'])->name('categories.category');
         Route::get('/single-category/{id}', [CategoryController::class, 'index'])->name('single_category');
 
         // ============================================================================** Email Subscribtion Route ** ==========================================================================

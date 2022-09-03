@@ -24,11 +24,19 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index(Request $request , $id)
+    protected function category()
     {
-        $category = Category::where('id' , $id)->first();
-        $products = Product::where('category_id' , $category->id)->get();
 
-        return view('frontend.categories.single', compact('category' , 'products'));
+        $categories = Category::paginate(12);
+
+        return view('frontend.categories.index', compact('categories'));
+    }
+
+    protected function index(Request $request, $id)
+    {
+        $category = Category::where('id', $id)->first();
+        $products = Product::where('category_id', $category->id)->get();
+
+        return view('frontend.categories.single', compact('category', 'products'));
     }
 }

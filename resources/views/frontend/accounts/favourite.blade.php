@@ -1,8 +1,10 @@
 @extends('frontend.layouts.master')
 
 @php
-      $favourite = App\Models\FavouriteProduct::with('product')->where('user_id' , auth()->user()->id)->get();
-    //   dd($favourite);
+$favourite = App\Models\FavouriteProduct::with('product')
+    ->where('user_id', auth()->user()->id)
+    ->get();
+//   dd($favourite);
 @endphp
 @section('content')
     <!--My Account  S t a r t-->
@@ -58,26 +60,30 @@
                     <div class="promoteAds">
                         <!-- Single -->
                         @foreach ($favourite as $fav)
-                        @foreach ($fav->product as $product)
-
-                        <div class="singlePromoteAds mb-24  wow fadeInUp social" data-wow-delay="0.0s">
-                            <div class="adsCap">
-                                <div class="adsImg">
-                                    <img src="{{ asset($product->image) }}" width="100px" height="100px" alt="images">
+                            @foreach ($fav->product as $product)
+                                <div class="singlePromoteAds mb-24  wow fadeInUp social" data-wow-delay="0.0s">
+                                    <div class="adsCap">
+                                        <div class="adsImg">
+                                            <img src="{{ asset($product->image) }}" width="100px" height="100px"
+                                                alt="images">
+                                        </div>
+                                        <div class="adsCaption">
+                                            <h5><a href="{{ route('product.single', $product->id) }}"
+                                                    class="adsTittle">{{ $product->title_en }}</a></h5>
+                                            <p class="adsPera">Dallas, Texas · <strong
+                                                    class="subCap">{{ date_format($fav->created_at, 'D M Y') }}</strong>
+                                            </p>
+                                            <span class="adsPricing">${{ $product->price }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="btn-wrapper mb-20">
+                                        <a href="#" data-id="{{ $product->id }}"
+                                            class="cmn-btn-outline5 delete-product-from-favorite"
+                                            data-url="{{ route('favorite.destroy', [$product->id]) }}"><i
+                                                class="las la-heart icon"></i>@lang('site.favourite')</a>
+                                    </div>
                                 </div>
-                                <div class="adsCaption">
-                                    <h5><a href="{{ route('product.single' , $product->id) }}" class="adsTittle">{{ $product->title_en }}</a></h5>
-                                    <p class="adsPera">Dallas, Texas · <strong class="subCap">{{ date_format($fav->created_at, 'D M Y') }}</strong></p>
-                                    <span class="adsPricing">${{ $product->price }}</span>
-                                </div>
-                            </div>
-                            <div class="btn-wrapper mb-20">
-                                <a href="#" data-id="{{ $product->id }}" class="cmn-btn-outline5 delete-product-from-favorite"
-                                    data-url="{{ route('favorite.destroy', [$product->id]) }}"><i
-                                        class="las la-heart icon"></i>@lang('site.favourite')</a>
-                            </div>
-                        </div>
-                        @endforeach
+                            @endforeach
                         @endforeach
                         <!-- Single -->
                     </div>
@@ -91,7 +97,6 @@
 
 @push('js')
     <script>
-
         //remove favourite
         $(document).on('click', '.delete-product-from-favorite', function(e) {
             e.preventDefault();
@@ -110,7 +115,7 @@
                         new Noty({
                             type: 'error',
                             layout: 'topRight',
-                            text: "{{ ('Thank You, Your Review Has Been Submitted') }}",
+                            text: "{{ 'Thank You, Your Review Has Been Submitted' }}",
                             timeout: 2000,
                             killer: true
                         }).show();
@@ -146,7 +151,7 @@
         //                 new Noty({
         //                     type: 'error',
         //                     layout: 'topRight',
-        //                     text: "{{ ('Thank You, Your Review Has Been Submitted') }}",
+        //                     text: "{{ 'Thank You, Your Review Has Been Submitted' }}",
         //                     timeout: 2000,
         //                     killer: true
         //                 }).show();
@@ -164,4 +169,3 @@
         // })
     </script>
 @endpush
-

@@ -104,19 +104,19 @@
                                         </div>
                                     </div>
                                     <!-- image -->
-                                    <div class="col-lg-12">
+                                    {{-- <div class="col-lg-12">
                                         <label class="infoTitle">@lang('site.image')</label>
                                         <div class="dropzone options" id="dropzonefield" style="border: 1px solid #452A6F;margin: 10px"></div>
-                                    </div>
+                                    </div> --}}
 
-                                    {{-- <div class="col-lg-12">
+                                    <div class="col-lg-12">
                                         <label class="infoTitle">@lang('site.image')</label>
                                         <div class="input-form">
                                             <input type="file" class="form-control modal-title" name='image'
                                                 accept="image/jpeg,image/jpg,image/png">
 
                                         </div>
-                                    </div> --}}
+                                    </div>
                                     <!-- user Message -->
                                     <div class="col-sm-12">
                                         <label class="checkWrap2">@lang('site.negotiable')

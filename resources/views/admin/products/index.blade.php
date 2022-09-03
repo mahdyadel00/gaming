@@ -59,14 +59,11 @@
                     <span class="text-secondary text-xs font-weight-bold">{{ $product->price_discount }}</span>
                   </td> --}}
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">{{ json_encode($product->user[0]->first_name) }} {{ json_encode($product->user[0]->last_name) }} </span>
+                    <span class="text-secondary text-xs font-weight-bold">{{ $product->user[0]->first_name }} {{$product->user[0]->last_name }} </span>
                   </td>
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold"> {{ json_encode($product->category[0]->title_en) }}</span>
+                    <span class="text-secondary text-xs font-weight-bold"> {{ $product->category[0]->title_en }}</span>
                   </td>
-                  {{-- <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">{{ $product->country_id }}</span>
-                  </td> --}}
 
                 </td>
                 </tr>

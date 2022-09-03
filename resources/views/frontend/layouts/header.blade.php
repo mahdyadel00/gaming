@@ -53,19 +53,19 @@ $setting = App\Models\Settings::first();
                             <a href="#" class="menuArrow">@lang('site.pages')</a>
                             <ul class="sub-menu">
                                 <li><a href="{{ route('home') }}">@lang('site.home') </a></li>
-                                <li><a href="ad_Lists.html">@lang('site.ad_list')</a></li>
-                                <li><a href="add_details.html">@lang('site.add_details')</a></li>
-                                <li><a href="ad_lists_category.html">@lang('site.add_lists_category')</a></li>
-                                <li><a href="add_listing_Details.html">Add listing Details</a></li>
-                                <li><a href="add_setting.html">Add Setting</a></li>
-                                <li><a href="{{ route('my_account') }}">My Account</a></li>
-                                <li><a href="memberShip.html">Member Ship</a></li>
-                                <li><a href="{{ route('wish_list') }}">@lang('site.wish_list')</a></li>
-                                <li><a href="promoted_add_list.html">Promoted add_list</a></li>
-                                <li><a href="image_uploded.html">Image Uploded</a></li>
-                                <li><a href="payment.html">Payment</a></li>
+                                <li><a href="{{ route('product.index') }}">@lang('site.ad_list')</a></li>
+                                {{-- <li><a href="{{ route('product.single' , $product->id) }}">@lang('site.add_details')</a></li> --}}
+                                <li><a href="{{ route('categories.category') }}">@lang('site.add_lists_category')</a></li>
+                                {{-- <li><a href="add_listing_Details.html">Add listing Details</a></li> --}}
+                                {{-- <li><a href="add_setting.html">Add Setting</a></li> --}}
+                                {{-- <li><a href="{{ route('my_account') }}">My Account</a></li> --}}
+                                {{-- <li><a href="memberShip.html">Member Ship</a></li> --}}
+                                {{-- <li><a href="{{ route('wish_list') }}">@lang('site.wish_list')</a></li> --}}
+                                {{-- <li><a href="promoted_add_list.html">Promoted add_list</a></li> --}}
+                                {{-- <li><a href="image_uploded.html">Image Uploded</a></li> --}}
+                                {{-- <li><a href="payment.html">Payment</a></li> --}}
 
-                                <li><a href="messages.html">@lang('site.message_all')</a></li>
+                                {{-- <li><a href="messages.html">@lang('site.message_all')</a></li> --}}
                             </ul>
                         </li>
                         <li><a href="{{ route('conacts') }}">@lang('site.contacts')</a></li>
