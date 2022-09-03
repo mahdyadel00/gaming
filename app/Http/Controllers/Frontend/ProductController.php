@@ -43,7 +43,7 @@ class ProductController extends Controller
     protected function store(Request $request)
     {
 
-        dd($request->all());
+        // dd($request->all());
         // $request->validate([
 
         //     'title_en' => 'required',

@@ -11,7 +11,7 @@
                         <p  class="wow fadeInUp" data-wow-delay="0.2s">{{ $banner->description_en }}</p>
                     </div>
                     <div class="btn-wrapper">
-                        <a href="{{ route('product.create') }}" class="cmn-btn2 mr-15 mb-10 wow fadeInLeft" data-wow-delay="0.3s">Post your ad</a>
+                        <a href="{{ route('product.create') }}" class="cmn-btn2 mr-15 mb-10 wow fadeInLeft" data-wow-delay="0.3s">@lang('site.post_your_ad')</a>
                         <a href="ad_lists_category.html" class="cmn-btn3 mb-10 wow fadeInRight" data-wow-delay="0.3s">Browse ads</a>
                     </div>
                 </div>

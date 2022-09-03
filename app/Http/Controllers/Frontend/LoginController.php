@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Frontend;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
+
 
 use function GuzzleHttp\Promise\all;
 
@@ -23,6 +25,7 @@ class LoginController extends Controller
 
             'email' => 'required',
             'password' => 'required',
+            // 'g-recaptcha-response' => 'required|captcha',
         ]);
         $remember_me = request('remember_me') == 1 ? true : false;
 
@@ -36,9 +39,8 @@ class LoginController extends Controller
     }
 
     protected function logout(){
-
         auth()->logout();
 
-        return redirect('/');
+        return redirect()->route('home');
     }
 }

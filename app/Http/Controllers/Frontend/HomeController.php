@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
 use App\Models\Category;
+use App\Models\FavouriteProduct;
 use App\Models\Slider;
+use App\Models\Product;
+use App\Models\Settings;
 
 class HomeController extends Controller
 {
@@ -33,9 +36,10 @@ class HomeController extends Controller
         $slider_left = Slider::skip(2)->first();
         $slider_top = Slider::skip(3)->first();
         $banners = Banner::get();
+        $setting = Settings::first();
+        $products = Product::get();
+        // dd($products);
 
-        return view('frontend.layouts.index', compact('categories' , 'slider' , 'slider_right' , 'slider_left' , 'slider_top' , 'banners'));
+        return view('frontend.layouts.index', compact('setting', 'categories', 'products', 'slider', 'slider_right', 'slider_left', 'slider_top', 'banners'));
     }
-
-
 }

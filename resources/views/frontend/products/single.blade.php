@@ -1,5 +1,13 @@
 @extends('frontend.layouts.master')
 @section('content')
+    @php
+    if (auth()->check()) {
+        $favourite = App\Models\FavouriteProduct::with('product')
+            ->where('user_id', auth()->user()->id)
+            ->where('product_id', $product->id)
+            ->first();
+    }
+    @endphp
     <!--Product Details  S t a r t-->
     <div class="proDetails section-padding2">
         <div class="container">
@@ -10,7 +18,7 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">@lang('site.home')</a></li>
                             <li class="breadcrumb-item"><a href="#">@lang('site.category')</a></li>
-                            <li class="breadcrumb-item"><a href="#">| Phones</a></li>
+                            <li class="breadcrumb-item"><a href="#">Phones</a></li>
                         </ol>
                     </nav>
                 </div>
@@ -91,9 +99,29 @@
                     <div class="proDescription">
                         <!-- Top -->
                         <div class="descriptionTop">
-                            <h4><a href="add_details.html" class="detailsTittle">{{ $product->title_en }} <i
-                                        class="lar la-heart icon"></i></a></h4>
-                            <p class="detailsCap">Posted on {{ date_format($product->created_at, 'D M Y') }}</p>
+                            <h4>
+
+                                @if (Auth::user())
+                                    @if (!$favourite == null)
+                                        <a href="#" data-id="{{ $product->id }}"
+                                            data-url="{{ route('favorite.destroy', [$product->id]) }}"
+                                            class="detailsTittle delete-product-from-favorite">{{ $product->title_en }}
+                                            <i style="background:#f76631" class="las la-heart icon"></i></a>
+                                        </a>
+                                    @else
+                                        <a href="#" data-id="{{ $product->id }}"
+                                            data-url="{{ route('favorite.store', [$product->id]) }}"
+                                            class="detailsTittle add-product-to-favorite">{{ $product->title_en }}
+                                            <i class="lar la-heart icon"></i></a>
+                                    @endif
+                                @else
+                                    <a href="{{ route('login.show') }}" data-id="{{ $product->id }}"
+                                        data-url="{{ route('favorite.store', [$product->id]) }}"
+                                        class="detailsTittle add-product-to-favorite">{{ $product->title_en }}
+                                        <i class="lar la-heart icon"></i></a>
+                                @endif
+                            </h4>
+                            <p class="detailsCap">@lang('site.posted_on') {{ date_format($product->created_at, 'D M Y') }}</p>
                             <span class="detailsPricing">${{ $product->price }}
                                 <em style="float: right">
                                     <a href="#" class="btn btn-success">Check Out</a>
@@ -161,7 +189,7 @@
                                 <div class="col-lg-8">
                                     <div class="input-form">
                                         <input type="text" placeholder="(704) *** ***"
-                                            value="{{ $product->user[0]->phone }}">
+                                            value="{{ $product->user[0]->phone }}" disabled>
                                         <!-- icon -->
                                         <div class="icon"><i class="las la-phone"></i></div>
                                     </div>
@@ -182,27 +210,15 @@
                         <div class="borderStyle style1 wow fadeInLeft social" data-wow-delay="0.1s">
                             @foreach ($product_related as $related)
                                 <div class="singleFlexitem mb-24">
-                                    {{-- <div class="recentImg">
-                                        <img src="{{ asset($related->image) }}" width="150px" height="150px"
-                                            alt="images">
-                                    </div> --}}
                                     <div class="recentCaption">
-                                        {{-- <h5><a href="add_details.html" class="featureTittle">{{ $related->title_en }}</a>
-                                        </h5>
-                                        <p class="featureCap">@lang('site.member_since')<strong
-                                                class="subCap">{{ date_format($related->created_at, 'D M Y') }}</strong>
-                                        </p>
-                                        <span class="featurePricing">${{ $related->price }}</span> --}}
                                         <div class="btn-wrapper">
-                                            <span class="pro-btn1">RENOVETED</span>
-                                            <span class="pro-btn2">PROMOTED</span>
                                             <div class="singleFlexitem mb-24">
                                                 <div class="recentImg">
                                                     <img src="{{ asset($related->image) }}" width="150px"
                                                         height="150px" alt="images">
                                                 </div>
                                                 <div class="recentCaption">
-                                                    <h5><a href="add_details.html"
+                                                    <h5><a href="{{ route('product.single', $related->id) }}"
                                                             class="featureTittle">{{ $related->title_en }}</a>
                                                     </h5>
                                                     <p class="featureCap">@lang('site.member_since')<strong
@@ -227,3 +243,78 @@
     </div>
     <!--End-of product Details-->
 @endsection
+
+@push('js')
+    <script>
+        //remove favourite
+        $(document).on('click', '.delete-product-from-favorite', function(e) {
+            e.preventDefault();
+            var _url = $(this).attr('data-url');
+            var id = $(this).attr('data-id');
+            var $this = $(this);
+            $.ajax({
+                url: _url,
+                type: 'DELETE',
+                data: {
+                    "_token": "{{ csrf_token() }}"
+                },
+                success: function(response) {
+                    // console.log(response);
+                    if (response == 'error') {
+                        new Noty({
+                            type: 'error',
+                            layout: 'topRight',
+                            text: "{{ 'Thank You, Your Review Has Been Submitted' }}",
+                            timeout: 2000,
+                            killer: true
+                        }).show();
+                    } else {
+                        new Noty({
+                            type: 'success',
+                            layout: 'topRight',
+                            text: response.message,
+                            timeout: 2000,
+                            killer: true
+                        }).show();
+                    }
+                },
+            });
+        })
+        //added favourite
+
+
+        $(document).on('click', '.add-product-to-favorite', function(e) {
+            e.preventDefault();
+            var _url = $(this).attr('data-url');
+            var id = $(this).attr('data-id');
+            var $this = $(this);
+            $.ajax({
+                url: _url,
+                method: "post",
+                data: {
+                    "_token": "{{ csrf_token() }}"
+                },
+                success: function(response) {
+                    // console.log(response);
+                    if (response == 'error') {
+                        new Noty({
+                            type: 'error',
+                            layout: 'topRight',
+                            text: "{{ 'Thank You, Your Review Has Been Submitted' }}",
+                            timeout: 2000,
+                            killer: true
+                        }).show();
+                    } else {
+                        new Noty({
+                            type: 'success',
+                            layout: 'topRight',
+                            text: response.message,
+                            timeout: 2000,
+                            killer: true
+                        }).show();
+                    }
+                },
+            });
+        })
+    </script>
+@endpush
