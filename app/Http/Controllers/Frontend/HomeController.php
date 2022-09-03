@@ -37,14 +37,9 @@ class HomeController extends Controller
         $slider_top = Slider::skip(3)->first();
         $banners = Banner::get();
         $setting = Settings::first();
-        foreach($categories as $category){
-
-            $products = Product::where('category_id' , $category->id)->sum('category_id');
-        }
+        $products = Product::get();
         // dd($products);
 
-        return view('frontend.layouts.index', compact( 'setting' , 'categories' , 'products' , 'slider' , 'slider_right' , 'slider_left' , 'slider_top' , 'banners'));
+        return view('frontend.layouts.index', compact('setting', 'categories', 'products', 'slider', 'slider_right', 'slider_left', 'slider_top', 'banners'));
     }
-
-
 }

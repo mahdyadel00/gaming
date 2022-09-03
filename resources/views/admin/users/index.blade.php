@@ -35,6 +35,9 @@
                                         Created_at</th>
                                     <th
                                         class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        Roles</th>
+                                    <th
+                                        class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                         Action</th>
                                     <th class="text-secondary opacity-7"></th>
                                 </tr>
@@ -70,6 +73,10 @@
                                         <td class="align-middle text-center">
                                             <span
                                                 class="text-secondary text-xs font-weight-bold">{{ $user->created_at }}</span>
+                                        </td>
+                                        <td class="align-middle text-center">
+                                            <span
+                                                class="text-secondary text-xs font-weight-bold">{{ $user->roles_name }}</span>
                                         </td>
                                         <td class="align-middle">
                                             <button class="btn btn-info">

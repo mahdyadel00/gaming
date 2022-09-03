@@ -62,6 +62,19 @@
                                             @endforeach
                                         </select>
                                     </div>
+                                    <div class="col">
+                                        <label>Roles </label>
+                                        <select name="roles_name"  class="form-control fc-datepicker">
+                                            <option value="0">Select Roles</option>
+                                            @foreach ($roles as $role)
+                                                <option value="{{ $role->id }}"
+                                                    <!-- @if($user->country_id == $country->id)
+                                                    selected -->
+                                                    @endif
+                                                    >{{ $role->roles_name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                     <div class="col-md-12">
                                         <label class="infoTitle">@lang('site.status')</label>
 
