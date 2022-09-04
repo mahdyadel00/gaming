@@ -11,6 +11,7 @@ use  App\Http\Controllers\Admin\BannerController;
 use  App\Http\Controllers\Admin\SliderController;
 use  App\Http\Controllers\Admin\SubscriptionsController;
 use  App\Http\Controllers\Admin\SettingsController;
+use  App\Http\Controllers\Admin\RoleController;
 
 
 Auth::routes(['except' => 'register']);
@@ -31,7 +32,7 @@ Route::prefix('admin')->group(function () {
 
     //  Category Route
     //  Route::resource('admin.categories', CategoryController::class);
-     Route::get('/categories', [CategoryController::class, 'index'])->name('admin.categories.index');
+      Route::get('/categories', [CategoryController::class, 'index'])->name('admin.categories.index');
      Route::get('/categories/create', [CategoryController::class, 'create'])->name('admin.categories.create');
      Route::post('/categories/store', [CategoryController::class, 'store'])->name('admin.categories.store');
      Route::get('/categories/edit/{id}', [CategoryController::class, 'edit'])->name('admin.categories.edit');
@@ -72,6 +73,13 @@ Route::prefix('admin')->group(function () {
      //Settings Route
      Route::get('/settings/edit', [SettingsController::class, 'edit'])->name('admin.settings.edit');
      Route::post('/settings/update', [SettingsController::class, 'update'])->name('admin.settings.update');
+     //Roles Route
+     Route::get('/roles', [RoleController::class, 'index'])->name('admin.roles.index');
+     Route::get('/roles/create', [RoleController::class, 'create'])->name('admin.roles.create');
+     Route::post('/roles/store', [RoleController::class, 'store'])->name('admin.roles.store');
+     Route::get('/roles/edit/{id}', [RoleController::class, 'edit'])->name('admin.roles.edit');
+     Route::post('/roles/update/{id}', [RoleController::class, 'update'])->name('admin.roles.update');
+     Route::delete('/roles/delete/{id}', [RoleController::class, 'delete'])->name('admin.roles.delete');
 
     });
 });
