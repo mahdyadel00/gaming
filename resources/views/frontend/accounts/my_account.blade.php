@@ -48,12 +48,12 @@
                     <!-- user -->
                     <div class="userProfile mb-24">
                         <div class="recentImg">
-                            <img src="{{ asset($user->image) }}" width="100px" height="100px" alt="images">
+                            <img src="{{ asset(auth()->user()->image) }}" width="100px" height="100px" alt="images">
                         </div>
                         <div class="recentCaption">
                             <div class="cap">
-                               <h5><a href="#" class="featureTittle">{{ $user->first_name }} {{ $user->last_name }}</a></h5>
-                                <p class="featureCap">@lang('site.member_since') {{ \Carbon\Carbon::parse($user->created_at)->format('Y-m-d')}}</p>
+                               <h5><a href="#" class="featureTittle">{{ auth()->user()->first_name }} {{ auth()->user()->last_name }}</a></h5>
+                                <p class="featureCap">@lang('site.member_since') {{ \Carbon\Carbon::parse(auth()->user()->created_at)->format('Y-m-d')}}</p>
                             </div>
                             <div class="btn-wrapper">
                                 <a href="{{ route('profile.edit') }}" class="cmn-btn-outline2">@lang('site.edit_profile')</a>

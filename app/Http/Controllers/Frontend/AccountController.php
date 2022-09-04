@@ -30,7 +30,7 @@ class AccountController extends Controller
         if (Auth::check()) {
 
             $user = User::with('country')->first();
-            
+
             return view('frontend.accounts.my_account', compact('user'));
         } else {
 
@@ -66,13 +66,14 @@ class AccountController extends Controller
             $image->move($path, $image_name);
             $image_in_db = '/uploads/user/' . $image_name;
         }
+        // dd($id);
         $user->where('id' , $id)->update([
 
             'first_name'  => $request->first_name,
             'last_name'  => $request->last_name,
             'email'  => $request->email,
             'phone'  => $request->phone,
-            'country_id'  => $request->country_id,
+            // 'country_id'  => $request->country_id,
             'image'  => $image_in_db,
         ]);
 

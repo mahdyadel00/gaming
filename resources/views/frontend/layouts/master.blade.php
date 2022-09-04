@@ -68,6 +68,9 @@ $setting = App\Models\Settings::first();
                                         <li class="listItem wow fadeInUp" data-wow-delay="0.2s"><a href="#"
                                                 class="singleLinks"><i
                                                     class="las la-envelope icon"></i>{{ $setting->email }}</a></li>
+                                        <li class="listItem wow fadeInUp" data-wow-delay="0.2s"><a href="#"
+                                                class="singleLinks"><i
+                                                    class="las la-envelope icon"></i>{{ $setting->email }}</a></li>
                                     </ul>
                                 </div>
                             </div>

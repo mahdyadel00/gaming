@@ -89,7 +89,8 @@ class ProductController extends Controller
     protected function single(Request $request, $id)
     {
         $product = Product::with('user')->where('id', $id)->first();
-        $product_related = Product::where('id', '!=', $id)->limit(3)->get();
+        $product_related = Product::where('id', '!=', $id)
+                                ->where('user_id' , $product->user_id)->limit(3)->get();
 
 
         return view('frontend.products.single', compact('product', 'product_related'));
