@@ -2,7 +2,7 @@
 
 return [
 
-  
+
 
     'name' => env('APP_NAME', 'Laravel'),
 
@@ -29,7 +29,7 @@ return [
 
     'fallback_locale' => 'en',
 
- 
+
 
     'faker_locale' => 'en_US',
 
@@ -39,11 +39,11 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
- 
+
 
     'providers' => [
 
-     
+
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
         Illuminate\Bus\BusServiceProvider::class,
@@ -68,12 +68,14 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
+        // Spatie\Permission\PermissionServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
+
         Collective\Html\HtmlServiceProvider::class,
 
-     
 
-    
+
+
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,

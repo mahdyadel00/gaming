@@ -19,11 +19,8 @@
                                 <h4><a href="{{ route('single_category', $category->id) }}"
                                         class="title">{{ $category->title_en }}</a></h4>
                                 <p class="info">
-                                    {{-- @if ($products->category_id == $category->id) --}}
-                                    {{-- {{ $products  }} --}}
-                                    {{-- @else --}}
+                                    {{ $category->products->count()  }}
 
-                                    {{-- @endif --}}
                                 </p>
                             </div>
                         </li>

@@ -13,16 +13,16 @@ use App\Models\Settings;
 
 class HomeController extends Controller
 {
-   
+
     // public function __construct()
     // {
     //     $this->middleware('auth');
     // }
 
-   
+
     public function index()
     {
-        $categories = Category::get();
+        $categories = Category::with('products')->get();
         $slider = Slider::first();
         $slider_right = Slider::skip(1)->first();
         $slider_left = Slider::skip(2)->first();
