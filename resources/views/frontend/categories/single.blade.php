@@ -11,7 +11,7 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="index.html">@lang('site.home')</a></li>
-                            <li class="breadcrumb-item"><a href="#">@lang('site.cateory')</a></li>
+                            <li class="breadcrumb-item"><a href="#">@lang('site.category')</a></li>
                             <li class="breadcrumb-item"><a href="#">{{ $category->title_en }}</a></li>
                         </ol>
                     </nav>

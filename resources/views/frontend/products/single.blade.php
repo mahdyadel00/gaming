@@ -208,33 +208,35 @@
                     </div>
                     <section class="recentListing">
                         <div class="borderStyle style1 wow fadeInLeft social" data-wow-delay="0.1s">
-                            @foreach ($product_related as $related)
-                                <div class="singleFlexitem mb-24">
-                                    <div class="recentCaption">
-                                        <div class="btn-wrapper">
-                                            <div class="singleFlexitem mb-24">
-                                                <div class="recentImg">
-                                                    <img src="{{ asset($related->image) }}" width="150px"
-                                                        height="150px" alt="images">
-                                                </div>
-                                                <div class="recentCaption">
-                                                    <h5><a href="{{ route('product.single', $related->id) }}"
-                                                            class="featureTittle">{{ $related->title_en }}</a>
-                                                    </h5>
-                                                    <p class="featureCap">@lang('site.member_since')<strong
-                                                            class="subCap">{{ date_format($related->created_at, 'D M Y') }}</strong>
-                                                    </p>
-                                                    <span class="featurePricing">${{ $related->price }}</span>
-                                                    <div class="btn-wrapper">
-                                                        <span class="pro-btn1">RENOVETED</span>
-                                                        <span class="pro-btn2">PROMOTED</span>
+                            @if (auth()->check())
+                                @foreach ($product_related as $related)
+                                    <div class="singleFlexitem mb-24">
+                                        <div class="recentCaption">
+                                            <div class="btn-wrapper">
+                                                <div class="singleFlexitem mb-24">
+                                                    <div class="recentImg">
+                                                        <img src="{{ asset($related->image) }}" width="150px"
+                                                            height="150px" alt="images">
+                                                    </div>
+                                                    <div class="recentCaption">
+                                                        <h5><a href="{{ route('product.single', $related->id) }}"
+                                                                class="featureTittle">{{ $related->title_en }}</a>
+                                                        </h5>
+                                                        <p class="featureCap">@lang('site.member_since')<strong
+                                                                class="subCap">{{ date_format($related->created_at, 'D M Y') }}</strong>
+                                                        </p>
+                                                        <span class="featurePricing">${{ $related->price }}</span>
+                                                        <div class="btn-wrapper">
+                                                            <span class="pro-btn1">RENOVETED</span>
+                                                            <span class="pro-btn2">PROMOTED</span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            @endforeach
+                                @endforeach
+                            @endif
                         </div>
                     </section>
                 </div>

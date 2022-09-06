@@ -165,7 +165,7 @@ $setting = App\Models\Settings::first();
                     @auth
                         <li class="single userAccount">
                             @if (auth()->check())
-                                <button class="user"><img src="{{ asset(auth()->user()->image) }}"
+                                <button class="user"><img style="border-radius:50%" src="{{ asset(auth()->user()->image) }}"
                                         alt="images"></button>
                             @else
                             <button class="user"><img src="{{ asset('frontend') }}/assets/img/gallery/user.png"

@@ -58,7 +58,7 @@ class RegisterController extends Controller
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'email' => $request->email,
-            'country_id' => $request->country_id,
+            // 'country_id' => $request->country_id,
             'phone' => $request->phone,
             'status' => $request->status ? 1 : 0,
             'image' => $image_in_db,
