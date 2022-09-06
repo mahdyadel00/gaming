@@ -49,12 +49,12 @@
                         </div>
                     </div>
                     <!-- /END-->
-                    <div class="small-tittle mb-30">
+                    {{-- <div class="small-tittle mb-30">
                         <h3>Currently promoting ads</h3>
                         <p>Your currently promoted ads are shown here.</p>
-                    </div>
+                    </div> --}}
                     <!-- CurrentlyAds -->
-                    <div class="currentlyAds">
+                    {{-- <div class="currentlyAds">
                         <!-- Single -->
                         <div class="singleAds mb-24  wow fadeInUp social" data-wow-delay="0.1s">
                             <div class="adsCap">
@@ -86,7 +86,7 @@
                                 </ul>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <!-- END -->
                     <div class="small-tittle mb-30">
                         <h3>Promote Ads</h3>
@@ -95,13 +95,15 @@
                     <!-- promoteAds -->
                     <div class="promoteAds">
                         <!-- Single -->
+                        @foreach ($products as $product)
+
                         <div class="singlePromoteAds mb-24  wow fadeInUp social" data-wow-delay="0.0s">
                             <div class="adsCap">
                                 <div class="adsImg">
-                                    <img src="{{ asset('frontend') }}/assets/img/gallery/promoteAds2.jpg" alt="images">
+                                    <img src="{{ asset($product->image) }}" alt="images" style="width: 70px">
                                 </div>
                                 <div class="adsCaption">
-                                    <h5><a href="add_details.html" class="adsTittle">Luxury couple apartment</a></h5>
+                                    <h5><a href="{{ route('product.single' , $product->id) }}" class="adsTittle">Luxury couple apartment</a></h5>
                                     <p class="adsPera">Dallas, Texas · <strong class="subCap">24hrs ago</strong></p>
                                     <span class="adsPricing">$124.80</span>
                                 </div>
@@ -110,22 +112,7 @@
                                 <a href="add_setting.html" class="cmn-btn4">Promote this ad</a>
                             </div>
                         </div>
-                        <!-- Single -->
-                        <div class="singlePromoteAds mb-24  wow fadeInUp social" data-wow-delay="0.1s">
-                            <div class="adsCap">
-                                <div class="adsImg">
-                                    <img src="{{ asset('frontend') }}/assets/img/gallery/promoteAds2.jpg" alt="images">
-                                </div>
-                                <div class="adsCaption">
-                                    <h5><a href="add_details.html" class="adsTittle">Luxury couple apartment</a></h5>
-                                    <p class="adsPera">Dallas, Texas · <strong class="subCap">24hrs ago</strong></p>
-                                    <span class="adsPricing">$124.80</span>
-                                </div>
-                            </div>
-                            <div class="btn-wrapper mb-20">
-                                <a href="add_setting.html" class="cmn-btn4">Promote this ad</a>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                     <!-- END -->
                 </div>

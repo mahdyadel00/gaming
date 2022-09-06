@@ -14,10 +14,10 @@
                     <div class="borderStyle style1 wow fadeInLeft social" data-wow-delay="0.0s">
                         <div class="singleFlexitem mb-24">
                             <div class="recentImg">
-                                <a href="add_details.html"><img src="{{ asset($product->image) }}" alt="images"></a>
+                                <a href="{{ route('product.single' , $product->id) }}"><img src="{{ asset($product->image) }}" alt="images"></a>
                             </div>
                             <div class="recentCaption">
-                                <h5><a href="add_details.html" class="featureTittle">{{ $product->title_en }}</a></h5>
+                                <h5><a href="{{ route('product.single' , $product->id) }}" class="featureTittle">{{ $product->title_en }}</a></h5>
                                 <p class="featureCap">Dallas, Texas · <strong
                                         class="subCap">{{ date_format($product->created_at, 'D M Y') }}</strong></p>
                                 <span class="featurePricing">${{ $product->price }}</span>

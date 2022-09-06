@@ -12,7 +12,7 @@ class PermissionTableSeeder extends Seeder
         'create_roles',
         'edit_roles',
         'show_roles',
-        'delete_roles', 
+        'delete_roles',
     ];
   foreach ($permissions as $permission) {
     Permission::create(['name' => $permission]);

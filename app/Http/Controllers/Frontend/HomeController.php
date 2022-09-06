@@ -22,7 +22,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        $categories = Category::with('products')->get();
+        $categories = Category::with('products')->limit(10)->get();
         $slider = Slider::first();
         $slider_right = Slider::skip(1)->first();
         $slider_left = Slider::skip(2)->first();

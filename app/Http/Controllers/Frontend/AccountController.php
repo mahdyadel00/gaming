@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Country;
+use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
@@ -95,7 +96,9 @@ class AccountController extends Controller
 
     protected function promoted(){
 
-        return view('frontend.accounts.promotede_add');
+        $products = Product::get();
+
+        return view('frontend.accounts.promotede_add' , compact('products'));
     }
     protected function memberShip(){
 

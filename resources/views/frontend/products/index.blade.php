@@ -14,7 +14,7 @@
                             @foreach ($categories as $category)
 
                             <li class="listItem"><a href="{{ route('single_category' , $category->id) }}" class="items">
-                                <img src="{{ asset($category->image) }}" class="icon" alt="images"> <span>{{ $category->title_en }} <span class="itemNumber">(1,200)</span></span>
+                                <img src="{{ asset($category->image) }}" class="icon" alt="images"> <span>{{ $category->title_en }} <span class="itemNumber">{{ $category->products->count() }}</span></span>
                             </a></li>
                             @endforeach
 
