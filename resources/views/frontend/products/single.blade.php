@@ -35,11 +35,28 @@
                             data-prevArrow='<div class="prev-icon"><i class="las la-angle-left"></i></div>'
                             data-nextArrow='<div class="next-icon"><i class="las la-angle-right"></i></div>'
                             data-responsive='[{"breakpoint": 1800,"settings": {"slidesToShow": 1}},{"breakpoint": 1600,"settings": {"slidesToShow": 1}},{"breakpoint": 1400,"settings": {"slidesToShow": 1}},{"breakpoint": 1200,"settings": {"slidesToShow": 1}},{"breakpoint": 991,"settings": {"slidesToShow": 1}},{"breakpoint": 768, "settings": {"slidesToShow": 1}},{"breakpoint": 576, "settings": {"slidesToShow": 1}}]'>
-                            <div class="single-main-image">
+                            <div class="single-main-image" data-fancybox="gallery" id="main-image">
                                 <a href="#" class="long-img">
-                                    <img src="{{ asset($product->image) }}" class="img-fluid" alt="image">
+                                    <img src="{{ asset($product->image) }}" class="img-fluid" alt="image"
+                                        data-img="{{ asset($product->image) }}">
+                                </a>
+                                {{-- <a href="{{ asset('images/img_adds/'.$product->img) }}" data-fancybox="gallery">
+                                    <img style="width:100%; margin: auto"
+                                        src="{{ asset('images/img_adds/'.$product->img) }}"
+                                        data-img="{{ asset('images/img_adds/'.$product->img) }}" id="main-image"
+                                        alt="" class="img-fluid"> --}}
+                            </div>
+                            {{-- @foreach ($product->adImages as $image)
+                            <div class="item">
+                                <a href="{{ asset($image->url) }}" data-fancybox="gallery">
+                                    <img style="width:100%; margin: auto"
+                                        src="{{ asset($image->url) }}"
+                                        data-img="{{ asset('images/img_adds/'.$product->image) }}" id="main-image"
+                                        alt="" class="img-fluid">
+
                                 </a>
                             </div>
+                        @endforeach --}}
                         </div>
                         <!-- Nav -->
                         <div class="thumb-wrap">
@@ -122,6 +139,63 @@
                                 @endif
                             </h4>
                             <p class="detailsCap">@lang('site.posted_on') {{ date_format($product->created_at, 'D M Y') }}</p>
+                            {{-- <span class="detailsPricing">@lang('site.create_image')
+                                <em style="float: right"> --}}
+                            {{-- <a href="#" class="btn btn-primary set-value" data-id="{{ $product->id }}"
+                                        data-toggle="modal" data-target="#exampleModal-ad">@lang('site.add_image')</a> --}}
+                            <a href="#" class="btn btn-primary set-value" data-id="{{ $product->id }}"
+                                data-toggle="modal" data-target="#exampleModal-ad">@lang('site.add_image')</a>
+                            {{-- </em> --}}
+                            {{-- </span> --}}
+                            {{-- @include('frontend.products.modal') --}}
+                            <div class="modal fade" id="exampleModal-ad" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">@lang('site.products')</h5>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                                <li class="nav-item">
+                                                    <a class="nav-link active" id="pills-home-tab" data-toggle="pill"
+                                                        href="#pills-home" role="tab" aria-controls="pills-home"
+                                                        aria-selected="true">@lang('site.image')</a>
+                                                </li>
+                                            </ul>
+                                            <div class="tab-content" id="pills-tabContent">
+                                                <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                                                    aria-labelledby="pills-home-tab">
+                                                    {{-- ********* SETTING ********************* --}}
+                                                    <form method="post" action="" enctype="multipart/form-data"
+                                                        class="dropzone" id="frmTarget">
+                                                        @csrf
+                                                        <input type="hidden" name='id' id='id1234'
+                                                            value="">
+                                                    </form>
+                                                    <div class="row ads_image_preview">
+
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default waves-effect"
+                                                            data-dismiss="modal">@lang('site.close')</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
                             <span class="detailsPricing">${{ $product->price }}
                                 <em style="float: right">
                                     <a href="#" class="btn btn-success">Check Out</a>
@@ -247,6 +321,7 @@
 @endsection
 
 @push('js')
+
     <script>
         //remove favourite
         $(document).on('click', '.delete-product-from-favorite', function(e) {

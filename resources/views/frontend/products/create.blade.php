@@ -1,6 +1,5 @@
 @extends('frontend.layouts.master')
 @section('content')
-
     <!--addList-Details S t a r t-->
     <div class="addList-Details section-padding2">
         <div class="container">
@@ -18,7 +17,8 @@
                     <!-- /END-->
                     <div class="listingDetails-Wrapper">
                         <div class="listingDetails">
-                            <form action="{{ route('product.store') }}" id="add-form" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('product.store') }}" id="add-form" method="post"
+                                enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12">
@@ -118,6 +118,13 @@
                                         </div>
                                     </div>
                                     <!-- user Message -->
+                                    {{-- <div class="col-lg-12">
+                                        <label class="infoTitle">@lang('site.image')</label>
+                                        <div class="input-form">
+                                            @include('frontend.products.modal')
+                                        </div>
+                                    </div> --}}
+                                    <!-- user Message -->
                                     <div class="col-sm-12">
                                         <label class="checkWrap2">@lang('site.negotiable')
                                             <input class="effectBorder" name="nigotiable" type="checkbox"
@@ -143,59 +150,48 @@
     <!-- End-of addList-Details -->
 @endsection
 @push('js')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.0/min/dropzone.min.js"></script>
-
     <script>
-         function initDrop() {
-            drop = $('#dropzonefield').dropzone({
-                url: "{{ route('product.store') }}",
-                paramName: 'file',
-                uploadMultiple: true,
-                maxFiles: 10,
-                maxFilesize: 5,
-                dictDefaultMessage: "{{ ('Click here to upload files or drag and drop files here') }}",
-                dictRemoveFile: "{{ ('Delete') }}",
-                acceptedFiles: 'image/*',
-                autoProcessQueue: true,
-                parallelUploads: 1,
-                removeType: "server",
-                params: {
-                    _token: '{{ csrf_token() }}',
-                    product_id: $("#frm_photo").find("input[name='product_id']").val(),
+        Dropzone.options.frmTarget = {
+            url: "{{ route('products.store_image') }}",
+            maxFilesize: 1,
+            paramName: 'file',
+            addRemoveLinks: true,
+            autoProcessQueue: true,
+            parallelUploads: 1,
+            dictRemoveFile: 'Remove file',
 
-                },
-                addRemoveLinks: true,
-                removedfile: function(file) {
-                    if (drop[0].dropzone.options.removeType == "server") {
-                        console.log(file.id);
-                        $.ajax({
-                            dataType: 'json',
-                            type: 'POST',
+            params: {
+                _token: '{{ csrf_token() }}',
+                id: $("#id1234").val(),
 
-                            url: '{{ route('product.store') }}',
-                            data: {
-                                file: file.name,
-                                _token: '{{ csrf_token() }}',
-                                id: file.id,
-                            },
-                        });
-                        var fmock;
+            },
+            acceptedFiles: ".jpeg,.jpg,.png,.gif",
+            success: function(file, response) {
+                file.id = response.id;
+                console.log(response);
+            },
+            removedfile: function(file) {
 
-                        if ((fmock = file.previewElement) != null) {
-                            if (fmock.parentNode !== null)
-                                return fmock.parentNode.removeChild(file.previewElement);
 
-                        }
-                        return void 0;
-                        //  return (fmock = file.previewElement) != null ? fmock.parentNode.removeChild(file.previewElement):void 0;
-                    } else {
-                        file.previewElement.remove();
+                $.ajax({
+                    type: 'POST',
+                    dataType: 'json',
+                    url: '{{ route('products.delete_image') }}',
+                    data: {
+                        '_token': ' {{ csrf_token() }}',
+                        id: file.id
+                    },
+                    success: function(data) {
+                        console.log('success: ' + data);
                     }
-                },
-                success: function(file, response) {
-                    file.id = response.id;
-                },
-            });
-        }
+                })
+                var _ref;
+                return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) :
+                    void 0;
+            },
+
+
+
+        };
     </script>
 @endpush
