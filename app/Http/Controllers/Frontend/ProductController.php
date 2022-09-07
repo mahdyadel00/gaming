@@ -94,4 +94,22 @@ class ProductController extends Controller
 
         return view('frontend.products.single', compact('product', 'product_related'));
     }
+
+    protected function search(Request $request){
+
+        $products = Product::where('category_id' , 'LIKE' , "%{$request->category_id}%")
+                            ->where('title_en' , 'LIKE' , "%{$request->search}%");
+        dd($products);
+        if($products){
+            return view('frontend.products.single' , compact('products'));
+        }else{
+            return redirect()->back();
+        }
+    }
+
+
+    protected function filter(Request $request){
+
+        dd($request->all());
+    }
 }

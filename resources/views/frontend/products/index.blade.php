@@ -19,40 +19,42 @@
                             @endforeach
 
                         </ul>
-                        <!-- Price -->
-                        <div class="price mb-10">
-                            <h5 class="catTittle">Price</h5>
-                            <!-- Search Box -->
-                            <form action="#" class="picPrice">
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="input-form">
-                                            <input type="text" placeholder="Min">
-                                            <!-- icon -->
-                                            <div class="icon"><i class="las la-dollar-sign"></i></div>
+
+                            <!-- Price -->
+                            <div class="price mb-10">
+                                <h5 class="catTittle">@lang('site.price')</h5>
+                                <!-- Search Box -->
+                                <form action="{{ route('search') }}" method="get" id="search" class="picPrice">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="input-form">
+                                                <input type="number" placeholder="price_min" class="form-control">
+                                                <!-- icon -->
+                                                <div class="icon"><i class="las la-dollar-sign"></i></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="input-form">
+                                                <input type="number" name="price_max" placeholder="Max" class="form-control">
+                                                <!-- icon -->
+                                                <div class="icon"><i class="las la-dollar-sign"></i></div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-6">
-                                        <div class="input-form">
-                                            <input type="text" placeholder="Max">
-                                            <!-- icon -->
-                                            <div class="icon"><i class="las la-dollar-sign"></i></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- Date Posted -->
-                        <div class="dateTime mb-30">
-                            <h5 class="catTittle">Date Posted</h5>
-                            <!-- select in date -->
-                            <div class="datePicker">
-                                <input id="datepicker1"  placeholder="10/04/2022" />
+                                </form>
                             </div>
-                        </div>
-                        <div class="btn-wrapper">
-                            <a href="#" class="cmn-btn4 w-100"> Reset Filter</a>
-                        </div>
+                            <!-- Date Posted -->
+                            <div class="dateTime mb-30">
+                                <h5 class="catTittle">@lang('site.date_posted')</h5>
+                                <!-- select in date -->
+                                <div class="datePicker">
+                                    <input id="datepicker1" name="date"  placeholder="10/04/2022" />
+                                </div>
+                            </div>
+                            <div class="btn-wrapper">
+                                <a href="#" type="submit" form="search" class="cmn-btn4 w-100"> @lang('site.reset_filter')</a>
+                            </div>
                     </div>
                 </div>
                 <!-- Right Content -->
@@ -320,3 +322,52 @@
     </div>
     <!-- End-of Categories -->
 @endsection
+@push('js')
+<script>
+      $('body').on('submit', '#search', function (e) {
+            e.preventDefault();
+            let form = $(this);
+            let url = $(this).attr('action');
+            let lang = $(this).data('langcode');
+            $.ajax({
+                url: url,
+                method: "get",
+                data: new FormData(this),
+                dataType: 'json',
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    if (response == 'success') {
+
+                        new Noty({
+                            type: 'success',
+                            layout: 'topRight',
+                            text: "{{('Saved Successfully')}}",
+                            timeout: 2000,
+                            killer: true
+                        }).show();
+                        CKEDITOR.instances.textarea1.setData('');
+                        CKEDITOR.instances.textarea2.setData('');
+                        form[0].reset();
+                        $('#profile-tab-' + lang).trigger('click');
+                    }
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    var errors = $.parseJSON(xhr.responseText);
+                    $.each(errors.errors, function (key, val) {
+                        new Noty({
+                            type: 'error',
+                            layout: 'topRight',
+                            text: val,
+                            timeout: 2000,
+                            killer: true
+                        }).show();
+                    });
+                }
+            });
+
+        });
+</script>
+
+@endpush

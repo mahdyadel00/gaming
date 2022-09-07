@@ -82,8 +82,8 @@ $setting = App\Models\Settings::first();
                 <!-- new -->
                 <ul class="header-cart">
                     <li class="single chatBar">
-                        <button class="chat"><i class="lab la-rocketchat icon"></i><span
-                                class="text">@lang('site.chat')</span></button>
+                        <a href="{{ route('chatify') }}" class="chat"><i class="lab la-rocketchat icon"></i><span
+                                class="text">@lang('site.chat')</span></a>
                         <!-- Chat List Wrapper -->
                         <div class="chatList-wrapper">
                             <h6 class="chat-title">@lang('site.all_message') </h6>

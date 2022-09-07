@@ -1,12 +1,12 @@
 @extends('frontend.layouts.master')
 @section('content')
     @php
-    if (auth()->check()) {
-        $favourite = App\Models\FavouriteProduct::with('product')
-            ->where('user_id', auth()->user()->id)
-            ->where('product_id', $product->id)
-            ->first();
-    }
+        if (auth()->check()) {
+            $favourite = App\Models\FavouriteProduct::with('product')
+                ->where('user_id', auth()->user()->id)
+                ->where('product_id', $product->id)
+                ->first();
+        }
     @endphp
     <!--Product Details  S t a r t-->
     <div class="proDetails section-padding2">
@@ -37,9 +37,10 @@
                             data-responsive='[{"breakpoint": 1800,"settings": {"slidesToShow": 1}},{"breakpoint": 1600,"settings": {"slidesToShow": 1}},{"breakpoint": 1400,"settings": {"slidesToShow": 1}},{"breakpoint": 1200,"settings": {"slidesToShow": 1}},{"breakpoint": 991,"settings": {"slidesToShow": 1}},{"breakpoint": 768, "settings": {"slidesToShow": 1}},{"breakpoint": 576, "settings": {"slidesToShow": 1}}]'>
                             <div class="single-main-image" data-fancybox="gallery" id="main-image">
                                 <a href="#" class="long-img">
-                                    <img src="{{ asset($product->image) }}" class="img-fluid" alt="image"
+                                    <img src="{{ asset($product->image) }}" class="img-fluid pop" alt="image"
                                         data-img="{{ asset($product->image) }}">
                                 </a>
+                                @include('frontend.products.modal')
                                 {{-- <a href="{{ asset('images/img_adds/'.$product->img) }}" data-fancybox="gallery">
                                     <img style="width:100%; margin: auto"
                                         src="{{ asset('images/img_adds/'.$product->img) }}"
@@ -321,8 +322,15 @@
 @endsection
 
 @push('js')
-
     <script>
+        $(document).ready(function() {
+            $(document).on('click', '.pop', function() {
+
+                $('.imagepreview').attr('src', $(this).find('img').attr('src'));
+                $('#imagemodal').modal('show');
+            });
+        })
+
         //remove favourite
         $(document).on('click', '.delete-product-from-favorite', function(e) {
             e.preventDefault();

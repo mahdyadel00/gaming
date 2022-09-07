@@ -10,17 +10,15 @@
                             <p class="pera" data-animation="fadeInUp" data-delay="0.3s">{{ $slider ? $slider->description_en : '' }}</p>
                         </div>
                         <!-- form -->
-                        <form action="#" class="search-box">
+                        <form action="{{ route('product.search') }}" method="get" class="search-box">
+                            @csrf
                             <div class="select-form" data-animation="fadeInLeft" data-delay="0.4s">
                                 <div class="select-itms">
                                     <select name="select"  class="niceSelect">
-                                        <option value="">New York, USA</option>
-                                        <option value="">Location PK</option>
-                                        <option value="">Location US</option>
-                                        <option value="">Location UK</option>
-                                        <option value="">Location UK</option>
-                                        <option value="">Location UK</option>
-                                        <option value="">Location UK</option>
+                                        @foreach ($categories as $category)
+
+                                        <option value="{{ $category->id }}">{{ $category->title_en }}</option>
+                                        @endforeach
                                     </select>
                                     <i class="las la-map-marker-alt  icon"></i>
                                 </div>
@@ -28,58 +26,13 @@
                             <!-- Show  -->
                             <div class="searchBox-wrapper">
                                 <div class="input-form" data-animation="fadeInRight" data-delay="0.4s">
-                                    <input type="text" class="input keyup-input" placeholder="Search...">
+                                    <input type="text" name="search" class="input keyup-input" placeholder="Search...">
                                 </div>
-                                <!-- search-suggestions -->
-                                {{-- <div class="category-searchbar search-showHide">
-                                    <!-- Closed Icon -->
-                                    <span class="closed-icon"><i class="las la-times"></i></span>
-                                    <div class="search-suggestions" id="search_suggestions_wrap">
-                                        <div class="search-inner">
-                                            <div class="category-suggestion item-suggestions">
-                                                <h6 class="item-title">Category Suggestions</h6>
-                                                <ul class="category-suggestion-list" >
-                                                    <li class="list"> <a href="#" class="item">Fruits &amp; Vegetables</a>
-                                                    </li>
-                                                    <li class="list"><a href="#" class="item">Cooking</a>
-                                                    </li><li class="list"> <a href="#" class="item">Dairy</a> </li>
-                                                </ul>
-                                            </div>
-                                            <div class="product-suggestion item-suggestions">
-                                                <h6 class="item-title">
-                                                    <span>
-                                                        Product Suggestions
-                                                    </span>
-                                                    <a href="#" target="_blank" id="search_result_all" class="showAll">Show all</a>
-                                                </h6>
-                                                <ul class="product-suggestion-list mt-4" id="search_result_products">
-                                                    <li class="list">
-                                                        <a href="#" class="item">
-                                                            <div class="product-image"><img src="{{ asset('frontend') }}/assets/img/gallery/phoneCat1.jpg" alt="img"></div>
-                                                            <div class="product-info">
-                                                                <div class="product-info-top">
-                                                                    <h6 class="product-name">Fresh Fruits</h6>
-                                                                </div>
-                                                                <div class="product-price">
-                                                                    <div class="price-update-through">
-                                                                        <span class="flash-price fw-500">$200.00</span>
-                                                                        <span class="flash-old-prices">$240</span>
-                                                                    </div>
-                                                                    <span class="stock-out">In Stock</span>
-                                                                </div>
-                                                            </div>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> --}}
-                                <!-- End suggestions -->
+
                             </div>
 
                             <div class="search-form" data-animation="bounceIn" data-delay="0.4s">
-                                <button class="search-Btn"><i class="las la-search"></i></button>
+                                <button type="submit" class="search-Btn"><i class="las la-search"></i></button>
                             </div>
                         </form>
                     </div>

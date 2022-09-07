@@ -57,6 +57,8 @@ Route::prefix(LaravelLocalization::setLocale())
         Route::get('/products', [ProductController::class, 'index'])->name('product.index');
         Route::get('/products/create-image', [ProductController::class, 'storeImage'])->name('products.store_image');
         Route::get('/products/delete-image', [ProductController::class, 'deleteImage'])->name('products.delete_image');
+        Route::get('/search', [ProductController::class, 'search'])->name('product.search');
+        Route::get('/products/search', [ProductController::class, 'filter'])->name('search');
         // ============================================================================** Favourite Route ** ==========================================================================
 
         Route::post('favorite/{product}/create', [FavouriteController::class, 'create'])->name('favorite.store');
