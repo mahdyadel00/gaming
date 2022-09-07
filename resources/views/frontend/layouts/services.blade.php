@@ -20,6 +20,7 @@
                                         class="title">{{ $category->title_en }}</a></h4>
                                 <p class="info">
                                     {{ $category->products->count() }}
+
                                 </p>
                             </div>
                         </li>

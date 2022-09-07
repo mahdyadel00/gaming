@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-xl-5 col-lg-12">
                     <div class="contact-Wrapper">
-                        <form action="{{ route('profile.update', $user->id) }}" method="post" class="form-control col-md-12"
+                        <form action="{{ route('profile.update', auth()->user()->id) }}" method="post" class="form-control col-md-12"
                             id="add-form" enctype="multipart/form-data" >
                             @csrf
                             <div class="row">
@@ -21,33 +21,33 @@
                                     <label class="infoTitle">@lang('site.first_name')</label>
                                     <div class="input-form input-form2">
                                         <input type="text" name="first_name" placeholder="First name"
-                                            value="{{ $user->first_name }}">
+                                            value="{{ auth()->user()->first_name }}">
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <label class="infoTitle">@lang('site.last_name')</label>
                                     <div class="input-form input-form2">
                                         <input type="text" name="last_name" placeholder="Last name"
-                                            value="{{ $user->last_name }}">
+                                            value="{{ auth()->user()->last_name }}">
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
                                     <label class="infoTitle">@lang('site.email')</label>
                                     <div class="input-form input-form2">
                                         <input type="email" name="email" placeholder="you@company.com"
-                                            value="{{ $user->email }}">
+                                            value="{{ auth()->user()->email }}">
                                     </div>
                                 </div>
                                 <!-- country Number Selector -->
                                 <div class="col-lg-12">
                                     <div class="input-form">
                                         <label class="infoTitle">@lang('site.phone')</label>
-                                        <input id="phone" name="phone" type="number" value="{{ $user->phone }}">
+                                        <input id="phone" name="phone" type="number" value="{{ auth()->user()->phone }}">
                                     </div>
                                 </div>
 
                                 <!-- country Number Selector -->
-                                <div class="col-lg-12">
+                                {{-- <div class="col-lg-12">
                                     <div class="input-form">
                                         <label class="infoTitle">@lang('site.country')</label>
                                         <select name="country_id" id="country_id" class="form-control">
@@ -59,7 +59,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <br>
                                 <!-- user Message -->
                                 <div class="col-sm-12">
@@ -83,7 +83,7 @@
                 </div>
                 <div class="col-xl-7 col-lg-12">
                     <div class="contactRight-img">
-                        <img src="{{ asset($user->image) }}" width="100px" height="100px" alt="images" class="contactImg">
+                        <img src="{{ asset(auth()->user()->image) }}" width="100px" height="100px" alt="images" class="contactImg">
                     </div>
                 </div>
             </div>

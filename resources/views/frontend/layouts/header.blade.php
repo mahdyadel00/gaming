@@ -8,9 +8,9 @@ $setting = App\Models\Settings::first();
         <div class="container-fluid container-two nav-container">
             <div class="responsive-mobile-menu">
                 <div class="logo-wrapper">
-                    <a href="{{ route('home') }}" class="logo">
+                    <!-- <a href="{{ route('home') }}" class="logo">
                         <img src="{{ asset($setting->logo) }}" width="100px" style="height:50px" alt="images">
-                    </a>
+                    </a> -->
                 </div>
                 <!-- Click Menu Mobile right menu -->
                 <a href="#0" class="click_show_icon"><i class="las la-ellipsis-v"></i> </a>
@@ -168,7 +168,7 @@ $setting = App\Models\Settings::first();
                                 <button class="user"><img style="border-radius:50%" src="{{ asset(auth()->user()->image) }}"
                                         alt="images"></button>
                             @else
-                            <button class="user"><img src="{{ asset('frontend') }}/assets/img/gallery/user.png"
+                            <button class="user"><img style="border-radius:50%" src="{{ asset('frontend') }}/assets/img/gallery/user.png"
                                 alt="images"></button>
                             @endif
                             <div class="userAccount-wrapper">

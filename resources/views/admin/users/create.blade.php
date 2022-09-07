@@ -38,6 +38,13 @@
                                         <label>Phone</label>
                                         <input class="form-control fc-datepicker" name="phone" type="number" required>
                                     </div>
+                                    <label>RolesName </label>
+                                        <select name="roles_name"  class="form-control fc-datepicker">
+                                            <option value="0">Select Role</option>
+                                            @foreach ($roles as $role)
+                                                <option value="{{ $role->id }}">{{ $role->roles_name }}</option>
+                                            @endforeach
+                                        </select>
 
                                     <div class="col">
                                         <label>Image</label>
