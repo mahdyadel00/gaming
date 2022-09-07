@@ -228,10 +228,14 @@
                                         class="lab la-font-awesome-flag icon"></i>Report</a>
                             </div>
                             <div class="socialWrap">
-                                <a href="#" class="social"><i class="lab la-facebook-square"></i></a>
-                                <a href="#" class="social"><i class="lab la-twitter"></i></a>
-                                <a href="#" class="social"><i class="lab la-linkedin"></i></a>
-                                <a href="#" class="social"><i class="lar la-bell"></i></a>
+                                <a href="#" class="whatsapp"><i class="lab la-whatsapp"></i></a>
+                                <a href="#" class="telegram"><i class="lab la-telegram"></i></a>
+                                <a href="#" class="snapchat"><i class="lab la-snapchat"></i></a>
+                                <div class="" id="fb-share-button"
+                                    data-href="{{ route('product.single', $product->id) }}">
+                                    <a href="#" class="facebook"><i class="lab la-facebook-square"></i></a>
+                                </div>
+                                <a href="#"class="twitter"><i class="lab la-twitter"></i></a>
                             </div>
                         </div>
                     </div>
@@ -322,15 +326,52 @@
 @endsection
 
 @push('js')
+    <div id="fb-root"></div>
+    <script>
+        var fbButton = document.getElementById('fb-share-button');
+        var url = $(fbButton).data("href");
+
+        fbButton.addEventListener('click', function() {
+            window.open('https://www.facebook.com/sharer/sharer.php?u=' + url,
+                'facebook-share-dialog',
+                'width=800,height=600'
+            );
+            return false;
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
     <script>
         $(document).ready(function() {
-            $(document).on('click', '.pop', function() {
 
-                $('.imagepreview').attr('src', $(this).find('img').attr('src'));
-                $('#imagemodal').modal('show');
+            $(document).on('click', '.whatsapp', function() {
+
+                let full_url = $("#url").val()
+                window.open(
+                    'https://api.whatsapp.com/send?text={{ route('product.single', $product->id) }}',
+                    '_blank');
+            });
+            $(document).on('click', '.twitter', function() {
+
+                let full_url = $("#url").val()
+                window.open(
+                    'https://twitter.com/share?url={{ route('product.single', $product->id) }}',
+                    '_blank');
+            });
+            $(document).on('click', '.telegram', function() {
+
+                let full_url = $("#url").val()
+                window.open(
+                    'https://t.me/share/url?url=={{ route('product.single', $product->id) }}',
+                    '_blank');
+            });
+            $(document).on('click', '.snapchat', function() {
+
+                let full_url = $("#url").val()
+                window.open(
+                    'https://snapchat.com/scan?attachmentUrl=={{ route('product.single', $product->id) }}',
+                    '_blank');
             });
         })
-
         //remove favourite
         $(document).on('click', '.delete-product-from-favorite', function(e) {
             e.preventDefault();
@@ -366,8 +407,6 @@
             });
         })
         //added favourite
-
-
         $(document).on('click', '.add-product-to-favorite', function(e) {
             e.preventDefault();
             var _url = $(this).attr('data-url');
@@ -380,7 +419,6 @@
                     "_token": "{{ csrf_token() }}"
                 },
                 success: function(response) {
-                    // console.log(response);
                     if (response == 'error') {
                         new Noty({
                             type: 'error',
