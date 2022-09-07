@@ -68,14 +68,9 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
-        // Spatie\Permission\PermissionServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
-
         Collective\Html\HtmlServiceProvider::class,
         Chatify\ChatifyServiceProvider::class,
-
-
-
 
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,

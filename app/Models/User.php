@@ -24,8 +24,7 @@ class User extends Authenticatable
         'phone',
         'image',
         'status',
-        // 'country_id',
-        'country_id',
+        'country',
         'roles_name',
     ];
 

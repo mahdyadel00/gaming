@@ -40,6 +40,8 @@ class RegisterController extends Controller
         //     'email' => 'required|users',
         //     'password' => 'required',
         // ]);
+        $ip = $request->ip();
+        $data = \Location::get('66.102.0.0');
         $image_in_db = NULL;
         if ($request->has('image')) {
             $request->validate([
@@ -58,7 +60,7 @@ class RegisterController extends Controller
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'email' => $request->email,
-            // 'country_id' => $request->country_id,
+            'country' => $data->countryName,
             'phone' => $request->phone,
             'status' => $request->status ? 1 : 0,
             'image' => $image_in_db,
