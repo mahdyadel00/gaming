@@ -70,7 +70,6 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-        Chatify\ChatifyServiceProvider::class,
 
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
@@ -137,7 +136,6 @@ return [
         'Form'   =>Collective\Html\FormFacade::class,
         'Html'   =>Collective\Html\HtmlFacade::class,
         'Geocoder' => Spatie\Geocoder\Facades\Geocoder::class,
-        'Chatify' => Chatify\Facades\ChatifyMessenger::class,
 
 
     ],

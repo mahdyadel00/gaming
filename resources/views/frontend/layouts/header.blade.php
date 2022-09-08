@@ -8,7 +8,7 @@ $setting = App\Models\Settings::first();
         <div class="container-fluid container-two nav-container">
             <div class="responsive-mobile-menu">
                 <div class="logo-wrapper">
-                   <a href="{{ route('home') }}" class="logo">
+                    <a href="{{ route('home') }}" class="logo">
                         <img src="{{ asset($setting->logo) }}" width="100px" style="height:50px" alt="images">
                     </a>
                 </div>
@@ -82,10 +82,15 @@ $setting = App\Models\Settings::first();
                 <!-- new -->
                 <ul class="header-cart">
                     <li class="single chatBar">
-                        <a href="{{ route('chatify') }}" class="chat"><i class="lab la-rocketchat icon"></i><span
-                                class="text">@lang('site.chat')</span></a>
+                        @if (auth()->check())
+                            <a href="{{ route('chatify') }}" class="chat"><i class="lab la-rocketchat icon"></i><span
+                                    class="text">@lang('site.chat')</span></a>
+                        @else
+                            <a href="{{ route('login.show') }}" class="chat"><i class="lab la-rocketchat icon"></i><span
+                                    class="text">@lang('site.chat')</span></a>
+                        @endif
                         <!-- Chat List Wrapper -->
-                        <div class="chatList-wrapper">
+                        {{-- <div class="chatList-wrapper">
                             <h6 class="chat-title">@lang('site.all_message') </h6>
                             <ul class="chat-list">
                                 <li class="list">
@@ -150,7 +155,7 @@ $setting = App\Models\Settings::first();
                                 </li>
                             </ul>
                             <a href="messages.html" class="all-chat"> See All Messages </a>
-                        </div>
+                        </div> --}}
                         <!-- end Chat List -->
                     </li>
                     @if (auth()->check())
@@ -165,11 +170,11 @@ $setting = App\Models\Settings::first();
                     @auth
                         <li class="single userAccount">
                             @if (auth()->check())
-                                <button class="user"><img style="border-radius:50%" src="{{ asset(auth()->user()->image) }}"
-                                        alt="images"></button>
+                                <button class="user"><img style="border-radius:50%"
+                                        src="{{ asset(auth()->user()->image) }}" alt="images"></button>
                             @else
-                            <button class="user"><img style="border-radius:50%" src="{{ asset('frontend') }}/assets/img/gallery/user.png"
-                                alt="images"></button>
+                                <button class="user"><img style="border-radius:50%"
+                                        src="{{ asset('frontend') }}/assets/img/gallery/user.png" alt="images"></button>
                             @endif
                             <div class="userAccount-wrapper">
                                 <h6 class="ac-title">@lang('site.user_account')</h6>
