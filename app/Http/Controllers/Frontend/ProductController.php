@@ -20,12 +20,13 @@ class ProductController extends Controller
     // {
     //     $this->middleware('auth');
     // }
-    protected function index(){
+    protected function index()
+    {
 
         $products = Product::with('user')->get();
         $categories = Category::get();
 
-        return view('frontend.products.index' , compact('products' , 'categories'));
+        return view('frontend.products.index', compact('products', 'categories'));
     }
 
     /**
@@ -83,14 +84,32 @@ class ProductController extends Controller
         if ($product) {
             return redirect()->back()->with('flash_message', 'Added Successfully !');
         }
-    }//End of Store
+    } //End of Store
 
-    protected function single(Request $request , $id)
+    protected function single(Request $request, $id)
     {
         $product = Product::with('user')->where('id' , $id)->first();
         $product_related = Product::where('id' , '!=' , $id)->limit(3)->get();
 
 
-        return view('frontend.products.single' , compact('product' , 'product_related'));
+        return view('frontend.products.single', compact('product', 'product_related'));
+    }
+
+    protected function search(Request $request){
+
+        $products = Product::where('category_id' , 'LIKE' , "%{$request->category_id}%")
+                            ->where('title_en' , 'LIKE' , "%{$request->search}%");
+        dd($products);
+        if($products){
+            return view('frontend.products.single' , compact('products'));
+        }else{
+            return redirect()->back();
+        }
+    }
+
+
+    protected function filter(Request $request){
+
+        dd($request->all());
     }
 }

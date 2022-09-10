@@ -106,6 +106,9 @@ return [
     'agree_to_our_privcy_policy' => 'Agree To Our Privcy Poicy',
     'send_message' => 'Send Message',
     'featured_listings' => 'Featured Listings',
+    'recent_listings' => 'Recent Listings',
+    'reset_filter' => 'Reset Filter',
+    'date_posted' => ' Date Posted',
+    'select_category' => ' Select Category',
 
 ];
-?>

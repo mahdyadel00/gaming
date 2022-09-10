@@ -1,7 +1,7 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html> --}}
 <html lang="en">
 @php
-$categories = App\Models\Category::paginate(12);
+// $categories = App\Models\Category::paginate(12);
 $setting = App\Models\Settings::first();
 
 @endphp
@@ -205,7 +205,7 @@ $setting = App\Models\Settings::first();
     <script src="{{ asset('frontend') }}/assets/js/bootstrap.js"></script>
     <!-- Plugin JS -->
     {{-- mahdy --}}
-{!! \Anhskohbo\NoCaptcha\Facades\NoCaptcha::renderJs() !!}
+    {!! \Anhskohbo\NoCaptcha\Facades\NoCaptcha::renderJs() !!}
     <script src="{{ asset('frontend') }}/assets/js/plugin.js"></script>
     <!-- Main js -->
     <script src="{{ asset('frontend') }}/assets/js/main.js"></script>

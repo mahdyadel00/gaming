@@ -13,31 +13,23 @@ use App\Models\Settings;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+
     // public function __construct()
     // {
     //     $this->middleware('auth');
     // }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
+
     public function index()
     {
-        $categories = Category::get();
+        $categories = Category::with('products')->limit(10)->get();
         $slider = Slider::first();
         $slider_right = Slider::skip(1)->first();
         $slider_left = Slider::skip(2)->first();
         $slider_top = Slider::skip(3)->first();
         $banners = Banner::get();
         $setting = Settings::first();
-        $products = Product::get();
+        $products = Product::with('category')->get();
         // dd($products);
 
         return view('frontend.layouts.index', compact('setting', 'categories', 'products', 'slider', 'slider_right', 'slider_left', 'slider_top', 'banners'));

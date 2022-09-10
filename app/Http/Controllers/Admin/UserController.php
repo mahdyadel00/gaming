@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use App\Models\Country;
 use App\Models\User;
@@ -28,8 +29,10 @@ class UserController extends Controller
     public function create()
     {
         $countries = Country::get();
+        $roles = Role::pluck('name','name')->all();
 
-        return view('admin.users.create', compact('countries'));
+
+        return view('admin.users.create', compact('countries','roles'));
     }
     public function store(Request $request)
     {
@@ -42,6 +45,7 @@ class UserController extends Controller
             'phone' => 'required',
             'status' => 'required',
             'country_id' => 'required',
+            'roles_name' => 'required',
         ]);
 
         $image_in_db = NULL;
@@ -66,6 +70,7 @@ class UserController extends Controller
             'status'  => $request->status ? 1 : 0,
             'country_id'  => $request->country_id,
             'image'  => $image_in_db,
+            'roles_name'  => $roles_name,
         ]);
         return redirect()->route('admin.users.index')->with('Successfully', 'User Added Successfully');
     }
@@ -94,6 +99,7 @@ class UserController extends Controller
             'phone' => 'required',
             'status' => 'required',
             'country_id' => 'required',
+            'roles_name' => 'required',
         ]);
 
         $image_in_db = NULL;
@@ -117,6 +123,7 @@ class UserController extends Controller
             'status'  => $request->status ? 1 : 0,
             'country_id'  => $request->country_id,
             'image'  => $image_in_db,
+            'roles_name'  => $image_in_db,
         ]);
         return redirect()->route('admin.users.index')->with('flash_message', 'User Updated successfully !');
     }

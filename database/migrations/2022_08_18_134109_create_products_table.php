@@ -19,11 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('price');
             $table->string('price_discount');
 
-             $table->integer('user_id')->unsigned();
-             $table->foreign('user_id')->references('id')->on('users');
-             $table->integer('category_id')->unsigned();
-             $table->foreign('category_id')->references('id')->on('categories');
-
+            
             // $table->integer('country_id')->unsigned();
             // $table->foreign('country_id')->references('id')->on('contries');
             $table->integer('user_id')->unsigned()->nullable();

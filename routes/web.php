@@ -36,6 +36,7 @@ Route::prefix(LaravelLocalization::setLocale())
         // ============================================================================** Category Route ** ==========================================================================
         Route::get('/categories', [CategoryController::class, 'category'])->name('categories.category');
         Route::get('/single-category/{id}', [CategoryController::class, 'index'])->name('single_category');
+        Route::get('/category/search', [CategoryController::class, 'search'])->name('search_category');
 
         // ============================================================================** Email Subscribtion Route ** ==========================================================================
         Route::post('/email-subscription', [EmailSubscriptionController::class, 'store'])->name('email.subscribtion');
@@ -55,6 +56,10 @@ Route::prefix(LaravelLocalization::setLocale())
         Route::post('/product-store', [ProductController::class, 'store'])->name('product.store');
         Route::get('/product-single/{id}', [ProductController::class, 'single'])->name('product.single');
         Route::get('/products', [ProductController::class, 'index'])->name('product.index');
+        Route::get('/products/create-image', [ProductController::class, 'storeImage'])->name('products.store_image');
+        Route::get('/products/delete-image', [ProductController::class, 'deleteImage'])->name('products.delete_image');
+        Route::get('/search', [ProductController::class, 'search'])->name('product.search');
+        Route::get('/products/search', [ProductController::class, 'filter'])->name('search');
         // ============================================================================** Favourite Route ** ==========================================================================
 
         Route::post('favorite/{product}/create', [FavouriteController::class, 'create'])->name('favorite.store');

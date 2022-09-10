@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasRoles,  HasFactory, Notifiable;
 
     protected $guard_name = 'web';
     protected $table = 'users';
@@ -23,7 +24,8 @@ class User extends Authenticatable
         'phone',
         'image',
         'status',
-        'country_id',
+        'country',
+        'roles_name',
     ];
 
     protected $hidden = [

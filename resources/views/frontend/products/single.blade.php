@@ -1,12 +1,12 @@
 @extends('frontend.layouts.master')
 @section('content')
     @php
-    if (auth()->check()) {
-        $favourite = App\Models\FavouriteProduct::with('product')
-            ->where('user_id', auth()->user()->id)
-            ->where('product_id', $product->id)
-            ->first();
-    }
+        if (auth()->check()) {
+            $favourite = App\Models\FavouriteProduct::with('product')
+                ->where('user_id', auth()->user()->id)
+                ->where('product_id', $product->id)
+                ->first();
+        }
     @endphp
     <!--Product Details  S t a r t-->
     <div class="proDetails section-padding2">
@@ -35,14 +35,17 @@
                             data-prevArrow='<div class="prev-icon"><i class="las la-angle-left"></i></div>'
                             data-nextArrow='<div class="next-icon"><i class="las la-angle-right"></i></div>'
                             data-responsive='[{"breakpoint": 1800,"settings": {"slidesToShow": 1}},{"breakpoint": 1600,"settings": {"slidesToShow": 1}},{"breakpoint": 1400,"settings": {"slidesToShow": 1}},{"breakpoint": 1200,"settings": {"slidesToShow": 1}},{"breakpoint": 991,"settings": {"slidesToShow": 1}},{"breakpoint": 768, "settings": {"slidesToShow": 1}},{"breakpoint": 576, "settings": {"slidesToShow": 1}}]'>
-                            <div class="single-main-image">
+                            <div class="single-main-image" data-fancybox="gallery" id="main-image">
                                 <a href="#" class="long-img">
-                                    <img src="{{ asset($product->image) }}" class="img-fluid" alt="image">
+                                    <img src="{{ asset($product->image) }}" class="img-fluid pop" alt="image"
+                                        data-img="{{ asset($product->image) }}">
                                 </a>
+
                             </div>
+
                         </div>
                         <!-- Nav -->
-                        <div class="thumb-wrap">
+                        {{-- <div class="thumb-wrap">
                             <div class="shop-details-gallery-nav global-slick-init slider-inner-margin sliderArrow"
                                 data-asNavFor=".shop-details-gallery-slider" data-focusOnSelect="true" data-infinite="true"
                                 data-arrows="false" data-dots="false" data-slidesToShow="6" data-swipeToSlide="true"
@@ -93,7 +96,7 @@
                                     </a>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                     <!-- proDescription -->
                     <div class="proDescription">
@@ -122,6 +125,63 @@
                                 @endif
                             </h4>
                             <p class="detailsCap">@lang('site.posted_on') {{ date_format($product->created_at, 'D M Y') }}</p>
+                            {{-- <span class="detailsPricing">@lang('site.create_image')
+                                <em style="float: right"> --}}
+                            {{-- <a href="#" class="btn btn-primary set-value" data-id="{{ $product->id }}"
+                                        data-toggle="modal" data-target="#exampleModal-ad">@lang('site.add_image')</a> --}}
+                            <a href="#" class="btn btn-primary set-value" data-id="{{ $product->id }}"
+                                data-toggle="modal" data-target="#exampleModal-ad">@lang('site.add_image')</a>
+                            {{-- </em> --}}
+                            {{-- </span> --}}
+                            {{-- @include('frontend.products.modal') --}}
+                            <div class="modal fade" id="exampleModal-ad" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">@lang('site.products')</h5>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                                <li class="nav-item">
+                                                    <a class="nav-link active" id="pills-home-tab" data-toggle="pill"
+                                                        href="#pills-home" role="tab" aria-controls="pills-home"
+                                                        aria-selected="true">@lang('site.image')</a>
+                                                </li>
+                                            </ul>
+                                            <div class="tab-content" id="pills-tabContent">
+                                                <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                                                    aria-labelledby="pills-home-tab">
+                                                    {{-- ********* SETTING ********************* --}}
+                                                    <form method="post" action="" enctype="multipart/form-data"
+                                                        class="dropzone" id="frmTarget">
+                                                        @csrf
+                                                        <input type="hidden" name='id' id='id1234'
+                                                            value="">
+                                                    </form>
+                                                    <div class="row ads_image_preview">
+
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default waves-effect"
+                                                            data-dismiss="modal">@lang('site.close')</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
                             <span class="detailsPricing">${{ $product->price }}
                                 <em style="float: right">
                                     <a href="#" class="btn btn-success">Check Out</a>
@@ -153,10 +213,14 @@
                                         class="lab la-font-awesome-flag icon"></i>Report</a>
                             </div>
                             <div class="socialWrap">
-                                <a href="#" class="social"><i class="lab la-facebook-square"></i></a>
-                                <a href="#" class="social"><i class="lab la-twitter"></i></a>
-                                <a href="#" class="social"><i class="lab la-linkedin"></i></a>
-                                <a href="#" class="social"><i class="lar la-bell"></i></a>
+                                <a href="#" class="whatsapp"><i class="lab la-whatsapp"></i></a>
+                                <a href="#" class="telegram"><i class="lab la-telegram"></i></a>
+                                <a href="#" class="snapchat"><i class="lab la-snapchat"></i></a>
+                                <div class="" id="fb-share-button"
+                                    data-href="{{ route('product.single', $product->id) }}">
+                                    <a href="#" class="facebook"><i class="lab la-facebook-square"></i></a>
+                                </div>
+                                <a href="#"class="twitter"><i class="lab la-twitter"></i></a>
                             </div>
                         </div>
                     </div>
@@ -208,33 +272,35 @@
                     </div>
                     <section class="recentListing">
                         <div class="borderStyle style1 wow fadeInLeft social" data-wow-delay="0.1s">
-                            @foreach ($product_related as $related)
-                                <div class="singleFlexitem mb-24">
-                                    <div class="recentCaption">
-                                        <div class="btn-wrapper">
-                                            <div class="singleFlexitem mb-24">
-                                                <div class="recentImg">
-                                                    <img src="{{ asset($related->image) }}" width="150px"
-                                                        height="150px" alt="images">
-                                                </div>
-                                                <div class="recentCaption">
-                                                    <h5><a href="{{ route('product.single', $related->id) }}"
-                                                            class="featureTittle">{{ $related->title_en }}</a>
-                                                    </h5>
-                                                    <p class="featureCap">@lang('site.member_since')<strong
-                                                            class="subCap">{{ date_format($related->created_at, 'D M Y') }}</strong>
-                                                    </p>
-                                                    <span class="featurePricing">${{ $related->price }}</span>
-                                                    <div class="btn-wrapper">
-                                                        <span class="pro-btn1">RENOVETED</span>
-                                                        <span class="pro-btn2">PROMOTED</span>
+                            @if (auth()->check())
+                                @foreach ($product_related as $related)
+                                    <div class="singleFlexitem mb-24">
+                                        <div class="recentCaption">
+                                            <div class="btn-wrapper">
+                                                <div class="singleFlexitem mb-24">
+                                                    <div class="recentImg">
+                                                        <img src="{{ asset($related->image) }}" width="150px"
+                                                            height="150px" alt="images">
+                                                    </div>
+                                                    <div class="recentCaption">
+                                                        <h5><a href="{{ route('product.single', $related->id) }}"
+                                                                class="featureTittle">{{ $related->title_en }}</a>
+                                                        </h5>
+                                                        <p class="featureCap">@lang('site.member_since')<strong
+                                                                class="subCap">{{ date_format($related->created_at, 'D M Y') }}</strong>
+                                                        </p>
+                                                        <span class="featurePricing">${{ $related->price }}</span>
+                                                        <div class="btn-wrapper">
+                                                            <span class="pro-btn1">RENOVETED</span>
+                                                            <span class="pro-btn2">PROMOTED</span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            @endforeach
+                                @endforeach
+                            @endif
                         </div>
                     </section>
                 </div>
@@ -245,7 +311,52 @@
 @endsection
 
 @push('js')
+    <div id="fb-root"></div>
     <script>
+        var fbButton = document.getElementById('fb-share-button');
+        var url = $(fbButton).data("href");
+
+        fbButton.addEventListener('click', function() {
+            window.open('https://www.facebook.com/sharer/sharer.php?u=' + url,
+                'facebook-share-dialog',
+                'width=800,height=600'
+            );
+            return false;
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+    <script>
+        $(document).ready(function() {
+
+            $(document).on('click', '.whatsapp', function() {
+
+                let full_url = $("#url").val()
+                window.open(
+                    'https://api.whatsapp.com/send?text={{ route('product.single', $product->id) }}',
+                    '_blank');
+            });
+            $(document).on('click', '.twitter', function() {
+
+                let full_url = $("#url").val()
+                window.open(
+                    'https://twitter.com/share?url={{ route('product.single', $product->id) }}',
+                    '_blank');
+            });
+            $(document).on('click', '.telegram', function() {
+
+                let full_url = $("#url").val()
+                window.open(
+                    'https://t.me/share/url?url=={{ route('product.single', $product->id) }}',
+                    '_blank');
+            });
+            $(document).on('click', '.snapchat', function() {
+
+                let full_url = $("#url").val()
+                window.open(
+                    'https://snapchat.com/scan?attachmentUrl=={{ route('product.single', $product->id) }}',
+                    '_blank');
+            });
+        })
         //remove favourite
         $(document).on('click', '.delete-product-from-favorite', function(e) {
             e.preventDefault();
@@ -281,8 +392,6 @@
             });
         })
         //added favourite
-
-
         $(document).on('click', '.add-product-to-favorite', function(e) {
             e.preventDefault();
             var _url = $(this).attr('data-url');
@@ -295,7 +404,6 @@
                     "_token": "{{ csrf_token() }}"
                 },
                 success: function(response) {
-                    // console.log(response);
                     if (response == 'error') {
                         new Noty({
                             type: 'error',
