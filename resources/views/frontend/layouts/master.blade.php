@@ -1,7 +1,7 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html> --}}
 <html lang="en">
 @php
-$categories = App\Models\Category::paginate(12);
+// $categories = App\Models\Category::paginate(12);
 $setting = App\Models\Settings::first();
 
 @endphp

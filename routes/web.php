@@ -36,6 +36,7 @@ Route::prefix(LaravelLocalization::setLocale())
         // ============================================================================** Category Route ** ==========================================================================
         Route::get('/categories', [CategoryController::class, 'category'])->name('categories.category');
         Route::get('/single-category/{id}', [CategoryController::class, 'index'])->name('single_category');
+        Route::get('/category/search', [CategoryController::class, 'search'])->name('search_category');
 
         // ============================================================================** Email Subscribtion Route ** ==========================================================================
         Route::post('/email-subscription', [EmailSubscriptionController::class, 'store'])->name('email.subscribtion');

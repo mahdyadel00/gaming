@@ -109,6 +109,6 @@ return [
     'recent_listings' => 'Recent Listings',
     'reset_filter' => 'Reset Filter',
     'date_posted' => ' Date Posted',
+    'select_category' => ' Select Category',
 
 ];
-?>

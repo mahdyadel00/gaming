@@ -40,27 +40,12 @@
                                     <img src="{{ asset($product->image) }}" class="img-fluid pop" alt="image"
                                         data-img="{{ asset($product->image) }}">
                                 </a>
-                                @include('frontend.products.modal')
-                                {{-- <a href="{{ asset('images/img_adds/'.$product->img) }}" data-fancybox="gallery">
-                                    <img style="width:100%; margin: auto"
-                                        src="{{ asset('images/img_adds/'.$product->img) }}"
-                                        data-img="{{ asset('images/img_adds/'.$product->img) }}" id="main-image"
-                                        alt="" class="img-fluid"> --}}
-                            </div>
-                            {{-- @foreach ($product->adImages as $image)
-                            <div class="item">
-                                <a href="{{ asset($image->url) }}" data-fancybox="gallery">
-                                    <img style="width:100%; margin: auto"
-                                        src="{{ asset($image->url) }}"
-                                        data-img="{{ asset('images/img_adds/'.$product->image) }}" id="main-image"
-                                        alt="" class="img-fluid">
 
-                                </a>
                             </div>
-                        @endforeach --}}
+
                         </div>
                         <!-- Nav -->
-                        <div class="thumb-wrap">
+                        {{-- <div class="thumb-wrap">
                             <div class="shop-details-gallery-nav global-slick-init slider-inner-margin sliderArrow"
                                 data-asNavFor=".shop-details-gallery-slider" data-focusOnSelect="true" data-infinite="true"
                                 data-arrows="false" data-dots="false" data-slidesToShow="6" data-swipeToSlide="true"
@@ -111,7 +96,7 @@
                                     </a>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                     <!-- proDescription -->
                     <div class="proDescription">
