@@ -125,85 +125,43 @@
                                 @endif
                             </h4>
                             <p class="detailsCap">@lang('site.posted_on') {{ date_format($product->created_at, 'D M Y') }}</p>
-                            {{-- <span class="detailsPricing">@lang('site.create_image')
-                                <em style="float: right"> --}}
-                            {{-- <a href="#" class="btn btn-primary set-value" data-id="{{ $product->id }}"
-                                        data-toggle="modal" data-target="#exampleModal-ad">@lang('site.add_image')</a> --}}
-                            <a href="#" class="btn btn-primary set-value" data-id="{{ $product->id }}"
-                                data-toggle="modal" data-target="#exampleModal-ad">@lang('site.add_image')</a>
-                            {{-- </em> --}}
-                            {{-- </span> --}}
-                            {{-- @include('frontend.products.modal') --}}
-                            <div class="modal fade" id="exampleModal-ad" tabindex="-1" role="dialog"
+
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                Launch demo modal
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">@lang('site.products')</h5>
-                                            <button type="button" class="close" data-dismiss="modal"
-                                                aria-label="Close">
+                                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
                                         <div class="modal-body">
-
-                                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                                                <li class="nav-item">
-                                                    <a class="nav-link active" id="pills-home-tab" data-toggle="pill"
-                                                        href="#pills-home" role="tab" aria-controls="pills-home"
-                                                        aria-selected="true">@lang('site.image')</a>
-                                                </li>
-                                            </ul>
-                                            <div class="tab-content" id="pills-tabContent">
-                                                <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
-                                                    aria-labelledby="pills-home-tab">
-                                                    {{-- ********* SETTING ********************* --}}
-                                                    <form method="post" action="" enctype="multipart/form-data"
-                                                        class="dropzone" id="frmTarget">
-                                                        @csrf
-                                                        <input type="hidden" name='id' id='id1234'
-                                                            value="">
-                                                    </form>
-                                                    <div class="row ads_image_preview">
-
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-default waves-effect"
-                                                            data-dismiss="modal">@lang('site.close')</button>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            ...
                                         </div>
                                         <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">Save changes</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-
-
                             <span class="detailsPricing">${{ $product->price }}
                                 <em style="float: right">
                                     <a href="#" class="btn btn-success">Check Out</a>
                                 </em></span>
-                            {{-- <div class="infoSingle">
-                            <ul class="listing">
-                                <li class="listItem"><i class="las la-bed icon"></i>2 Bed</li>
-                                <li class="listItem"><i class="las la-bath icon"></i>2 Bath</li>
-                                <li class="listItem"><i class="las la-map-marker-alt icon"></i>8502 Preston Rd. Inglewood, Maine</li>
-                            </ul>
-                        </div> --}}
                         </div>
                         <!-- Mid -->
                         <div class="descriptionMid">
                             <h4 class="priceTittle">@lang('site.description')</h4>
-                            {{-- <ul class="listing">
-                            <li class="listItem"><i class="las la-check icon"></i>All documents are ok</li>
-                            <li class="listItem"><i class="las la-check icon"></i>Ready to move</li>
-                            <li class="listItem"><i class="las la-check icon"></i>Riverview</li>
-                            <li class="listItem"><i class="las la-check icon"></i>24/7 Water, Gas, Electricity</li>
-                            <li class="listItem"><i class="las la-check icon"></i>Schools and Market in 2km</li>
-                        </ul> --}}
                             <p class="pera">{{ $product->description_en }}</p>
                         </div>
                         <!-- Footer -->

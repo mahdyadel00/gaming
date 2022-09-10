@@ -110,5 +110,6 @@ return [
     'reset_filter' => 'Reset Filter',
     'date_posted' => ' Date Posted',
     'select_category' => ' Select Category',
+    'add_image' => ' Add Image',
 
 ];
