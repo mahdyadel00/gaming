@@ -1,7 +1,7 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html> --}}
 <html lang="en">
 @php
-$categories = App\Models\Category::paginate(12);
+// $categories = App\Models\Category::paginate(12);
 $setting = App\Models\Settings::first();
 
 @endphp
@@ -24,8 +24,6 @@ $setting = App\Models\Settings::first();
     <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/main-style.css">
     {{-- Noty --}}
     <link rel="stylesheet" href="{{ asset('css/noty/noty.css') }}">
-    {{-- dropzone --}}
-    {{-- <link rel="stylesheet" href="{{ asset('frontend/dropzone.css') }}"> --}}
 
 </head>
 
@@ -209,7 +207,6 @@ $setting = App\Models\Settings::first();
     <script src="{{ asset('frontend') }}/assets/js/plugin.js"></script>
     <!-- Main js -->
     <script src="{{ asset('frontend') }}/assets/js/main.js"></script>
-    {{-- <script src="{{ asset('frontend/dropzone.js') }}"></script> --}}
 
 
     @stack('js')

@@ -41,9 +41,16 @@
                                         data-img="{{ asset($product->image) }}">
                                 </a>
                             </div>
+       <<<<<<< HEAD
+                            </div>
+=======
+
+                            </div>
+
+>>>>>>> afe4ac1df1c7f5fc87b58707ed60fb156fd0a8ec
                         </div>
                         <!-- Nav -->
-                        <div class="thumb-wrap">
+                        {{-- <div class="thumb-wrap">
                             <div class="shop-details-gallery-nav global-slick-init slider-inner-margin sliderArrow"
                                 data-arrows="false" data-dots="false" data-slidesToShow="6" data-swipeToSlide="true"
                                 data-autoplay="true" data-autoplaySpeed="2500"
@@ -93,7 +100,7 @@
                                     </a>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                     <!-- proDescription -->
                     <div class="proDescription">
@@ -121,7 +128,7 @@
                                         <i class="lar la-heart icon"></i></a>
                                 @endif
                             </h4>
-                            <p class="detailsCap">@lang('site.posted_on') {{ date_format($product->created_at, 'D M Y') }}</p>
+                            <p class="detailsCap">@lang('site.posted_on') {{ date_forcreated_at, 'D M Y') }}</p>
                             {{-- <span class="detailsPricing">@lang('site.create_image')
                                 <em style="float: right"> --}}
                             {{-- <a href="#" class="btn btn-primary set-value" data-id="{{ $product->id }}"
@@ -131,7 +138,10 @@
                             <!-- Button trigger modal -->
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary" data-toggle="modal"
-                                data-target="#hoor">
+                        data-target="#hoor">
+
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary" data-togafe4ac1df1c7f5fc87b58707ed60fb156fd0a8ec
                                 Launch demo modal
                             </button>
 
@@ -144,9 +154,14 @@
                                             <h5 class="modal-title" id="hoorLabel">Modal title</h5>
                                             <button type="button" class="close" data-dismiss="modal"
                                                 aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    </div>
                                         <div class="modal-body">
                                             ...
                                         </div>

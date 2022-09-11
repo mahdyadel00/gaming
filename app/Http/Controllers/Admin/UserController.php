@@ -83,8 +83,9 @@ class UserController extends Controller
     protected function edit($id)
     {
         $user = User::where('id', $id)->first();
+        $roles = Role::get();
         $countries = Country::get();
-        return view('admin.users.edit', compact('user', 'countries'));
+        return view('admin.users.edit', compact('user', 'countries' , 'roles'));
     }
 
 
@@ -136,7 +137,7 @@ class UserController extends Controller
         return back();
         flash()->success("User deleted successfully");
     }
-    
+
     protected function logout(){
 
         auth()->logout();

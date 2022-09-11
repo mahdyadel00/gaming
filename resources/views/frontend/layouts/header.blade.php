@@ -31,12 +31,10 @@ $setting = App\Models\Settings::first();
                         <!-- Show Menu list -->
                         <div class="showSidebar">
                             <ul>
-
                                 @foreach ($categories as $category)
-                                    <li class="singleList menu-item-has-children current-menu-item">
+                                    <li class="singleList menu-item-has-children current-menu-item ">
                                         <a href="{{ route('single_category', $category->id) }}" class="tittle"> <i
                                                 class="las la-headphones icon"></i> {{ $category->title_en }} </a>
-
                                     </li>
                                 @endforeach
                             </ul>
@@ -86,7 +84,8 @@ $setting = App\Models\Settings::first();
                             <a href="{{ route('chatify') }}" class="chat"><i class="lab la-rocketchat icon"></i><span
                                     class="text">@lang('site.chat')</span></a>
                         @else
-                            <a href="{{ route('login.show') }}" class="chat"><i class="lab la-rocketchat icon"></i><span
+                            <a href="{{ route('login.show') }}" class="chat"><i
+                                    class="lab la-rocketchat icon"></i><span
                                     class="text">@lang('site.chat')</span></a>
                         @endif
                         <!-- Chat List Wrapper -->
