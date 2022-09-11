@@ -72,9 +72,9 @@
                         <!-- infoSingle -->
                         <div class="infoSingle">
                             <ul class="listing">
-                                {{-- <li class="listItem"><i class="las la-map-marker-alt icon"></i>{{ $user->country[0]->name_en }}</li> --}}
-                                <li class="listItem"><i class="lar la-envelope-open icon"></i>{{ $user->email }}</li>
-                                <li class="listItem"><i class="las la-phone icon"></i>{{ $user->phone }}</li>
+                                <li class="listItem"><i class="lar la-envelope-open icon"></i>{{ auth()->user()->email }}
+                                </li>
+                                <li class="listItem"><i class="las la-phone icon"></i>{{ auth()->user()->phone }}</li>
                             </ul>
                         </div>
                     </div>
