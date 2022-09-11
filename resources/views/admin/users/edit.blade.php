@@ -62,7 +62,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="col">
+                                    {{-- <div class="col">
                                         <label>Roles </label>
                                         <select name="roles_name"  class="form-control fc-datepicker">
                                             <option value="0">Select Roles</option>
@@ -70,7 +70,7 @@
                                                 <option value="{{ $role->id }}">{{ $role->name }}</option>
                                             @endforeach
                                         </select>
-                                    </div>
+                                    </div> --}}
                                     <div class="col-md-12">
                                         <label class="infoTitle">@lang('site.status')</label>
 
