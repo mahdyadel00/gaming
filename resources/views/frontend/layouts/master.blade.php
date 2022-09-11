@@ -24,8 +24,6 @@ $setting = App\Models\Settings::first();
     <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/main-style.css">
     {{-- Noty --}}
     <link rel="stylesheet" href="{{ asset('css/noty/noty.css') }}">
-    {{-- dropzone --}}
-    <link rel="stylesheet" href="{{ asset('frontend/dropzone.css') }}">
 
 </head>
 
@@ -198,18 +196,17 @@ $setting = App\Models\Settings::first();
     </div>
     <!-- End-of Scroll-->
     {{-- Noty --}}
+    <script src="{{ asset('frontend') }}/assets/js/jquery-3.6.0.min.js"></script>
+    <script src="{{ asset('frontend') }}/assets/js/bootstrap.js"></script>
+    <script src="{{ asset('frontend') }}/assets/js/popper.min.js"></script>
     <script src="{{ asset('custom/noty/noty.min.js') }}"></script>
     <!-- jquery -->
-    <script src="{{ asset('frontend') }}/assets/js/jquery-3.6.0.min.js"></script>
-    <script src="{{ asset('frontend') }}/assets/js/popper.min.js"></script>
-    <script src="{{ asset('frontend') }}/assets/js/bootstrap.js"></script>
     <!-- Plugin JS -->
     {{-- mahdy --}}
-    {!! \Anhskohbo\NoCaptcha\Facades\NoCaptcha::renderJs() !!}
+    {{-- {!! \Anhskohbo\NoCaptcha\Facades\NoCaptcha::renderJs() !!} --}}
     <script src="{{ asset('frontend') }}/assets/js/plugin.js"></script>
     <!-- Main js -->
     <script src="{{ asset('frontend') }}/assets/js/main.js"></script>
-    <script src="{{ asset('frontend/dropzone.js') }}"></script>
 
 
     @stack('js')

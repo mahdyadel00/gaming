@@ -18,7 +18,7 @@
                     @foreach ($products as $product)
                         <div class="singleFeature pb-24">
                             <div class="featureImg">
-                                <a href="{{ route('product.single' , $product->id) }}"><img src="{{ asset($product->image) }}"
+                                <a href="{{ route('product.single' , $product->id) }}"><img style="width: 100%;height:35%" src="{{ asset($product->image) }}"
                                         alt="images"></a>
                             </div>
                             <div class="featureCaption">

@@ -14,7 +14,7 @@
                     <div class="borderStyle style1 wow fadeInLeft social" data-wow-delay="0.0s">
                         <div class="singleFlexitem mb-24">
                             <div class="recentImg">
-                                <a href="{{ route('product.single' , $product->id) }}"><img src="{{ asset($product->image) }}" alt="images"></a>
+                                <a href="{{ route('product.single' , $product->id) }}"><img style="width: 100px;height:100px" src="{{ asset($product->image) }}" alt="images"></a>
                             </div>
                             <div class="recentCaption">
                                 <h5><a href="{{ route('product.single' , $product->id) }}" class="featureTittle">{{ $product->title_en }}</a></h5>

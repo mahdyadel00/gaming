@@ -35,31 +35,28 @@
                             data-prevArrow='<div class="prev-icon"><i class="las la-angle-left"></i></div>'
                             data-nextArrow='<div class="next-icon"><i class="las la-angle-right"></i></div>'
                             data-responsive='[{"breakpoint": 1800,"settings": {"slidesToShow": 1}},{"breakpoint": 1600,"settings": {"slidesToShow": 1}},{"breakpoint": 1400,"settings": {"slidesToShow": 1}},{"breakpoint": 1200,"settings": {"slidesToShow": 1}},{"breakpoint": 991,"settings": {"slidesToShow": 1}},{"breakpoint": 768, "settings": {"slidesToShow": 1}},{"breakpoint": 576, "settings": {"slidesToShow": 1}}]'>
-                            <div class="single-main-image" data-fancybox="gallery" id="main-image">
+                            <div class="single-main-image" id="main-image">
                                 <a href="#" class="long-img">
-                                    <img src="{{ asset($product->image) }}" class="img-fluid pop" alt="image"
+                                    <img src="{{ asset($product->image) }}" class="img-fluid" alt="image"
                                         data-img="{{ asset($product->image) }}">
                                 </a>
-
                             </div>
-
                         </div>
                         <!-- Nav -->
-                        {{-- <div class="thumb-wrap">
+                        <div class="thumb-wrap">
                             <div class="shop-details-gallery-nav global-slick-init slider-inner-margin sliderArrow"
-                                data-asNavFor=".shop-details-gallery-slider" data-focusOnSelect="true" data-infinite="true"
                                 data-arrows="false" data-dots="false" data-slidesToShow="6" data-swipeToSlide="true"
                                 data-autoplay="true" data-autoplaySpeed="2500"
                                 data-prevArrow='<div class="prev-icon"><i class="las la-angle-left"></i></div>'
                                 data-nextArrow='<div class="next-icon"><i class="las la-angle-right"></i></div>'
                                 data-responsive='[{"breakpoint": 1800,"settings": {"slidesToShow": 6}},{"breakpoint": 1600,"settings": {"slidesToShow": 6}},{"breakpoint": 1400,"settings": {"slidesToShow": 6}},{"breakpoint": 1200,"settings": {"slidesToShow": 6}},{"breakpoint": 991,"settings": {"slidesToShow": 6}},{"breakpoint": 768, "settings": {"slidesToShow": 4}},{"breakpoint": 576, "settings": {"slidesToShow": 4}}]'>
-                                <div class="single-thumb">
+                                {{-- <div class="single-thumb">
                                     <a class="thumb-link" data-toggle="tab" href="#image-01">
                                         <img src="{{ asset('frontend') }}/assets/img/gallery/proDetailsNav1.jpg"
                                             alt="thumb">
                                     </a>
-                                </div>
-                                <div class="single-thumb">
+                                </div> --}}
+                                {{-- <div class="single-thumb">
                                     <a class="thumb-link" data-toggle="tab" href="#image-02">
                                         <img src="{{ asset('frontend') }}/assets/img/gallery/proDetailsNav2.jpg"
                                             alt="thumb">
@@ -70,8 +67,8 @@
                                         <img src="{{ asset('frontend') }}/assets/img/gallery/proDetailsNav3.jpg"
                                             alt="thumb">
                                     </a>
-                                </div>
-                                <div class="single-thumb">
+                                </div> --}}
+                                {{-- <div class="single-thumb">
                                     <a class="thumb-link" data-toggle="tab" href="#image-04">
                                         <img src="{{ asset('frontend') }}/assets/img/gallery/proDetailsNav4.jpg"
                                             alt="thumb">
@@ -82,21 +79,21 @@
                                         <img src="{{ asset('frontend') }}/assets/img/gallery/proDetailsNav5.jpg"
                                             alt="thumb">
                                     </a>
-                                </div>
+                                </div> --}}
                                 <div class="single-thumb">
                                     <a class="thumb-link" data-toggle="tab" href="#image-06">
                                         <img src="{{ asset('frontend') }}/assets/img/gallery/proDetailsNav6.jpg"
                                             alt="thumb">
                                     </a>
                                 </div>
-                                <div class="single-thumb">
+                                {{-- <div class="single-thumb">
                                     <a class="thumb-link" data-toggle="tab" href="#image-01">
                                         <img src="{{ asset('frontend') }}/assets/img/gallery/proDetailsNav6.jpg"
                                             alt="thumb">
                                     </a>
-                                </div>
+                                </div> --}}
                             </div>
-                        </div> --}}
+                        </div>
                     </div>
                     <!-- proDescription -->
                     <div class="proDescription">
@@ -125,85 +122,16 @@
                                 @endif
                             </h4>
                             <p class="detailsCap">@lang('site.posted_on') {{ date_format($product->created_at, 'D M Y') }}</p>
-                            {{-- <span class="detailsPricing">@lang('site.create_image')
-                                <em style="float: right"> --}}
-                            {{-- <a href="#" class="btn btn-primary set-value" data-id="{{ $product->id }}"
-                                        data-toggle="modal" data-target="#exampleModal-ad">@lang('site.add_image')</a> --}}
-                            <a href="#" class="btn btn-primary set-value" data-id="{{ $product->id }}"
-                                data-toggle="modal" data-target="#exampleModal-ad">@lang('site.add_image')</a>
-                            {{-- </em> --}}
-                            {{-- </span> --}}
-                            {{-- @include('frontend.products.modal') --}}
-                            <div class="modal fade" id="exampleModal-ad" tabindex="-1" role="dialog"
-                                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-lg" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">@lang('site.products')</h5>
-                                            <button type="button" class="close" data-dismiss="modal"
-                                                aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-
-                                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                                                <li class="nav-item">
-                                                    <a class="nav-link active" id="pills-home-tab" data-toggle="pill"
-                                                        href="#pills-home" role="tab" aria-controls="pills-home"
-                                                        aria-selected="true">@lang('site.image')</a>
-                                                </li>
-                                            </ul>
-                                            <div class="tab-content" id="pills-tabContent">
-                                                <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
-                                                    aria-labelledby="pills-home-tab">
-                                                    {{-- ********* SETTING ********************* --}}
-                                                    <form method="post" action="" enctype="multipart/form-data"
-                                                        class="dropzone" id="frmTarget">
-                                                        @csrf
-                                                        <input type="hidden" name='id' id='id1234'
-                                                            value="">
-                                                    </form>
-                                                    <div class="row ads_image_preview">
-
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-default waves-effect"
-                                                            data-dismiss="modal">@lang('site.close')</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
 
 
                             <span class="detailsPricing">${{ $product->price }}
                                 <em style="float: right">
                                     <a href="#" class="btn btn-success">Check Out</a>
                                 </em></span>
-                            {{-- <div class="infoSingle">
-                            <ul class="listing">
-                                <li class="listItem"><i class="las la-bed icon"></i>2 Bed</li>
-                                <li class="listItem"><i class="las la-bath icon"></i>2 Bath</li>
-                                <li class="listItem"><i class="las la-map-marker-alt icon"></i>8502 Preston Rd. Inglewood, Maine</li>
-                            </ul>
-                        </div> --}}
                         </div>
                         <!-- Mid -->
                         <div class="descriptionMid">
                             <h4 class="priceTittle">@lang('site.description')</h4>
-                            {{-- <ul class="listing">
-                            <li class="listItem"><i class="las la-check icon"></i>All documents are ok</li>
-                            <li class="listItem"><i class="las la-check icon"></i>Ready to move</li>
-                            <li class="listItem"><i class="las la-check icon"></i>Riverview</li>
-                            <li class="listItem"><i class="las la-check icon"></i>24/7 Water, Gas, Electricity</li>
-                            <li class="listItem"><i class="las la-check icon"></i>Schools and Market in 2km</li>
-                        </ul> --}}
                             <p class="pera">{{ $product->description_en }}</p>
                         </div>
                         <!-- Footer -->
@@ -212,7 +140,7 @@
                                 <a href="#" class="cmn-btn-outline2"><i
                                         class="lab la-font-awesome-flag icon"></i>Report</a>
                             </div>
-                            <div class="socialWrap">
+                            <div class="socialWrap" style="display:flex">
                                 <a href="#" class="whatsapp"><i class="lab la-whatsapp"></i></a>
                                 <a href="#" class="telegram"><i class="lab la-telegram"></i></a>
                                 <a href="#" class="snapchat"><i class="lab la-snapchat"></i></a>
@@ -254,7 +182,6 @@
                                     <div class="input-form">
                                         <input type="text" placeholder="(704) *** ***"
                                             value="{{ $product->user[0]->phone }}" disabled>
-                                        <!-- icon -->
                                         <div class="icon"><i class="las la-phone"></i></div>
                                     </div>
                                 </div>
@@ -270,39 +197,6 @@
                                 seller</a>
                         </div>
                     </div>
-                    <section class="recentListing">
-                        <div class="borderStyle style1 wow fadeInLeft social" data-wow-delay="0.1s">
-                            @if (auth()->check())
-                                @foreach ($product_related as $related)
-                                    <div class="singleFlexitem mb-24">
-                                        <div class="recentCaption">
-                                            <div class="btn-wrapper">
-                                                <div class="singleFlexitem mb-24">
-                                                    <div class="recentImg">
-                                                        <img src="{{ asset($related->image) }}" width="150px"
-                                                            height="150px" alt="images">
-                                                    </div>
-                                                    <div class="recentCaption">
-                                                        <h5><a href="{{ route('product.single', $related->id) }}"
-                                                                class="featureTittle">{{ $related->title_en }}</a>
-                                                        </h5>
-                                                        <p class="featureCap">@lang('site.member_since')<strong
-                                                                class="subCap">{{ date_format($related->created_at, 'D M Y') }}</strong>
-                                                        </p>
-                                                        <span class="featurePricing">${{ $related->price }}</span>
-                                                        <div class="btn-wrapper">
-                                                            <span class="pro-btn1">RENOVETED</span>
-                                                            <span class="pro-btn2">PROMOTED</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            @endif
-                        </div>
-                    </section>
                 </div>
             </div>
         </div>
@@ -391,6 +285,7 @@
                 },
             });
         })
+
         //added favourite
         $(document).on('click', '.add-product-to-favorite', function(e) {
             e.preventDefault();

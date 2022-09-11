@@ -57,9 +57,9 @@
             var sel = this.getAttribute('data-toggle-target');
             $('.customTab-content').removeClass('active').filter(sel).addClass('active');
         });
-      
+
         /*-----------------------------------
-           On Click Open Navbar right contents 
+           On Click Open Navbar right contents
         -----------------------------------*/
         $(document).on('click', '.click_show_icon', function() {
             $(".nav-right-content").toggleClass("active");
@@ -312,7 +312,7 @@
             progressPath.style.strokeDasharray = pathLength + ' ' + pathLength;
             progressPath.style.strokeDashoffset = pathLength;
             progressPath.getBoundingClientRect();
-            progressPath.style.transition = progressPath.style.WebkitTransition = 'stroke-dashoffset 10ms linear';		
+            progressPath.style.transition = progressPath.style.WebkitTransition = 'stroke-dashoffset 10ms linear';
             var updateProgress = function () {
             var scroll = $(window).scrollTop();
             var height = $(document).height() - $(window).height();
@@ -320,7 +320,7 @@
             progressPath.style.strokeDashoffset = progress;
             }
             updateProgress();
-            $(window).scroll(updateProgress);	
+            $(window).scroll(updateProgress);
             var offset = 50;
             var duration = 550;
             jQuery(window).on('scroll', function() {
@@ -329,7 +329,7 @@
             } else {
                 jQuery('.progressParent').removeClass('rn-backto-top-active');
             }
-            });				
+            });
             jQuery('.progressParent').on('click', function(event) {
             event.preventDefault();
             jQuery('html, body').animate({scrollTop: 0}, duration);
@@ -356,7 +356,7 @@
                 }), e.style.visibility = "visible", t.style.visibility = "visible"
             }
         }
-        
+
         /*-----------------------------------
             Datepicker
         -----------------------------------*/
@@ -372,8 +372,8 @@
             window.intlTelInput(input, { });
 
         }
-      
-        //18. Active Odometer Counter 
+
+        //18. Active Odometer Counter
         $('.odometer').appear(function (e) {
             var odo = jQuery(".odometer");
             odo.each(function () {
@@ -381,7 +381,7 @@
             jQuery(this).html(countNumber);
             });
         });
-        
+
     });
 
     $(window).on('load', function () {
@@ -390,7 +390,7 @@
         -------------------------------*/
         $('.preloader-inner').fadeOut(1000);
     });
-        
+
 
 }(jQuery));
 
