@@ -9,7 +9,7 @@
                     <!-- Account Sidebar    -->
                     <div class="accountSidebar">
                         <ul class="listing listScroll">
-                            <li class="listItem">
+                            <li class="listItem {{ request()->is('my-account*') ? ' active' : '' }}">
                                 <a href="{{ route('my_account') }}" class="items"> <i class="lar la-user-circle icon"></i>
                                     @lang('site.my_account')</a>
                             </li>
@@ -26,7 +26,7 @@
                                     @lang('site.wish_list')</a>
                             </li>
                             <li class="listItem">
-                                <a href="{{ route('help') }}" class="items active"> <i
+                                <a href="{{ route('help') }}" class="items"> <i
                                         class="lar la-question-circle icon"></i> @lang('site.help')</a>
                             </li>
                         </ul>

@@ -103,8 +103,8 @@
                                     <img src="{{ asset($product->image) }}" alt="images" style="width: 70px">
                                 </div>
                                 <div class="adsCaption">
-                                    <h5><a href="{{ route('product.single' , $product->id) }}" class="adsTittle">Luxury couple apartment</a></h5>
-                                    <p class="adsPera">Dallas, Texas · <strong class="subCap">24hrs ago</strong></p>
+                                    <h5><a href="{{ route('product.single' , $product->id) }}" class="adsTittle">{{ $product->title_en }}</a></h5>
+                                    <p class="adsPera">{{ auth()->user()->country }} <strong class="subCap">24hrs ago</strong></p>
                                     <span class="adsPricing">$124.80</span>
                                 </div>
                             </div>

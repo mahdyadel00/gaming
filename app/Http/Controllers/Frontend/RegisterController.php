@@ -9,6 +9,9 @@ use App\Models\Country;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Validator;
+use Stevebauman\Location\Facades\Location;
+
+
 
 use function GuzzleHttp\Promise\all;
 
@@ -40,8 +43,12 @@ class RegisterController extends Controller
         //     'email' => 'required|users',
         //     'password' => 'required',
         // ]);
-        $ip = $request->ip();
-        $data = \Location::get('66.102.0.0');
+         $ip = $request->ip(); //Dynamic IP address
+
+            // $ip = '162.159.24.227'; /* Static IP address */
+            $currentUserInfo = Location::get($ip);
+
+        // dd($currentUserInfo);
         $image_in_db = NULL;
         if ($request->has('image')) {
             $request->validate([
