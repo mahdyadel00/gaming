@@ -80,7 +80,7 @@
                                             alt="thumb">
                                     </a>
                                 </div> --}}
-                                 <div class="single-thumb">
+                                <div class="single-thumb">
                                     <a class="thumb-link" data-toggle="tab" href="#image-06">
                                         <img src="{{ asset('frontend') }}/assets/img/gallery/proDetailsNav6.jpg"
                                             alt="thumb">
@@ -140,7 +140,7 @@
                                 <a href="#" class="cmn-btn-outline2"><i
                                         class="lab la-font-awesome-flag icon"></i>Report</a>
                             </div>
-                            <div class="socialWrap">
+                            <div class="socialWrap" style="display:flex">
                                 <a href="#" class="whatsapp"><i class="lab la-whatsapp"></i></a>
                                 <a href="#" class="telegram"><i class="lab la-telegram"></i></a>
                                 <a href="#" class="snapchat"><i class="lab la-snapchat"></i></a>
