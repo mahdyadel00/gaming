@@ -9,24 +9,24 @@
                     <!-- Account Sidebar    -->
                     <div class="accountSidebar">
                         <ul class="listing listScroll">
-                            <li class="listItem {{ request()->is('my-account*') ? ' active' : '' }}">
-                                <a href="{{ route('my_account') }}" class="items"> <i class="lar la-user-circle icon"></i>
+                            <li class="listItem ">
+                                <a href="{{ route('my_account') }}" class="items {{ request()->url() == route('my_account') ? ' active' : '' }}"> <i class="lar la-user-circle icon"></i>
                                     @lang('site.my_account')</a>
                             </li>
                             <li class="listItem">
-                                <a href="{{ route('member_ship') }}" class="items"><i class="las la-address-card icon"></i>
+                                <a href="{{ route('member_ship') }}" class="items {{ request()->url() == route('member_ship') ? ' active' : '' }}"><i class="las la-address-card icon"></i>
                                     @lang('site.membership')</a>
                             </li>
                             <li class="listItem">
-                                <a href="{{ route('promoted_add') }}" class="items"><i class="las la-ad icon"></i>
+                                <a href="{{ route('promoted_add') }}" class="items {{ request()->url() == route('promoted_add') ? ' active' : '' }}"><i class="las la-ad icon"></i>
                                     @lang('site.promoted_ads')</a>
                             </li>
                             <li class="listItem">
-                                <a href="{{ route('wish_list') }}" class="items"> <i class="lar la-heart icon"></i>
+                                <a href="{{ route('wish_list') }}" class="items {{ request()->url() == route('wish_list') ? ' active' : '' }}"> <i class="lar la-heart icon"></i>
                                     @lang('site.wish_list')</a>
                             </li>
                             <li class="listItem">
-                                <a href="{{ route('help') }}" class="items"> <i
+                                <a href="{{ route('help') }}" class="items {{ request()->url() == route('help') ? ' active' : '' }}"> <i
                                         class="lar la-question-circle icon"></i> @lang('site.help')</a>
                             </li>
                         </ul>
