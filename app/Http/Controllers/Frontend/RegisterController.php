@@ -30,7 +30,7 @@ class RegisterController extends Controller
     protected function register()
     {
         $countries = Country::get();
-        return view('frontend.register' , compact('countries'));
+        return view('frontend.register', compact('countries'));
     }
 
     protected function doRegister(Request $request)
@@ -43,12 +43,11 @@ class RegisterController extends Controller
         //     'email' => 'required|users',
         //     'password' => 'required',
         // ]);
-         $ip = $request->ip(); //Dynamic IP address
+        $ip = $request->ip(); //Dynamic IP address
+        //$ip = '162.159.24.227'; /* Static IP address */
+        $data = Location::get($ip);
 
-            // $ip = '162.159.24.227'; /* Static IP address */
-            $currentUserInfo = Location::get($ip);
-
-        // dd($currentUserInfo);
+        // dd($data);
         $image_in_db = NULL;
         if ($request->has('image')) {
             $request->validate([
