@@ -46,8 +46,6 @@ class RegisterController extends Controller
         $ip = $request->ip(); //Dynamic IP address
         //$ip = '162.159.24.227'; /* Static IP address */
         $data = Location::get($ip);
-
-        // dd($data);
         $image_in_db = NULL;
         if ($request->has('image')) {
             $request->validate([
@@ -60,19 +58,35 @@ class RegisterController extends Controller
             $image->move($path, $image_name);
             $image_in_db = '/uploads/users/' . $image_name;
         }
+        if($data == false){
+            $users = User::query()->create([
 
-        $users = User::query()->create([
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'email' => $request->email,
+                'country' => "Egypt",
+                'phone' => $request->phone,
+                'status' => $request->status ? 1 : 0,
+                'image' => $image_in_db,
+                'password' => Hash::make($request->password),
 
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'email' => $request->email,
-            'country' => $data->countryName,
-            'phone' => $request->phone,
-            'status' => $request->status ? 1 : 0,
-            'image' => $image_in_db,
-            'password' => Hash::make($request->password),
+            ]);
+        }else{
 
-        ]);
+            $users = User::query()->create([
+
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'email' => $request->email,
+                'country' => $data->countryName,
+                'phone' => $request->phone,
+                'status' => $request->status ? 1 : 0,
+                'image' => $image_in_db,
+                'password' => Hash::make($request->password),
+
+            ]);
+        }
+
         if ($users) {
 
             return redirect()->to(route('home'))->with('sucess', 'Successfully Register');
