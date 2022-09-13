@@ -31,8 +31,12 @@ class AccountController extends Controller
         if (Auth::check()) {
 
             $user = User::with('country')->first();
+            if(auth()->check()){
 
-            return view('frontend.accounts.my_account', compact('user'));
+                $products = product::with('user')->where('user_id' , auth()->user()->id)->get();
+            }
+
+            return view('frontend.accounts.my_account', compact('user' , 'products'));
         } else {
 
             return redirect()->route('login.show')->with('Un Authanticated!');

@@ -43,16 +43,6 @@ class ProductController extends Controller
 
     protected function store(Request $request)
     {
-
-        // dd($request->all());
-        // $request->validate([
-
-        //     'title_en' => 'required',
-        //     'title_ar' => 'required',
-        //     'description_en' => 'required',
-        //     'description_ar' => 'required',
-        //     'price' => 'required',
-        // ]);
         $image_in_db = NULL;
         if ($request->has('image')) {
             $request->validate([
@@ -88,28 +78,67 @@ class ProductController extends Controller
 
     protected function single(Request $request, $id)
     {
-        $product = Product::with('user')->where('id' , $id)->first();
-        $product_related = Product::where('id' , '!=' , $id)->limit(3)->get();
-
+        $product = Product::with('user')->where('id', $id)->first();
+        $product_related = Product::where('id', '!=', $id)->limit(3)->get();
+        $product->increment('view', 1);
 
         return view('frontend.products.single', compact('product', 'product_related'));
     }
 
-    protected function search(Request $request){
+    protected function search(Request $request)
+    {
 
-        $products = Product::where('category_id' , 'LIKE' , "%{$request->category_id}%")
-                            ->where('title_en' , 'LIKE' , "%{$request->search}%");
-        dd($products);
-        if($products){
-            return view('frontend.products.single' , compact('products'));
-        }else{
+        $products = Product::where('category_id', 'LIKE', "%{$request->category_id}%")
+            ->where('title_en', 'LIKE', "% .$request->search . %");
+        if ($products) {
+            return view('frontend.products.single', compact('products'));
+        } else {
             return redirect()->back();
         }
     }
 
+    public function uploadImage (){
 
-    protected function filter(Request $request){
+        $File = $_FILES['file'];
 
-        dd($request->all());
+        $FileName = $File['name'];
+        $TmpLocation = $File['tmp_name'];
+        $FileSize = $File['size'];
+        $FileError = $File['error'];
+
+
+        $FileExt = explode('.', $FileName);
+        $FileExt = strtolower(end($FileExt));
+
+
+        if ($FileError == 0) {
+
+            $ImageFolder = "../upload";
+
+            //Check if exist, otherwise create it!
+            if (!is_dir($ImageFolder)) {
+                mkdir($ImageFolder, 0777, true);
+            } else {
+            }
+
+
+            //Create new filename:
+            $NewName = uniqid('', true) . md5(uniqid(mt_rand(), true)) .time() .'.' . $FileExt;
+            $UploadDestination = $ImageFolder . "/" . $NewName;
+
+            //Move file to location:
+            if (move_uploaded_file($TmpLocation, $UploadDestination)) {
+
+                if(!isset($_SESSION['imagesArray'])){
+                    $_SESSION['imagesArray']= array();
+                }
+                array_push( $_SESSION['imagesArray'], $NewName);
+                echo $NewName;
+            }
+
+
+        }
+
+
     }
 }
