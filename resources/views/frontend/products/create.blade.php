@@ -103,12 +103,6 @@
                                             <div class="icon"><i class="las la-calendar-week"></i></div>
                                         </div>
                                     </div>
-                                    <!-- image -->
-                                    {{-- <div class="col-lg-12">
-                                        <label class="infoTitle">@lang('site.image')</label>
-                                        <div class="dropzone options" id="dropzonefield" style="border: 1px solid #452A6F;margin: 10px"></div>
-                                    </div> --}}
-
                                     <div class="col-lg-12">
                                         <label class="infoTitle">@lang('site.image')</label>
                                         <div class="input-form">
@@ -117,13 +111,16 @@
 
                                         </div>
                                     </div>
-                                    <!-- user Message -->
-                                    {{-- <div class="col-lg-12">
-                                        <label class="infoTitle">@lang('site.image')</label>
-                                        <div class="input-form">
-                                            @include('frontend.products.modal')
+                                    <div class="col-md-12">
+                                        {{-- *********   SETTING ********************* --}}
+                                        <div enctype="multipart/form-data"
+                                            class="dropzone" id="frmTarget">
+                                            @csrf
+                                            <input type="hidden" name='id' id='id1234' value="">
+                                    </div>
+                                        <div class="row ads_image_preview">
                                         </div>
-                                    </div> --}}
+                                    </div>
                                     <!-- user Message -->
                                     <div class="col-sm-12">
                                         <label class="checkWrap2">@lang('site.negotiable')
@@ -151,47 +148,37 @@
 @endsection
 @push('js')
     <script>
-        Dropzone.options.frmTarget = {
-            url: "{{ route('products.store_image') }}",
-            maxFilesize: 1,
+    Dropzone.options.frmTarget = {
+            url:"{{ route('product.store') }}",
+            maxFilesize:1,
             paramName: 'file',
             addRemoveLinks: true,
             autoProcessQueue: true,
-            parallelUploads: 1,
+            parallelUploads:1,
             dictRemoveFile: 'Remove file',
-
             params: {
-                _token: '{{ csrf_token() }}',
+                _token: '{{csrf_token()}}',
                 id: $("#id1234").val(),
-
             },
             acceptedFiles: ".jpeg,.jpg,.png,.gif",
-            success: function(file, response) {
+            success: function (file, response) {
                 file.id = response.id;
                 console.log(response);
             },
             removedfile: function(file) {
-
-
                 $.ajax({
                     type: 'POST',
                     dataType: 'json',
-                    url: '{{ route('products.delete_image') }}',
-                    data: {
-                        '_token': ' {{ csrf_token() }}',
-                        id: file.id
-                    },
-                    success: function(data) {
+                    url: '{{route('product.store')}}',
+                    data: {'_token': ' {{ csrf_token() }}', id: file.id},
+                    success: function (data) {
                         console.log('success: ' + data);
                     }
                 })
                 var _ref;
-                return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) :
-                    void 0;
+                return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
             },
-
-
-
         };
+
     </script>
 @endpush
