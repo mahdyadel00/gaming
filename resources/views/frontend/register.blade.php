@@ -13,7 +13,7 @@
                             <p class="pera">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.</p>
                         </div>
                         <div class="login-img">
-                            <img src="{{ asset('frontend') }}/assets/img/gallery/login.png" alt="img" class="loginImg">
+                            <img src="{{ asset($auth->register_image) }}" alt="img" class="loginImg">
                         </div>
                     </div>
                 </div>
@@ -21,23 +21,6 @@
                     <form action="{{ route('register.do') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
-                            {{-- <div class="col-lg-6  col-md-12">
-                                <label class="infoTitle">@lang('site.country')</label>
-                                <div class="input-form input-form2">
-                                    <select name="country_id" id="country_id">
-                                        <option value="0">@lang('site.select_country')</option>
-                                        @foreach ($countries as $country)
-                                            <option value="{{ $country->id }}">{{ $country->name_en }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div> --}}
-                            {{-- <div class="col-lg-6  col-md-12">
-                                <label class="infoTitle">@lang('site.status')</label>
-                                <div class="input-form input-form2">
-                                    <input type="checkbox" value="1" name="status">
-                                </div>
-                            </div> --}}
                             <div class="col-lg-6 col-md-12">
                                 <label class="infoTitle">@lang('site.first_name')</label>
                                 <div class="input-form input-form2">
