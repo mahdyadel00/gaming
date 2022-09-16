@@ -43,6 +43,7 @@ Route::prefix('admin')->group(function () {
 
      //Products Route
      Route::get('/products', [ProductController::class, 'index'])->name('admin.products.index');
+     Route::delete('/products/delete/{id}', [ProductController::class, 'delete'])->name('admin.products.delete');
 
 
      //email_subscriptions Route

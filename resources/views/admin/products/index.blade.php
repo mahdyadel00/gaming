@@ -37,7 +37,9 @@
                                     <th
                                         class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                         Category_id</th>
-                                    <th class="text-secondary opacity-7"></th>
+                                    <th
+                                        class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -79,8 +81,20 @@
                                             <span class="text-secondary text-xs font-weight-bold">
                                                 {{ $product->category[0]->title_en }}</span>
                                         </td>
-
+                                        <td class="align-middle text-center">
+                                            <form action="{{ route('admin.products.delete', $product->id) }}" method="post"
+                                                style="display: inline-block">
+                                                {{ csrf_field() }}
+                                                {{ method_field('delete') }}
+                                                <button class="btn btn-danger" type="submit">
+                                                    <a href="#" class="text-secondary font-weight-bold text-xs"
+                                                        data-toggle="tooltip" data-original-title="Delete user">
+                                                        <i class="fa fa-trash">Delete</i>
+                                                    </a></button>
+                                            </form><!-- end of form -->
                                         </td>
+
+
                                     </tr>
                                 @endforeach
 
@@ -92,3 +106,4 @@
         </div>
     </div>
 @endsection
+

@@ -10,7 +10,7 @@ use function GuzzleHttp\Promise\all;
 
 class ContactController extends Controller
 {
-  
+
     // public function __construct()
     // {
     //     $this->middleware('auth');
@@ -21,36 +21,45 @@ class ContactController extends Controller
         return view('frontend.contacts.form');
     }
 
-    protected function store(Request $request){
+    protected function store(Request $request)
+    {
 
-        if($request->published) {
+        if ($request->published) {
             $request->published = 1;
         } else {
             $request->published = 0;
         }
-        $request->validate([
+        $contact = Contact::where('email', $request->email)->first();
+        if (isset($contact)) {
+            $contact->update([
 
-            // 'first_name' => 'required',
-            // 'last_name' => 'required',
-            // 'email' => 'required',
-            // 'phone' => 'required',
-            // 'message' => 'required',
-        ]);
-        $contact = Contact::query()->create([
+                'first_name'     =>     $request->first_name,
+                'last_name'      =>     $request->last_name,
+                'email'          =>     $request->email,
+                'phone'          =>     $request->phone,
+                'message'        =>     $request->message,
+                'published'      =>     $request->published,
+            ]);
+            return response()->json('success');
+        } else {
 
-            'first_name'  => $request->first_name,
-            'last_name'  => $request->last_name,
-            'email'  => $request->email,
-            'phone'  => $request->phone,
-            'message'  => $request->message,
-            'published' => $request->published ,
-        ]);
+            $contact = Contact::query()->create([
 
-        return response()->json('success');
-      }
+                'first_name'     =>     $request->first_name,
+                'last_name'      =>     $request->last_name,
+                'email'          =>     $request->email,
+                'phone'          =>     $request->phone,
+                'message'        =>     $request->message,
+                'published'      =>     $request->published,
+            ]);
 
-      protected function aboutUs(){
+            return response()->json('success');
+        }
+    }
+
+    protected function aboutUs()
+    {
 
         return view('frontend.about_us');
-      }
+    }
 }
