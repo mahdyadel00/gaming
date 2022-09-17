@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Http\Request;
-use App\Models\Auth;
+use App\Models\AuthImage;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
@@ -15,7 +16,7 @@ class LoginController extends Controller
 
     protected function login()
     {
-        $auth = Auth::first();
+        $auth = AuthImage::first();
         return view('frontend.login' , compact('auth'));
     }
 

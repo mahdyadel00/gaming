@@ -35,17 +35,22 @@
                                     <!-- condition -->
                                     <div class="col-lg-6 col-md-6">
                                         <div class="condition">
-                                            <h6 class="infoTitle">@lang('site.item_condition')</h6>
+                                            <h6 class="infoTitle">@lang('site.server')</h6>
                                             <div class="cs_radio_btn">
                                                 <div class="radio">
                                                     <input id="radio-1" name="condition" type="radio" tabindex="0"
                                                         value="0">
-                                                    <label for="radio-1" class="radio-label">Pre-Loved</label>
+                                                    <label for="radio-1" class="radio-label">@lang('site.america')</label>
                                                 </div>
                                                 <div class="radio">
                                                     <input id="radio-2" name="condition" type="radio" tabindex="0"
                                                         value="1">
-                                                    <label for="radio-2" class="radio-label">New</label>
+                                                    <label for="radio-2" class="radio-label">@lang('site.asia')</label>
+                                                </div>
+                                                <div class="radio">
+                                                    <input id="radio-2" name="condition" type="radio" tabindex="0"
+                                                        value="2">
+                                                    <label for="radio-2" class="radio-label">@lang('site.europ')</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -103,12 +108,6 @@
                                             <div class="icon"><i class="las la-calendar-week"></i></div>
                                         </div>
                                     </div>
-                                    <!-- image -->
-                                    {{-- <div class="col-lg-12">
-                                        <label class="infoTitle">@lang('site.image')</label>
-                                        <div class="dropzone options" id="dropzonefield" style="border: 1px solid #452A6F;margin: 10px"></div>
-                                    </div> --}}
-
                                     <div class="col-lg-12">
                                         <label class="infoTitle">@lang('site.image')</label>
                                         <div class="input-form">
@@ -117,13 +116,6 @@
 
                                         </div>
                                     </div>
-                                    <!-- user Message -->
-                                    {{-- <div class="col-lg-12">
-                                        <label class="infoTitle">@lang('site.image')</label>
-                                        <div class="input-form">
-                                            @include('frontend.products.modal')
-                                        </div>
-                                    </div> --}}
                                     <!-- user Message -->
                                     <div class="col-sm-12">
                                         <label class="checkWrap2">@lang('site.negotiable')

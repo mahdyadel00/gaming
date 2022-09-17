@@ -112,5 +112,9 @@ return [
     'date_posted' => ' Date Posted',
     'select_category' => ' Select Category',
     'add_image' => ' Add Image',
+    'server' => ' Server',
+    'america' => ' America',
+    'asia' => ' Asia',
+    'europ' => ' Europ',
 
 ];

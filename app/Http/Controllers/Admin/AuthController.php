@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Auth;
+use App\Models\AuthImage;
 use Validator;
 use Illuminate\Support\Facades\Cache;
 
@@ -12,7 +12,7 @@ class AuthController extends Controller
 
     public function edit()
     {
-        $auth = Auth::first();
+        $auth = AuthImage::first();
 
         return view('admin.auth.edit' , compact('auth'));
     }
@@ -21,7 +21,7 @@ class AuthController extends Controller
     public function update(Request $request)
     {
 
-         $auth = Auth::first();
+         $auth = AuthImage::first();
 
         $logo_in_db = NULL;
         if ($request->has('login_image')) {
