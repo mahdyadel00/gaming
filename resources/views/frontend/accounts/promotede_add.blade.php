@@ -104,7 +104,7 @@
                                 </div>
                                 <div class="adsCaption">
                                     <h5><a href="{{ route('product.single' , $product->id) }}" class="adsTittle">{{ $product->title_en }}</a></h5>
-                                    <p class="adsPera">{{ auth()->user()->country }} <strong class="subCap">24hrs ago</strong></p>
+                                    <p class="adsPera">@lang('site.posted_on') <strong class="subCap">{{  date_format($product->user[0]->created_at, 'D M Y') }}</strong></p>
                                     <span class="adsPricing">${{ $product->price }}</span>
                                 </div>
                             </div>
