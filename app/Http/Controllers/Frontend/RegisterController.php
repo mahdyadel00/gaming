@@ -3,12 +3,16 @@
 namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Http\Request;
+use App\Models\AuthImage;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Country;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Validator;
+use Stevebauman\Location\Facades\Location;
+
+
 
 use function GuzzleHttp\Promise\all;
 
@@ -26,8 +30,9 @@ class RegisterController extends Controller
      */
     protected function register()
     {
+        $auth = AuthImage::first();
         $countries = Country::get();
-        return view('frontend.register' , compact('countries'));
+        return view('frontend.register', compact('countries' , 'auth'));
     }
 
     protected function doRegister(Request $request)
@@ -40,8 +45,9 @@ class RegisterController extends Controller
         //     'email' => 'required|users',
         //     'password' => 'required',
         // ]);
-        $ip = $request->ip();
-        $data = \Location::get('66.102.0.0');
+        $ip = $request->ip(); //Dynamic IP address
+        //$ip = '162.159.24.227'; /* Static IP address */
+        $data = Location::get($ip);
         $image_in_db = NULL;
         if ($request->has('image')) {
             $request->validate([
@@ -54,19 +60,35 @@ class RegisterController extends Controller
             $image->move($path, $image_name);
             $image_in_db = '/uploads/users/' . $image_name;
         }
+        if($data == false){
+            $users = User::query()->create([
 
-        $users = User::query()->create([
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'email' => $request->email,
+                'country' => "Egypt",
+                'phone' => $request->phone,
+                'status' => $request->status ? 1 : 0,
+                'image' => $image_in_db,
+                'password' => Hash::make($request->password),
 
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'email' => $request->email,
-            'country' => $data->countryName,
-            'phone' => $request->phone,
-            'status' => $request->status ? 1 : 0,
-            'image' => $image_in_db,
-            'password' => Hash::make($request->password),
+            ]);
+        }else{
 
-        ]);
+            $users = User::query()->create([
+
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'email' => $request->email,
+                'country' => $data->countryName,
+                'phone' => $request->phone,
+                'status' => $request->status ? 1 : 0,
+                'image' => $image_in_db,
+                'password' => Hash::make($request->password),
+
+            ]);
+        }
+
         if ($users) {
 
             return redirect()->to(route('home'))->with('sucess', 'Successfully Register');

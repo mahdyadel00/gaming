@@ -46,7 +46,6 @@
                                 <div class="col-lg-12">
                                     <label class="infoTitle">@lang('site.message')</label>
                                     <div class="input-form">
-                                        {{-- <textarea name="message " id="message" placeholder="About your project"></textarea> --}}
                                         <textarea class="form-control" name="message" rows="5" placeholder="About your project" required></textarea>
                                     </div>
                                 </div>
@@ -62,7 +61,6 @@
                         </form>
                         <div class="col-sm-12">
                             <div class="btn-wrapper mb-10">
-                                {{-- <button type="submit" form="add-form" class="cmn-btn4 w-100">Send message</button> --}}
                                 <button type="submit" class="btn btn-primary waves-effect waves-light" form='add-form'>
                                     @lang('site.send_message')</button>
 
@@ -83,28 +81,28 @@
 @push('js')
     <script>
         $('body').on('submit', '#add-form', function(e) {
-            e.preventDefault();
-            var url = $(this).attr('action');
-            $.ajax({
-                url: url,
-                method: "post",
-                data: new FormData(this),
-                dataType: 'json',
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function(response) {
-                    if (response == 'success') {
-                        new Noty({
-                            type: 'success',
-                            layout: 'topRight',
-                            text: "{{ 'Saved successfully' }}",
-                            timeout: 2000,
-                            killer: true
-                        }).show();
-                    }
-                },
-            });
-        });
+                    e.preventDefault();
+                    var url = $(this).attr('action');
+                    $.ajax({
+                            url: url,
+                            method: "post",
+                            data: new FormData(this),
+                            dataType: 'json',
+                            cache: false,
+                            contentType: false,
+                            processData: false,
+                            success: function(response) {
+                                if (response == 'success') {
+                                    new Noty({
+                                        type: 'success',
+                                        layout: 'topRight',
+                                        text: "{{ 'Saved successfully' }}",
+                                        timeout: 2000,
+                                        killer: true
+                                    }).show();
+
+                                },
+                            });
+                    });
     </script>
 @endpush

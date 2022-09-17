@@ -13,7 +13,7 @@
                             <p class="pera">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.</p>
                         </div>
                         <div class="login-img">
-                            <img src="{{ asset('frontend') }}/assets/img/gallery/login.png" alt="img" class="loginImg">
+                            <img src="{{ asset($auth->login_image) }}" alt="img" class="loginImg">
                         </div>
                     </div>
                 </div>

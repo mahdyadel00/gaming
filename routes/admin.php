@@ -12,6 +12,7 @@ use  App\Http\Controllers\Admin\SliderController;
 use  App\Http\Controllers\Admin\SubscriptionsController;
 use  App\Http\Controllers\Admin\SettingsController;
 use  App\Http\Controllers\Admin\RoleController;
+use  App\Http\Controllers\Admin\AuthController;
 
 
 Auth::routes(['except' => 'register']);
@@ -43,6 +44,7 @@ Route::prefix('admin')->group(function () {
 
      //Products Route
      Route::get('/products', [ProductController::class, 'index'])->name('admin.products.index');
+     Route::delete('/products/delete/{id}', [ProductController::class, 'delete'])->name('admin.products.delete');
 
 
      //email_subscriptions Route
@@ -73,6 +75,10 @@ Route::prefix('admin')->group(function () {
      //Settings Route
      Route::get('/settings/edit', [SettingsController::class, 'edit'])->name('admin.settings.edit');
      Route::post('/settings/update', [SettingsController::class, 'update'])->name('admin.settings.update');
+
+     //Auth Route
+     Route::get('/auth/edit', [AuthController::class, 'edit'])->name('admin.auth.edit');
+     Route::post('/auth/update', [AuthController::class, 'update'])->name('admin.auth.update');
      //Roles Route
      Route::get('/roles', [RoleController::class, 'index'])->name('admin.roles.index');
      Route::get('/roles/create', [RoleController::class, 'create'])->name('admin.roles.create');

@@ -18,17 +18,17 @@
                     @foreach ($products as $product)
                         <div class="singleFeature pb-24">
                             <div class="featureImg">
-                                <a href="{{ route('product.single' , $product->id) }}"><img style="width: 100%;height:35%" src="{{ asset($product->image) }}"
+                                <a href="{{ route('product.single' , $product->id) }}"><img style="width: 100%;height:55%" src="{{ asset($product->image) }}"
                                         alt="images"></a>
                             </div>
                             <div class="featureCaption">
                                 <h4><a href="{{ route('product.single' , $product->id) }}" class="featureTittle">{{ $product->title_en }}</a></h4>
-                                <p class="featureCap">@lang('site.posted_on') <strong class="subCap">{{ date_format($product->created_at, 'D M Y') }}</strong></p>
+                                <p class="featureCap">{{ $product->user[0]->country }}.<strong class="subCap">{{ date_format($product->created_at, 'D M Y') }}</strong></p>
                                 <span class="featurePricing">${{ $product->price }}</span>
-                                <div class="btn-wrapper">
+                                {{-- <div class="btn-wrapper">
                                     <span class="pro-btn1">NEW</span>
                                     <span class="pro-btn2">PROMTED</span>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     @endforeach

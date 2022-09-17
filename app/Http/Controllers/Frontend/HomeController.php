@@ -29,7 +29,7 @@ class HomeController extends Controller
         $slider_top = Slider::skip(3)->first();
         $banners = Banner::get();
         $setting = Settings::first();
-        $products = Product::with('category')->get();
+        $products = Product::with(['category' , 'user'])->get();
         // dd($products);
 
         return view('frontend.layouts.index', compact('setting', 'categories', 'products', 'slider', 'slider_right', 'slider_left', 'slider_top', 'banners'));

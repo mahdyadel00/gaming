@@ -9,24 +9,24 @@
                     <!-- Account Sidebar    -->
                     <div class="accountSidebar">
                         <ul class="listing listScroll">
-                            <li class="listItem">
-                                <a href="{{ route('my_account') }}" class="items"> <i class="lar la-user-circle icon"></i>
+                            <li class="listItem ">
+                                <a href="{{ route('my_account') }}" class="items {{ request()->url() == route('my_account') ? ' active' : '' }}"> <i class="lar la-user-circle icon"></i>
                                     @lang('site.my_account')</a>
                             </li>
                             <li class="listItem">
-                                <a href="{{ route('member_ship') }}" class="items"><i class="las la-address-card icon"></i>
+                                <a href="{{ route('member_ship') }}" class="items {{ request()->url() == route('member_ship') ? ' active' : '' }}"><i class="las la-address-card icon"></i>
                                     @lang('site.membership')</a>
                             </li>
                             <li class="listItem">
-                                <a href="{{ route('promoted_add') }}" class="items"><i class="las la-ad icon"></i>
+                                <a href="{{ route('promoted_add') }}" class="items {{ request()->url() == route('promoted_add') ? ' active' : '' }}"><i class="las la-ad icon"></i>
                                     @lang('site.promoted_ads')</a>
                             </li>
                             <li class="listItem">
-                                <a href="{{ route('wish_list') }}" class="items"> <i class="lar la-heart icon"></i>
+                                <a href="{{ route('wish_list') }}" class="items {{ request()->url() == route('wish_list') ? ' active' : '' }}"> <i class="lar la-heart icon"></i>
                                     @lang('site.wish_list')</a>
                             </li>
                             <li class="listItem">
-                                <a href="{{ route('help') }}" class="items active"> <i
+                                <a href="{{ route('help') }}" class="items {{ request()->url() == route('help') ? ' active' : '' }}"> <i
                                         class="lar la-question-circle icon"></i> @lang('site.help')</a>
                             </li>
                         </ul>
@@ -72,57 +72,38 @@
                         <!-- infoSingle -->
                         <div class="infoSingle">
                             <ul class="listing">
-                                {{-- <li class="listItem"><i class="las la-map-marker-alt icon"></i>{{ $user->country[0]->name_en }}</li> --}}
-                                <li class="listItem"><i class="lar la-envelope-open icon"></i>{{ $user->email }}</li>
-                                <li class="listItem"><i class="las la-phone icon"></i>{{ $user->phone }}</li>
+                                <li class="listItem"><i class="lar la-envelope-open icon"></i>{{ auth()->user()->email }}
+                                </li>
+                                <li class="listItem"><i class="las la-phone icon"></i>{{ auth()->user()->phone }}</li>
                             </ul>
                         </div>
                     </div>
                     <!-- My Listings -->
                     <div class="myListing">
                         <!-- Single -->
+                        @foreach ($products as $product)
                         <div class="singleFlexitem mb-24  wow fadeInUp social" data-wow-delay="0.0s">
                             <div class="listCap">
                                 <div class="recentImg">
-                                    <img src="{{ asset('frontend') }}/assets/img/gallery/myList1.jpg" alt="images">
+                                    <img src="{{ asset($product->image) }}" style="width: 20%" alt="images">
                                 </div>
                                 <div class="recentCaption">
-                                    <h5><a href="add_details.html" class="featureTittle">Luxury couple apartment</a></h5>
-                                    <p class="featureCap">Dallas, Texas · <strong class="subCap">24hrs ago</strong></p>
-                                    <span class="featurePricing">$124.80</span>
-                                    <div class="btn-wrapper">
+                                    <h5><a href="add_details.html" class="featureTittle">{{ $product->title_en }}</a></h5>
+                                    <p class="featureCap">{{ $product->user ? $product->user->first()->country  :' '}} <strong class="subCap">{{  date_format($product->user[0]->created_at, 'D M Y') }}</strong></p>
+                                    <span class="featurePricing">${{ $product->price }}</span>
+                                    {{-- <div class="btn-wrapper">
                                         <span class="pro-btn1">RENOVETED</span>
                                         <span class="pro-btn2">PROMOTED</span>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                             <div class="btn-wrapper mb-20">
-                                <a href="#" class="cmn-btn-outline4 mr-10"><i class="lar la-eye icon"></i>44k</a>
-                                <a href="#" class="cmn-btn4">Edit Ad</a>
+                                <a href="#" class="cmn-btn-outline4 mr-10"><i class="lar la-eye icon"></i>{{ $product->view }}</a>
+                                {{-- <a href="#" class="cmn-btn4">Edit Ad</a> --}}
                             </div>
                         </div>
                         <!-- Single -->
-                        <div class="singleFlexitem mb-24  wow fadeInUp social" data-wow-delay="0.1s">
-                            <div class="listCap">
-                                <div class="recentImg">
-                                    <img src="{{ asset('frontend') }}/assets/img/gallery/myList2.jpg" alt="images">
-                                </div>
-                                <div class="recentCaption">
-                                    <h5><a href="add_details.html" class="featureTittle">Beats Studio 3 Wireless Over
-                                            Ear</a></h5>
-                                    <p class="featureCap">Dallas, Texas · <strong class="subCap">24hrs ago</strong></p>
-                                    <span class="featurePricing">$124.80</span>
-                                    <div class="btn-wrapper">
-                                        <span class="pro-btn1">RENOVETED</span>
-                                        <span class="pro-btn2">PROMOTED</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="btn-wrapper mb-20">
-                                <a href="#" class="cmn-btn-outline4 mr-10"><i class="lar la-eye icon"></i>44k</a>
-                                <a href="#" class="cmn-btn4">Edit Ad</a>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
