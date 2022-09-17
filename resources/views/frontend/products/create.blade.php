@@ -48,9 +48,9 @@
                                                     <label for="radio-2" class="radio-label">@lang('site.asia')</label>
                                                 </div>
                                                 <div class="radio">
-                                                    <input id="radio-2" name="condition" type="radio" tabindex="0"
+                                                    <input id="radio-3" name="condition" type="radio" tabindex="0"
                                                         value="2">
-                                                    <label for="radio-2" class="radio-label">@lang('site.europ')</label>
+                                                    <label for="radio-3" class="radio-label">@lang('site.europ')</label>
                                                 </div>
                                             </div>
                                         </div>
