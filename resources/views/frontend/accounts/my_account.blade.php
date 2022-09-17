@@ -89,7 +89,7 @@
                                 </div>
                                 <div class="recentCaption">
                                     <h5><a href="add_details.html" class="featureTittle">{{ $product->title_en }}</a></h5>
-                                    <p class="featureCap">{{ $product->user ? $product->user->first()->country  :' '}} <strong class="subCap">{{  date_format($product->user[0]->created_at, 'D M Y') }}</strong></p>
+                                    <p class="featureCap">@lang('site.posted_on') <strong class="subCap">{{  date_format($product->user[0]->created_at, 'D M Y') }}</strong></p>
                                     <span class="featurePricing">${{ $product->price }}</span>
                                     {{-- <div class="btn-wrapper">
                                         <span class="pro-btn1">RENOVETED</span>
