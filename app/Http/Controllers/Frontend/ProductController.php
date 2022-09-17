@@ -43,6 +43,7 @@ class ProductController extends Controller
 
     protected function store(Request $request)
     {
+        // dd($request->all());
         $image_in_db = NULL;
         if ($request->has('image')) {
             $request->validate([
@@ -56,7 +57,6 @@ class ProductController extends Controller
             $image_in_db = '/uploads/products/' . $image_name;
         }
 
-
         $product = Product::query()->create([
 
             'category_id' => $request->category_id,
@@ -67,9 +67,10 @@ class ProductController extends Controller
             'price' => $request->price,
             'image' => $image_in_db,
             'user_id' => Auth::user()->id,
-            'condition' => $request->condition ? 1 : 0,
+            'condition' => $request->condition,
             'authanticate' => $request->authanticate ? 1 : 0,
-            'nigotiable' => $request->nigotiable ? 1 : 0,
+            'nigotiable' =>  0,
+            'view' => 0,
         ]);
         if ($product) {
             return redirect()->back()->with('flash_message', 'Added Successfully !');
@@ -140,5 +141,13 @@ class ProductController extends Controller
         }
 
 
+    }
+    protected function delete($id){
+
+        $product = Product::where('id' , $id)->first();
+
+        $product->delete();
+
+        return redirect()->back();
     }
 }

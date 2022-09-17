@@ -55,6 +55,7 @@ Route::prefix(LaravelLocalization::setLocale())
         Route::get('/product-create', [ProductController::class, 'create'])->name('product.create');
         Route::post('/product-store', [ProductController::class, 'store'])->name('product.store');
         Route::get('/product-single/{id}', [ProductController::class, 'single'])->name('product.single');
+        Route::delete('/product/delete/{id}', [ProductController::class, 'delete'])->name('products.delete');
         Route::get('/products', [ProductController::class, 'index'])->name('product.index');
         Route::get('/products/create-image', [ProductController::class, 'storeImage'])->name('products.store_image');
         Route::get('/products/delete-image', [ProductController::class, 'deleteImage'])->name('products.delete_image');

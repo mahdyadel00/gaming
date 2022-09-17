@@ -116,5 +116,6 @@ return [
     'america' => ' America',
     'asia' => ' Asia',
     'europ' => ' Europ',
+    'delete' => ' Delete',
 
 ];
