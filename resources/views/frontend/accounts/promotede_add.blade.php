@@ -105,7 +105,7 @@
                                 <div class="adsCaption">
                                     <h5><a href="{{ route('product.single' , $product->id) }}" class="adsTittle">{{ $product->title_en }}</a></h5>
                                     <p class="adsPera">{{ auth()->user()->country }} <strong class="subCap">24hrs ago</strong></p>
-                                    <span class="adsPricing">$124.80</span>
+                                    <span class="adsPricing">${{ $product->price }}</span>
                                 </div>
                             </div>
                             <div class="btn-wrapper mb-20">
