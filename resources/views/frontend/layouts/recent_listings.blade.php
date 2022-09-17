@@ -18,7 +18,7 @@
                             </div>
                             <div class="recentCaption">
                                 <h5><a href="{{ route('product.single' , $product->id) }}" class="featureTittle">{{ $product->title_en }}</a></h5>
-                                <p class="featureCap">{{ $product->user ? $product->user->first()->country  : '' }} <strong
+                                <p class="featureCap">Dallas, Texas · <strong
                                         class="subCap">{{ date_format($product->created_at, 'D M Y') }}</strong></p>
                                 <span class="featurePricing">${{ $product->price }}</span>
                                 {{-- <div class="btn-wrapper">

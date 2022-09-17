@@ -23,7 +23,7 @@
                             </div>
                             <div class="featureCaption">
                                 <h4><a href="{{ route('product.single' , $product->id) }}" class="featureTittle">{{ $product->title_en }}</a></h4>
-                                <p class="featureCap">{{$product->user ? $product->user->first()->country  : '' }}<strong class="subCap">{{ date_format($product->created_at, 'D M Y') }}</strong></p>
+                                <p class="featureCap">@lang('site.posted_on') <strong class="subCap">{{ date_format($product->created_at, 'D M Y') }}</strong></p>
                                 <span class="featurePricing">${{ $product->price }}</span>
                                 {{-- <div class="btn-wrapper">
                                     <span class="pro-btn1">NEW</span>
