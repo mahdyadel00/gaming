@@ -23,7 +23,7 @@ class ProductController extends Controller
     protected function index()
     {
 
-        $products = Product::with('user')->get();
+        $products = Product::with('user')->where('nigotiable' , '!=' , 1)->paginate(12);
         $categories = Category::get();
 
         return view('frontend.products.index', compact('products', 'categories'));
@@ -43,7 +43,6 @@ class ProductController extends Controller
 
     protected function store(Request $request)
     {
-        // dd($request->all());
         $image_in_db = NULL;
         if ($request->has('image')) {
             $request->validate([
@@ -149,5 +148,25 @@ class ProductController extends Controller
         $product->delete();
 
         return redirect()->back();
+    }
+
+    protected function promoted(Request $request){
+
+        $product = Product::where('id' , $request->id)->first();
+
+        $product->update([
+
+            'nigotiable' => 1,
+        ]);
+
+        return response()->json('success');
+    }
+    protected function promotedAds(Request $request){
+
+        $products = Product::with('user')->where('nigotiable' , 1)->paginate(1);
+        $categories = Category::get();
+
+
+        return view('frontend.products.promoted', compact('products', 'categories'));
     }
 }

@@ -67,6 +67,7 @@ $setting = App\Models\Settings::first();
                             </ul>
                         </li>
                         <li><a href="{{ route('conacts') }}">@lang('site.contacts')</a></li>
+                        <li><a href="{{ route('promoted.ads') }}">@lang('site.promoted_ads')</a></li>
                         @guest
 
                             <li><a href="{{ route('login.show') }}">@lang('site.login')</a></li>

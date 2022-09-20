@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -21,7 +22,7 @@ Route::prefix(LaravelLocalization::setLocale())
     ->group(function () {
         Auth::routes();
         Route::get('/', [HomeController::class, 'index'])->name('home');
-       // ============================================================================** Login Route ** ==========================================================================
+        // ============================================================================** Login Route ** ==========================================================================
         Route::get('login/show', [LoginController::class, 'login'])->name('login.show');
         Route::post('login/post', [LoginController::class, 'doLogin'])->name('login.do');
         Route::get('logout', [LoginController::class, 'logout'])->name('logout.front');
@@ -56,6 +57,8 @@ Route::prefix(LaravelLocalization::setLocale())
         Route::post('/product-store', [ProductController::class, 'store'])->name('product.store');
         Route::get('/product-single/{id}', [ProductController::class, 'single'])->name('product.single');
         Route::delete('/product/delete/{id}', [ProductController::class, 'delete'])->name('products.delete');
+        Route::post('/product/promoted', [ProductController::class, 'promoted'])->name('products.promoted');
+        Route::get('/ads/promoted', [ProductController::class, 'promotedAds'])->name('promoted.ads');
         Route::get('/products', [ProductController::class, 'index'])->name('product.index');
         Route::get('/products/create-image', [ProductController::class, 'storeImage'])->name('products.store_image');
         Route::get('/products/delete-image', [ProductController::class, 'deleteImage'])->name('products.delete_image');
@@ -63,8 +66,4 @@ Route::prefix(LaravelLocalization::setLocale())
 
         Route::post('favorite/{product}/create', [FavouriteController::class, 'create'])->name('favorite.store');
         Route::delete('favorite/{product}', [FavouriteController::class, 'destroy'])->name('favorite.destroy');
-
-
-
-
     });

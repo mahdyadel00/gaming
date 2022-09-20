@@ -29,9 +29,9 @@ class HomeController extends Controller
         $slider_top = Slider::skip(3)->first();
         $banners = Banner::get();
         $setting = Settings::first();
-        $products = Product::with(['category' , 'user'])->get();
-        // dd($products);
+        $product_promoted = Product::with(['category' , 'user'])->where('nigotiable' , 1)->get();
+        $products = Product::with(['category' , 'user'])->where('nigotiable' , '!=' , 1)->limit(6)->get();
 
-        return view('frontend.layouts.index', compact('setting', 'categories', 'products', 'slider', 'slider_right', 'slider_left', 'slider_top', 'banners'));
+        return view('frontend.layouts.index', compact('setting', 'categories', 'products', 'product_promoted' ,  'slider', 'slider_right', 'slider_left', 'slider_top', 'banners'));
     }
 }

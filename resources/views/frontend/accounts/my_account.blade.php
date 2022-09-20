@@ -104,25 +104,29 @@
                                                 class="subCap">{{ date_format($product->user[0]->created_at, 'D M Y') }}</strong>
                                         </p>
                                         <span class="featurePricing">${{ $product->price }}</span>
-                                        {{-- <div class="btn-wrapper">
-                                        <span class="pro-btn1">RENOVETED</span>
-                                        <span class="pro-btn2">PROMOTED</span>
-                                    </div> --}}
+                                        <div class="btn-wrapper">
+
+                                            @if ($product->nigotiable == 1)
+                                                <span class="pro-btn2">@lang('site.promoted')</span>
+                                            @else
+                                            <span class="pro-btn1">@lang('site.un_promoted')</span>
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="btn-wrapper mb-20">
                                     <a href="#" class="btn btn-primary mr-10"><i
                                             class="lar la-eye icon"></i>{{ $product->view }}</a>
-                                            <form action="{{ route('products.delete', $product->id) }}" method="post"
-                                                style="display: inline-block">
-                                                {{ csrf_field() }}
-                                                {{ method_field('delete') }}
-                                                <button class="btn btn-danger" type="submit">
-                                                    <a href="#" class="text-secondary font-weight-bold text-xs"
-                                                        data-toggle="tooltip" data-original-title="Delete product">
-                                                        <i style="color:white" class="fa fa-trash">@lang('site.delete')</i>
-                                                    </a></button>
-                                            </form><!-- end of form -->
+                                    <form action="{{ route('products.delete', $product->id) }}" method="post"
+                                        style="display: inline-block">
+                                        {{ csrf_field() }}
+                                        {{ method_field('delete') }}
+                                        <button class="btn btn-danger" type="submit">
+                                            <a href="#" class="text-secondary font-weight-bold text-xs"
+                                                data-toggle="tooltip" data-original-title="Delete product">
+                                                <i style="color:white" class="fa fa-trash">@lang('site.delete')</i>
+                                            </a></button>
+                                    </form><!-- end of form -->
                                     {{-- <a href="#" class="btn btn-danger">@lang('site.delete')</a> --}}
                                 </div>
                             </div>
