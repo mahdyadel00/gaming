@@ -10,23 +10,32 @@
                     <div class="accountSidebar">
                         <ul class="listing listScroll">
                             <li class="listItem ">
-                                <a href="{{ route('my_account') }}" class="items {{ request()->url() == route('my_account') ? ' active' : '' }}"> <i class="lar la-user-circle icon"></i>
+                                <a href="{{ route('my_account') }}"
+                                    class="items {{ request()->url() == route('my_account') ? ' active' : '' }}"> <i
+                                        class="lar la-user-circle icon"></i>
                                     @lang('site.my_account')</a>
                             </li>
                             <li class="listItem">
-                                <a href="{{ route('member_ship') }}" class="items {{ request()->url() == route('member_ship') ? ' active' : '' }}"><i class="las la-address-card icon"></i>
+                                <a href="{{ route('member_ship') }}"
+                                    class="items {{ request()->url() == route('member_ship') ? ' active' : '' }}"><i
+                                        class="las la-address-card icon"></i>
                                     @lang('site.membership')</a>
                             </li>
                             <li class="listItem">
-                                <a href="{{ route('promoted_add') }}" class="items {{ request()->url() == route('promoted_add') ? ' active' : '' }}"><i class="las la-ad icon"></i>
+                                <a href="{{ route('promoted_add') }}"
+                                    class="items {{ request()->url() == route('promoted_add') ? ' active' : '' }}"><i
+                                        class="las la-ad icon"></i>
                                     @lang('site.promoted_ads')</a>
                             </li>
                             <li class="listItem">
-                                <a href="{{ route('wish_list') }}" class="items {{ request()->url() == route('wish_list') ? ' active' : '' }}"> <i class="lar la-heart icon"></i>
+                                <a href="{{ route('wish_list') }}"
+                                    class="items {{ request()->url() == route('wish_list') ? ' active' : '' }}"> <i
+                                        class="lar la-heart icon"></i>
                                     @lang('site.wish_list')</a>
                             </li>
                             <li class="listItem">
-                                <a href="{{ route('help') }}" class="items {{ request()->url() == route('help') ? ' active' : '' }}"> <i
+                                <a href="{{ route('help') }}"
+                                    class="items {{ request()->url() == route('help') ? ' active' : '' }}"> <i
                                         class="lar la-question-circle icon"></i> @lang('site.help')</a>
                             </li>
                         </ul>
@@ -82,27 +91,46 @@
                     <div class="myListing">
                         <!-- Single -->
                         @foreach ($products as $product)
-                        <div class="singleFlexitem mb-24  wow fadeInUp social" data-wow-delay="0.0s">
-                            <div class="listCap">
-                                <div class="recentImg">
-                                    <img src="{{ asset($product->image) }}" style="width: 20%" alt="images">
+                            <div class="singleFlexitem mb-24  wow fadeInUp social" data-wow-delay="0.0s">
+                                <div class="listCap">
+                                    <div class="recentImg">
+                                        <img src="{{ asset($product->image) }}" style="width: 100px;height:100px"
+                                            alt="images">
+                                    </div>
+                                    <div class="recentCaption">
+                                        <h5><a href="{{ route('product.single', $product->id) }}"
+                                                class="featureTittle">{{ $product->title_en }}</a></h5>
+                                        <p class="featureCap">@lang('site.posted_on') <strong
+                                                class="subCap">{{ date_format($product->user[0]->created_at, 'D M Y') }}</strong>
+                                        </p>
+                                        <span class="featurePricing">${{ $product->price }}</span>
+                                        <div class="btn-wrapper">
+
+                                            @if ($product->nigotiable == 1)
+                                                <span class="pro-btn2">@lang('site.promoted')</span>
+                                            @else
+                                            <span class="pro-btn1">@lang('site.un_promoted')</span>
+                                            @endif
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="recentCaption">
-                                    <h5><a href="add_details.html" class="featureTittle">{{ $product->title_en }}</a></h5>
-                                    <p class="featureCap">@lang('site.posted_on') <strong class="subCap">{{  date_format($product->user[0]->created_at, 'D M Y') }}</strong></p>
-                                    <span class="featurePricing">${{ $product->price }}</span>
-                                    {{-- <div class="btn-wrapper">
-                                        <span class="pro-btn1">RENOVETED</span>
-                                        <span class="pro-btn2">PROMOTED</span>
-                                    </div> --}}
+                                <div class="btn-wrapper mb-20">
+                                    <a href="#" class="btn btn-primary mr-10"><i
+                                            class="lar la-eye icon"></i>{{ $product->view }}</a>
+                                    <form action="{{ route('products.delete', $product->id) }}" method="post"
+                                        style="display: inline-block">
+                                        {{ csrf_field() }}
+                                        {{ method_field('delete') }}
+                                        <button class="btn btn-danger" type="submit">
+                                            <a href="#" class="text-secondary font-weight-bold text-xs"
+                                                data-toggle="tooltip" data-original-title="Delete product">
+                                                <i style="color:white" class="fa fa-trash">@lang('site.delete')</i>
+                                            </a></button>
+                                    </form><!-- end of form -->
+                                    {{-- <a href="#" class="btn btn-danger">@lang('site.delete')</a> --}}
                                 </div>
                             </div>
-                            <div class="btn-wrapper mb-20">
-                                <a href="#" class="cmn-btn-outline4 mr-10"><i class="lar la-eye icon"></i>{{ $product->view }}</a>
-                                {{-- <a href="#" class="cmn-btn4">Edit Ad</a> --}}
-                            </div>
-                        </div>
-                        <!-- Single -->
+                            <!-- Single -->
                         @endforeach
                     </div>
                 </div>

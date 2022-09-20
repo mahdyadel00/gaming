@@ -116,5 +116,11 @@ return [
     'america' => ' America',
     'asia' => ' Asia',
     'europ' => ' Europ',
+    'delete' => ' Delete',
+    'Promote_this_ad' => ' Promote This Ad',
+    'promoted' => 'PROMOTED',
+    'un_promoted' => 'UN PROMOTED',
+    'show_more' => 'Show More',
+    'promoted_ads' => 'Promoted Ads',
 
 ];

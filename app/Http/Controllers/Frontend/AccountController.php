@@ -100,7 +100,7 @@ class AccountController extends Controller
 
     protected function promoted(){
 
-        $products = Product::where('user_id' , auth()->user()->id)->get();
+        $products = Product::where('user_id' , auth()->user()->id)->where('nigotiable' , 1)->get();
 
         return view('frontend.accounts.promotede_add' , compact('products'));
     }

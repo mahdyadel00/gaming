@@ -12,49 +12,50 @@
                         <!-- All Categories -->
                         <ul class="listing listScroll">
                             @foreach ($categories as $category)
-
-                            <li class="listItem"><a href="{{ route('single_category' , $category->id) }}" class="items">
-                                <img src="{{ asset($category->image) }}" class="icon" alt="images"> <span>{{ $category->title_en }} <span class="itemNumber">{{ $category->products->count() }}</span></span>
-                            </a></li>
+                                <li class="listItem"><a href="{{ route('single_category', $category->id) }}" class="items">
+                                        <img src="{{ asset($category->image) }}" class="icon" alt="images">
+                                        <span>{{ $category->title_en }} <span
+                                                class="itemNumber">{{ $category->products->count() }}</span></span>
+                                    </a></li>
                             @endforeach
 
                         </ul>
 
-                            <!-- Price -->
-                            <div class="price mb-10">
-                                <h5 class="catTittle">@lang('site.price')</h5>
-                                <!-- Search Box -->
-                                <form action="{{ route('search') }}" method="get" id="search" class="picPrice">
-                                    @csrf
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="input-form">
-                                                <input type="number" placeholder="price_min" class="form-control">
-                                                <!-- icon -->
-                                                <div class="icon"><i class="las la-dollar-sign"></i></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="input-form">
-                                                <input type="number" name="price_max" placeholder="Max" class="form-control">
-                                                <!-- icon -->
-                                                <div class="icon"><i class="las la-dollar-sign"></i></div>
-                                            </div>
+                        <!-- Price -->
+                        <div class="price mb-10">
+                            <h5 class="catTittle">@lang('site.price')</h5>
+                            <!-- Search Box -->
+                            <form action="{{ route('search') }}" method="get" id="search" class="picPrice">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="input-form">
+                                            <input type="number" placeholder="price_min" class="form-control">
+                                            <!-- icon -->
+                                            <div class="icon"><i class="las la-dollar-sign"></i></div>
                                         </div>
                                     </div>
-                                </form>
-                            </div>
-                            <!-- Date Posted -->
-                            <div class="dateTime mb-30">
-                                <h5 class="catTittle">@lang('site.date_posted')</h5>
-                                <!-- select in date -->
-                                <div class="datePicker">
-                                    <input id="datepicker1" name="date"  placeholder="10/04/2022" />
+                                    <div class="col-lg-6">
+                                        <div class="input-form">
+                                            <input type="number" name="price_max" placeholder="Max" class="form-control">
+                                            <!-- icon -->
+                                            <div class="icon"><i class="las la-dollar-sign"></i></div>
+                                        </div>
+                                    </div>
                                 </div>
+                            </form>
+                        </div>
+                        <!-- Date Posted -->
+                        <div class="dateTime mb-30">
+                            <h5 class="catTittle">@lang('site.date_posted')</h5>
+                            <!-- select in date -->
+                            <div class="datePicker">
+                                <input id="datepicker1" name="date" placeholder="10/04/2022" />
                             </div>
-                            <div class="btn-wrapper">
-                                <a href="#" type="submit" form="search" class="cmn-btn4 w-100"> @lang('site.reset_filter')</a>
-                            </div>
+                        </div>
+                        <div class="btn-wrapper">
+                            <a href="#" type="submit" form="search" class="cmn-btn4 w-100"> @lang('site.reset_filter')</a>
+                        </div>
                     </div>
                 </div>
                 <!-- Right Content -->
@@ -63,7 +64,7 @@
                         <div class="row">
                             <div class="col-lg-5">
                                 <div class="select-itms">
-                                    <select name="select"  class="niceSelect">
+                                    <select name="select" class="niceSelect">
                                         <option value="">New York, USA</option>
                                         <option value="">Location PK</option>
                                         <option value="">Location US</option>
@@ -135,8 +136,10 @@
 
                                     <!-- Custom Tab -->
                                     <div class="view">
-                                        <button class="customTab active" data-toggle-target=".customTab-content-1"><i class="las la-th-large"></i></button>
-                                        <button class="customTab" data-toggle-target=".customTab-content-2"><i class="las la-bars"></i></button>
+                                        <button class="customTab active" data-toggle-target=".customTab-content-1"><i
+                                                class="las la-th-large"></i></button>
+                                        <button class="customTab" data-toggle-target=".customTab-content-2"><i
+                                                class="las la-bars"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -147,28 +150,46 @@
                     <div class="gridView customTab-content customTab-content-1 active">
                         <div class="row ">
                             @foreach ($products as $product)
-                            <div class="col-xl-4  col-lg-6  col-md-12 col-sm-6">
-                                <div class="singleFeature mb-24">
-                                    <div class="featureImg">
-                                        <a href="{{ route('product.single' , $product->id) }}"><img  src="{{ asset($product->image) }}" width="200px" height="200px" alt="images"></a>
-                                    </div>
-                                    <div class="featureCaption">
-                                       <h4><a href="{{ route('product.single' , $product->id) }}" class="featureTittle">{{ $product->title_en }}</a></h4>
-                                        <p class="featureCap">Los Angels, CA · <strong class="subCap">{{ date_format($product->created_at, 'D M Y') }}</strong></p>
-                                        <span class="featurePricing">${{ $product->price }}</span>
-                                        <div class="btn-wrapper">
-                                           <span class="pro-btn1">NEW</span>
-                                           <span class="pro-btn2">PROMTED</span>
+                                <div class="col-xl-4  col-lg-6  col-md-12 col-sm-6">
+                                    <div class="singleFeature mb-24">
+                                        <div class="featureImg">
+                                            <a href="{{ route('product.single', $product->id) }}"><img
+                                                    src="{{ asset($product->image) }}" style="width:100%;height:55%"
+                                                    alt="images"></a>
+                                        </div>
+                                        <div class="featureCaption">
+                                            <h4><a href="{{ route('product.single', $product->id) }}"
+                                                    class="featureTittle">{{ $product->title_en }}</a></h4>
+                                            <p class="featureCap">Los Angels, CA · <strong
+                                                    class="subCap">{{ date_format($product->created_at, 'D M Y') }}</strong>
+                                            </p>
+                                            <span class="featurePricing">${{ $product->price }}</span>
+                                            <div class="btn-wrapper">
+                                                @if ($product->condition == 0)
+                                                    <span class="pro-btn1">@lang('site.america')</span>
+                                                @endif
+                                                @if ($product->condition == 1)
+                                                    <span class="pro-btn1">@lang('site.asia')</span>
+                                                @endif
+                                                @if ($product->condition == 2)
+                                                    <span class="pro-btn1">@lang('site.europ')</span>
+                                                @endif
+                                                @if ($product->nigotiable == 1)
+                                                    <span class="pro-btn2">@lang('site.promoted')</span>
+                                                @else
+                                                    <span class="pro-btn2">@lang('site.un_promoted')</span>
+                                                @endif
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             @endforeach
+                            {{-- {{ $products->links() }} --}}
                         </div>
                     </div>
 
                     <!-- List View -->
-                    <div class="listingView customTab-content customTab-content-2">
+                    {{-- <div class="listingView customTab-content customTab-content-2">
                         <div class="row ">
                             <div class="col-xl-6 col-lg-12">
                                 <div class="singleFlexitem mb-24">
@@ -298,20 +319,22 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                     <!-- Pagination -->
                     <div class="row justify-content-center">
                         <div class="col-lg-12">
                             <div class="pagination mt-60">
                                 <ul class="pagination-list">
-                                    <li class=" wow fadeInRight" data-wow-delay="0.0s"><a href="#" class="page-number"><i class="las la-angle-left"></i></a></li>
+                                    <li class=" wow fadeInRight" data-wow-delay="0.0s"><a href="#"
+                                            class="page-number"><i class="las la-angle-left"></i></a></li>
                                     <li><span class="page-number current">1</span></li>
                                     <li><a href="#" class="page-number">2</a></li>
                                     <li><a href="#" class="page-number">3</a></li>
                                     <li><a href="#" class="page-number">4</a></li>
                                     <li><a href="#" class="page-number">5</a></li>
-                                    <li class=" wow fadeInLeft" data-wow-delay="0.0s"><a href="#" class="page-number"><i class="las la-angle-right"></i></a></li>
+                                    <li class=" wow fadeInLeft" data-wow-delay="0.0s"><a href="#"
+                                            class="page-number"><i class="las la-angle-right"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -323,8 +346,8 @@
     <!-- End-of Categories -->
 @endsection
 @push('js')
-<script>
-      $('body').on('submit', '#search', function (e) {
+    <script>
+        $('body').on('submit', '#search', function(e) {
             e.preventDefault();
             let form = $(this);
             let url = $(this).attr('action');
@@ -337,13 +360,13 @@
                 cache: false,
                 contentType: false,
                 processData: false,
-                success: function (response) {
+                success: function(response) {
                     if (response == 'success') {
 
                         new Noty({
                             type: 'success',
                             layout: 'topRight',
-                            text: "{{('Saved Successfully')}}",
+                            text: "{{ 'Saved Successfully' }}",
                             timeout: 2000,
                             killer: true
                         }).show();
@@ -353,9 +376,9 @@
                         $('#profile-tab-' + lang).trigger('click');
                     }
                 },
-                error: function (xhr, textStatus, errorThrown) {
+                error: function(xhr, textStatus, errorThrown) {
                     var errors = $.parseJSON(xhr.responseText);
-                    $.each(errors.errors, function (key, val) {
+                    $.each(errors.errors, function(key, val) {
                         new Noty({
                             type: 'error',
                             layout: 'topRight',
@@ -368,6 +391,5 @@
             });
 
         });
-</script>
-
+    </script>
 @endpush

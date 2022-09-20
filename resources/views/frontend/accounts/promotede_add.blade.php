@@ -10,23 +10,32 @@
                     <div class="accountSidebar">
                         <ul class="listing listScroll">
                             <li class="listItem ">
-                                <a href="{{ route('my_account') }}" class="items {{ request()->url() == route('my_account') ? ' active' : '' }}"> <i class="lar la-user-circle icon"></i>
+                                <a href="{{ route('my_account') }}"
+                                    class="items {{ request()->url() == route('my_account') ? ' active' : '' }}"> <i
+                                        class="lar la-user-circle icon"></i>
                                     @lang('site.my_account')</a>
                             </li>
                             <li class="listItem">
-                                <a href="{{ route('member_ship') }}" class="items {{ request()->url() == route('member_ship') ? ' active' : '' }}"><i class="las la-address-card icon"></i>
+                                <a href="{{ route('member_ship') }}"
+                                    class="items {{ request()->url() == route('member_ship') ? ' active' : '' }}"><i
+                                        class="las la-address-card icon"></i>
                                     @lang('site.membership')</a>
                             </li>
                             <li class="listItem">
-                                <a href="{{ route('promoted_add') }}" class="items {{ request()->url() == route('promoted_add') ? ' active' : '' }}"><i class="las la-ad icon"></i>
+                                <a href="{{ route('promoted_add') }}"
+                                    class="items {{ request()->url() == route('promoted_add') ? ' active' : '' }}"><i
+                                        class="las la-ad icon"></i>
                                     @lang('site.promoted_ads')</a>
                             </li>
                             <li class="listItem">
-                                <a href="{{ route('wish_list') }}" class="items {{ request()->url() == route('wish_list') ? ' active' : '' }}"> <i class="lar la-heart icon"></i>
+                                <a href="{{ route('wish_list') }}"
+                                    class="items {{ request()->url() == route('wish_list') ? ' active' : '' }}"> <i
+                                        class="lar la-heart icon"></i>
                                     @lang('site.wish_list')</a>
                             </li>
                             <li class="listItem">
-                                <a href="{{ route('help') }}" class="items {{ request()->url() == route('help') ? ' active' : '' }}"> <i
+                                <a href="{{ route('help') }}"
+                                    class="items {{ request()->url() == route('help') ? ' active' : '' }}"> <i
                                         class="lar la-question-circle icon"></i> @lang('site.help')</a>
                             </li>
                         </ul>
@@ -96,22 +105,29 @@
                     <div class="promoteAds">
                         <!-- Single -->
                         @foreach ($products as $product)
-
-                        <div class="singlePromoteAds mb-24  wow fadeInUp social" data-wow-delay="0.0s">
-                            <div class="adsCap">
-                                <div class="adsImg">
-                                    <img src="{{ asset($product->image) }}" alt="images" style="width: 70px">
+                            <div class="singlePromoteAds mb-24  wow fadeInUp social" data-wow-delay="0.0s">
+                                <div class="adsCap">
+                                    <div class="adsImg">
+                                        <img src="{{ asset($product->image) }}" alt="images" style="width: 70px">
+                                    </div>
+                                    <div class="adsCaption">
+                                        <h5><a href="{{ route('product.single', $product->id) }}"
+                                                class="adsTittle">{{ $product->title_en }}</a></h5>
+                                        <p class="adsPera">@lang('site.posted_on') <strong
+                                                class="subCap">{{ date_format($product->user[0]->created_at, 'D M Y') }}</strong>
+                                        </p>
+                                        <span class="adsPricing">${{ $product->price }}</span>
+                                    </div>
                                 </div>
-                                <div class="adsCaption">
-                                    <h5><a href="{{ route('product.single' , $product->id) }}" class="adsTittle">{{ $product->title_en }}</a></h5>
-                                    <p class="adsPera">@lang('site.posted_on') <strong class="subCap">{{  date_format($product->user[0]->created_at, 'D M Y') }}</strong></p>
-                                    <span class="adsPricing">${{ $product->price }}</span>
+                                <div class="btn-wrapper mb-20">
+                                    @if ($product->nigotiable == 1)
+                                        <a href="#" id="ad-promoted" style="background: var(--main-color-two);color:#fff" data-id={{ $product->id }}
+                                            class="cmn-btn4">@lang('site.Promote_this_ad')</a>
+                                    @else<a href="#" id="ad-promoted" style="background: #fff;color:var(--main-color-two); border: 1px solid    ;" data-id={{ $product->id }}
+                                            class="cmn-btn4">@lang('site.Promote_this_ad')</a>
+                                    @endif
                                 </div>
                             </div>
-                            <div class="btn-wrapper mb-20">
-                                <a href="add_setting.html" class="cmn-btn4">Promote this ad</a>
-                            </div>
-                        </div>
                         @endforeach
                     </div>
                     <!-- END -->
@@ -121,3 +137,43 @@
     </div>
     <!--End-of My Account-->
 @endsection
+@push('js')
+    <script>
+        $(document).on('click', '#ad-promoted', function() {
+            let edit_url = '{{ route('products.promoted') }}';
+            let id = $(this).data('id');
+            let token = '{{ csrf_token() }}';
+            $.ajax({
+                url: edit_url,
+                method: "post",
+                data: {
+                    '_token': token,
+                    'id': id,
+                },
+                dataType: 'json',
+                success: function(response) {
+                    new Noty({
+                        type: 'success',
+                        layout: 'topRight',
+                        text: "{{ 'This Product Successfully Promoted' }}",
+                        timeout: 2000,
+                        killer: true
+                    }).show();
+                    option.val(response['category_id'])
+                },
+                error: function(xhr, textStatus, errorThrown) {
+                    var errors = $.parseJSON(xhr.responseText);
+                    $.each(errors.errors, function(key, val) {
+                        new Noty({
+                            type: 'error',
+                            layout: 'topRight',
+                            text: val,
+                            timeout: 2000,
+                            killer: true
+                        }).show();
+                    });
+                }
+            });
+        });
+    </script>
+@endpush

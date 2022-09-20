@@ -36,7 +36,7 @@ class CategoryController extends Controller
     {
         $category = Category::where('id', $id)->first();
 
-        $products = Product::where('category_id', $category->id)->get();
+        $products = Product::where('category_id', $category->id)->paginate(2);
 
         return view('frontend.categories.single', compact('category', 'products'));
     }
