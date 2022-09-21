@@ -75,6 +75,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
 
 
     ],
@@ -137,7 +138,7 @@ return [
         'Html'   =>Collective\Html\HtmlFacade::class,
         'Geocoder' => Spatie\Geocoder\Facades\Geocoder::class,
 
-
+        'Image' => Intervention\Image\Facades\Image::class
     ],
 
 ];

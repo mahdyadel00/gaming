@@ -112,11 +112,11 @@
                                         </div>
                                     </div>
                                     <div class="col-md-12">
-                                        {{-- *********   SETTING ********************* --}}
+                                        {{-- *********   image dropzone ********************* --}}
                                         <div enctype="multipart/form-data"
                                             class="dropzone" id="frmTarget">
                                             @csrf
-                                            <input type="hidden" name='id' id='id1234' value="">
+                                            <input type="hidden" name='image' id='id1234' value="">
                                     </div>
                                         <div class="row ads_image_preview">
                                         </div>
@@ -149,7 +149,7 @@
 @push('js')
     <script>
     Dropzone.options.frmTarget = {
-            url:"{{ route('product.store') }}",
+            url:"{{ route('products.store_image') }}",
             maxFilesize:1,
             paramName: 'file',
             addRemoveLinks: true,
@@ -169,7 +169,7 @@
                 $.ajax({
                     type: 'POST',
                     dataType: 'json',
-                    url: '{{route('product.store')}}',
+                    url: '{{route('products.store_image')}}',
                     data: {'_token': ' {{ csrf_token() }}', id: file.id},
                     success: function (data) {
                         console.log('success: ' + data);
