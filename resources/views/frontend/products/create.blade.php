@@ -113,7 +113,16 @@
                                         <div class="input-form">
                                             <input type="file" class="form-control modal-title" name='image'
                                                 accept="image/jpeg,image/jpg,image/png">
-
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        {{-- *********   image dropzone ********************* --}}
+                                        <div enctype="multipart/form-data"
+                                            class="dropzone" id="frmTarget">
+                                            @csrf
+                                            <input type="hidden" name='image' id='id1234' value="">
+                                    </div>
+                                        <div class="row ads_image_preview">
                                         </div>
                                     </div>
                                     <!-- user Message -->
@@ -143,47 +152,37 @@
 @endsection
 @push('js')
     <script>
-        Dropzone.options.frmTarget = {
-            url: "{{ route('products.store_image') }}",
-            maxFilesize: 1,
+    Dropzone.options.frmTarget = {
+            url:"{{ route('products.store_image') }}",
+            maxFilesize:1,
             paramName: 'file',
             addRemoveLinks: true,
             autoProcessQueue: true,
-            parallelUploads: 1,
+            parallelUploads:1,
             dictRemoveFile: 'Remove file',
-
             params: {
-                _token: '{{ csrf_token() }}',
+                _token: '{{csrf_token()}}',
                 id: $("#id1234").val(),
-
             },
             acceptedFiles: ".jpeg,.jpg,.png,.gif",
-            success: function(file, response) {
+            success: function (file, response) {
                 file.id = response.id;
                 console.log(response);
             },
             removedfile: function(file) {
-
-
                 $.ajax({
                     type: 'POST',
                     dataType: 'json',
-                    url: '{{ route('products.delete_image') }}',
-                    data: {
-                        '_token': ' {{ csrf_token() }}',
-                        id: file.id
-                    },
-                    success: function(data) {
+                    url: '{{route('products.store_image')}}',
+                    data: {'_token': ' {{ csrf_token() }}', id: file.id},
+                    success: function (data) {
                         console.log('success: ' + data);
                     }
                 })
                 var _ref;
-                return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) :
-                    void 0;
+                return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
             },
-
-
-
         };
+
     </script>
 @endpush

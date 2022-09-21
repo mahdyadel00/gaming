@@ -21,9 +21,7 @@
                                                 </div>
                                             </div>
                                         </form>
-
                                     </div>
-
                                     <!-- Custom Tab -->
                                     <div class="view">
                                         <button class="customTab active" data-toggle-target=".customTab-content-1"><i
@@ -35,7 +33,6 @@
                             </div>
                         </div>
                     </div>
-
                     <!-- Grid View -->
                     <div class="gridView customTab-content customTab-content-1 active">
                         <div class="row ">
@@ -74,7 +71,7 @@
                                     </div>
                                 </div>
                             @endforeach
-                            {{-- {{ $products->links() }} --}}
+                            {{ $products->links() }}
                         </div>
                     </div>
                 </div>
