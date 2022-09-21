@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Http\Request;
+use App\Models\AuthImage;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Country;
@@ -29,8 +30,9 @@ class RegisterController extends Controller
      */
     protected function register()
     {
+        $auth = AuthImage::first();
         $countries = Country::get();
-        return view('frontend.register', compact('countries'));
+        return view('frontend.register', compact('countries' , 'auth'));
     }
 
     protected function doRegister(Request $request)

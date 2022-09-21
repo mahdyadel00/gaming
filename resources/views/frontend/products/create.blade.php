@@ -35,17 +35,22 @@
                                     <!-- condition -->
                                     <div class="col-lg-6 col-md-6">
                                         <div class="condition">
-                                            <h6 class="infoTitle">@lang('site.item_condition')</h6>
+                                            <h6 class="infoTitle">@lang('site.server')</h6>
                                             <div class="cs_radio_btn">
                                                 <div class="radio">
                                                     <input id="radio-1" name="condition" type="radio" tabindex="0"
                                                         value="0">
-                                                    <label for="radio-1" class="radio-label">Pre-Loved</label>
+                                                    <label for="radio-1" class="radio-label">@lang('site.america')</label>
                                                 </div>
                                                 <div class="radio">
                                                     <input id="radio-2" name="condition" type="radio" tabindex="0"
                                                         value="1">
-                                                    <label for="radio-2" class="radio-label">New</label>
+                                                    <label for="radio-2" class="radio-label">@lang('site.asia')</label>
+                                                </div>
+                                                <div class="radio">
+                                                    <input id="radio-3" name="condition" type="radio" tabindex="0"
+                                                        value="2">
+                                                    <label for="radio-3" class="radio-label">@lang('site.europ')</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -108,7 +113,6 @@
                                         <div class="input-form">
                                             <input type="file" class="form-control modal-title" name='image'
                                                 accept="image/jpeg,image/jpg,image/png">
-
                                         </div>
                                     </div>
                                     <div class="col-md-12">

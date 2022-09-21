@@ -138,6 +138,7 @@ return [
         'Html'   =>Collective\Html\HtmlFacade::class,
         'Geocoder' => Spatie\Geocoder\Facades\Geocoder::class,
 
+
         'Image' => Intervention\Image\Facades\Image::class
     ],
 

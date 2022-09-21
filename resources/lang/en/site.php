@@ -112,5 +112,15 @@ return [
     'date_posted' => ' Date Posted',
     'select_category' => ' Select Category',
     'add_image' => ' Add Image',
+    'server' => ' Server',
+    'america' => ' America',
+    'asia' => ' Asia',
+    'europ' => ' Europ',
+    'delete' => ' Delete',
+    'Promote_this_ad' => ' Promote This Ad',
+    'promoted' => 'PROMOTED',
+    'un_promoted' => 'UN PROMOTED',
+    'show_more' => 'Show More',
+    'promoted_ads' => 'Promoted Ads',
 
 ];
