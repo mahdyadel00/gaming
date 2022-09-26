@@ -23,5 +23,8 @@ class Product extends Model
     public function favourite(){
         return $this->belongsToMany(User::class , 'favourite_products' , 'product_id' , 'user_id');
     }
+    public function adImages(){
+        return $this->hasMany(ImageProduct::class , 'product_id' , 'id');
+    }
 
 }

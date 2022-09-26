@@ -24,6 +24,9 @@ $setting = App\Models\Settings::first();
     <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/main-style.css">
     {{-- Noty --}}
     <link rel="stylesheet" href="{{ asset('css/noty/noty.css') }}">
+    {{-- dropzone --}}
+    <link rel="stylesheet" href="{{ asset('frontend/dropzone.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
 
@@ -207,8 +210,9 @@ $setting = App\Models\Settings::first();
     <script src="{{ asset('frontend') }}/assets/js/plugin.js"></script>
     <!-- Main js -->
     <script src="{{ asset('frontend') }}/assets/js/main.js"></script>
-
-
+    {{-- dropzone --}}
+    <script src="{{ asset('frontend/dropzone.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js" integrity="sha512-naukR7I+Nk6gp7p5TMA4ycgfxaZBJ7MO5iC3Fp6ySQyKFHOGfpkSZkYVWV5R7u7cfAicxanwYQ5D1e17EfJcMA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     @stack('js')
 </body>
 

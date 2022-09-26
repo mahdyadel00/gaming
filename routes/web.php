@@ -58,9 +58,10 @@ Route::prefix(LaravelLocalization::setLocale())
         Route::get('/product-single/{id}', [ProductController::class, 'single'])->name('product.single');
         Route::delete('/product/delete/{id}', [ProductController::class, 'delete'])->name('products.delete');
         Route::post('/product/promoted', [ProductController::class, 'promoted'])->name('products.promoted');
+        Route::post('/product/remove/promoted', [ProductController::class, 'removePromoted'])->name('products.remove_promoted');
         Route::get('/ads/promoted', [ProductController::class, 'promotedAds'])->name('promoted.ads');
         Route::get('/products', [ProductController::class, 'index'])->name('product.index');
-        Route::get('/products/create-image', [ProductController::class, 'storeImage'])->name('products.store_image');
+        Route::post('/products/create-image', [ProductController::class, 'uploadImage'])->name('products.store_image');
         Route::get('/products/delete-image', [ProductController::class, 'deleteImage'])->name('products.delete_image');
         // ============================================================================** Favourite Route ** ==========================================================================
 

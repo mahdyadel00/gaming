@@ -26,6 +26,12 @@
                                             accept="image/jpeg,image/jpg,image/png" required>
                                         <img src="{{ asset( $auth->register_image) }}" height="100px" width="100px" />
                                     </div>
+                                    <div class="col">
+                                        <label> Image Contact</label>
+                                        <input type="file" class="form-control modal-title" name='contact_us_image'
+                                            accept="image/jpeg,image/jpg,image/png" required>
+                                        <img src="{{ asset( $auth->contact_us_image) }}" height="100px" width="100px" />
+                                    </div>
                             </div>
                             <div class="d-flex justify-content-center">
                                 <button type="submit" class="btn btn-primary">Edit</button>

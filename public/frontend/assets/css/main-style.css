@@ -1,4 +1,4 @@
-/* 
+/*
     display: flex;
     justify-content: space-between;
     justify-content: center;
@@ -8067,7 +8067,7 @@ object {
   position: absolute;
   left: 16px;
   display: inline-block;
-  top: 26%;
+  top: 10%;
   font-size: 23px;
 }
 .sliderArea .search-box .select-form .nice-select {
@@ -10794,7 +10794,7 @@ object {
 }
 
 /*----------------------------
-    Single Product Details 
+    Single Product Details
 -----------------------------*/
 .shop-details-area-wrapper {
   padding-top: 100px;
