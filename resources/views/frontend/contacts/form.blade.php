@@ -70,7 +70,7 @@
                 </div>
                 <div class="col-xl-7 col-lg-12">
                     <div class="contactRight-img">
-                        <img src="{{ asset('frontend') }}/assets/img/gallery/contact.jpg" alt="images" class="contactImg">
+                        <img src="{{ asset($auth_image->contact_us_image) }}" alt="images" class="contactImg">
                     </div>
                 </div>
             </div>

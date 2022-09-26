@@ -17,6 +17,7 @@ class CreateAuthsTable extends Migration
             $table->id();
             $table->string('login_image');
             $table->string('register_image');
+            $table->string('contact_us_image');
             $table->timestamps();
         });
     }

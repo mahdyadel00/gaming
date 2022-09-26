@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\AuthImage;
 use App\Models\Contact;
 
 use function GuzzleHttp\Promise\all;
@@ -18,7 +19,8 @@ class ContactController extends Controller
 
     protected function index()
     {
-        return view('frontend.contacts.form');
+        $auth_image = AuthImage::first();
+        return view('frontend.contacts.form' , compact('auth_image'));
     }
 
     protected function store(Request $request)

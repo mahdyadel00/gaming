@@ -120,12 +120,8 @@
                                     </div>
                                 </div>
                                 <div class="btn-wrapper mb-20">
-                                    @if ($product->nigotiable == 1)
-                                        <a href="#" id="ad-promoted" style="background: var(--main-color-two);color:#fff" data-id={{ $product->id }}
-                                            class="cmn-btn4">@lang('site.Promote_this_ad')</a>
-                                    @else<a href="#" id="ad-promoted" style="background: #fff;color:var(--main-color-two); border: 1px solid    ;" data-id={{ $product->id }}
-                                            class="cmn-btn4">@lang('site.Promote_this_ad')</a>
-                                    @endif
+                                    <a href="#" id="ad-promoted" style="color:#fff"
+                                        data-id={{ $product->id }} class="btn btn-danger">@lang('site.remove_Promote_this_ad')</a>
                                 </div>
                             </div>
                         @endforeach
@@ -140,7 +136,7 @@
 @push('js')
     <script>
         $(document).on('click', '#ad-promoted', function() {
-            let edit_url = '{{ route('products.promoted') }}';
+            let edit_url = '{{ route('products.remove_promoted') }}';
             let id = $(this).data('id');
             let token = '{{ csrf_token() }}';
             $.ajax({
@@ -155,7 +151,7 @@
                     new Noty({
                         type: 'success',
                         layout: 'topRight',
-                        text: "{{ 'This Product Successfully Promoted' }}",
+                        text: "{{ 'This Product Successfully removed Promoted' }}",
                         timeout: 2000,
                         killer: true
                     }).show();

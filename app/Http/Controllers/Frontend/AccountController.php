@@ -33,7 +33,7 @@ class AccountController extends Controller
             $user = User::with('country')->first();
             if(auth()->check()){
 
-                $products = product::with('user')->where('user_id' , auth()->user()->id)->get();
+                $products = product::with('user')->where('user_id' , auth()->user()->id)->where('nigotiable' , 0)->get();
             }
 
             return view('frontend.accounts.my_account', compact('user' , 'products'));

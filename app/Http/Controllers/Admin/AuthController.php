@@ -35,6 +35,18 @@ class AuthController extends Controller
             $logo->move($path, $login_image);
             $logo_in_db = '/uploads/auth/' . $login_image;
         }
+        $image_in_db = NULL;
+        if ($request->has('contact_us_image')) {
+            $request->validate([
+                'contact_us_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp',
+            ]);
+
+            $path = public_path() . '/uploads/auth';
+            $image = request('contact_us_image');
+            $contact_us_image = time() . request('contact_us_image')->getClientOriginalName();
+            $image->move($path, $contact_us_image);
+            $image_in_db = '/uploads/auth/' . $contact_us_image;
+        }
 
         $register_in_db = NULL;
         if ($request->has('register_image')) {
@@ -51,6 +63,7 @@ class AuthController extends Controller
 
         $auth->login_image = $logo_in_db;
         $auth->register_image = $register_in_db;
+        $auth->contact_us_image = $image_in_db;
 
         $auth->save();
         Cache::forget('auth');

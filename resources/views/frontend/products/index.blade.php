@@ -79,7 +79,8 @@
                                         <!-- Search Box -->
                                         <form action="#" class="search-box">
                                             <div class="input-form">
-                                                <input type="text" class=" keyup-input" placeholder="Search">
+                                                <input type="text" class=" keyup-input" placeholder="Search"
+                                                    id="product-name">
                                                 <!-- icon -->
                                                 <div class="icon">
                                                     <i class="las la-search"></i>
@@ -187,24 +188,6 @@
                             {{ $products->links() }}
                         </div>
                     </div>
-                    <!-- Pagination -->
-                    {{-- <div class="row justify-content-center">
-                        <div class="col-lg-12">
-                            <div class="pagination mt-60">
-                                <ul class="pagination-list">
-                                    <li class=" wow fadeInRight" data-wow-delay="0.0s"><a href="#"
-                                            class="page-number"><i class="las la-angle-left"></i></a></li>
-                                    <li><span class="page-number current">1</span></li>
-                                    <li><a href="#" class="page-number">2</a></li>
-                                    <li><a href="#" class="page-number">3</a></li>
-                                    <li><a href="#" class="page-number">4</a></li>
-                                    <li><a href="#" class="page-number">5</a></li>
-                                    <li class=" wow fadeInLeft" data-wow-delay="0.0s"><a href="#"
-                                            class="page-number"><i class="las la-angle-right"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div> --}}
                 </div>
             </div>
         </div>
@@ -213,49 +196,50 @@
 @endsection
 @push('js')
     <script>
-        $('body').on('submit', '#search', function(e) {
+        let store = null;
+        let filter = 0;
+        let product_name = '';
+        $(document).on('change', '#store', function(e) {
             e.preventDefault();
-            let form = $(this);
-            let url = $(this).attr('action');
-            let lang = $(this).data('langcode');
-            $.ajax({
-                url: url,
-                method: "get",
-                data: new FormData(this),
-                dataType: 'json',
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function(response) {
-                    if (response == 'success') {
-
-                        new Noty({
-                            type: 'success',
-                            layout: 'topRight',
-                            text: "{{ 'Saved Successfully' }}",
-                            timeout: 2000,
-                            killer: true
-                        }).show();
-                        CKEDITOR.instances.textarea1.setData('');
-                        CKEDITOR.instances.textarea2.setData('');
-                        form[0].reset();
-                        $('#profile-tab-' + lang).trigger('click');
-                    }
-                },
-                error: function(xhr, textStatus, errorThrown) {
-                    var errors = $.parseJSON(xhr.responseText);
-                    $.each(errors.errors, function(key, val) {
-                        new Noty({
-                            type: 'error',
-                            layout: 'topRight',
-                            text: val,
-                            timeout: 2000,
-                            killer: true
-                        }).show();
-                    });
-                }
-            });
-
+            store = $('#store').val();
+            filter = 1;
+            ajax_load();
+            $(".select2-container--default .select2-selection--single .select2-selection__rendered").css('color',
+                '#fff');
         });
+        $(document).on('keyup', '#product-name', function(e) {
+            e.preventDefault();
+            product_name = $('#product-name').val();
+            filter = 1;
+            ajax_load();
+        });
+
+        function ajax_load() {
+            $.ajax({
+                url: "{{ route('product.index') }}",
+                method: "get",
+                data: {
+                    store: store,
+                    product_name: product_name,
+                },
+                success: function(response) {
+                    console.log(response);
+                    if (filter == 1) {
+                        $('#render').html(response.html);
+                    } else {
+                        $('#render').append(response.html);
+                    }
+                    filter = 0;
+                    count = $('.ad_card').length;
+                    if (response.count == 0) {
+                        $('.ajax-loading').hide();
+                        $('.count').text(count);
+                    } else {
+                        $('.ajax-loading').show();
+                        $('.count').text(count);
+                    }
+                }
+            })
+        }
     </script>
 @endpush

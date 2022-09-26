@@ -24,11 +24,23 @@ class ProductController extends Controller
         session_start();
         // $this->middleware('auth');
     }
-    protected function index()
+    protected function index(Request $request)
     {
 
-        $products = Product::with('user')->where('nigotiable' , '!=' , 1)->paginate(12);
+        // dd($request->all());
+        // dd($products);
+        $products = Product::with('user')->where('nigotiable', '!=', 1)->paginate(12);
         $categories = Category::get();
+        if($request->product_name){
+            $products = Product::with('user')->where('nigotiable' , '!=' , 1)->where('title_en' , $request->product_name)->get();
+        }
+
+        if ($request->ajax()) {
+            // $store = $request->store;
+            $html = view('frontend.products.render', compact( 'categories', 'products'))->render();
+            return response(['html' => $html, 'count' => $products->count()]);
+        }
+
 
         return view('frontend.products.index', compact('products', 'categories'));
     }
@@ -45,9 +57,66 @@ class ProductController extends Controller
         return view('frontend.products.create', compact('categories'));
     }
 
-    // protected function store(Request $request)
-    // {
+    protected function store(Request $request)
+    {
+        // dd(session());
+        $image_in_db = NULL;
+        if ($request->has('image')) {
+            $request->validate([
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp',
+            ]);
 
+            $path = public_path() . '/uploads/products';
+            $image = request('image');
+            $image_name = time() . request('image')->getClientOriginalName();
+            $image->move($path, $image_name);
+            $image_in_db = '/uploads/products/' . $image_name;
+        }
+
+        $product = Product::query()->create([
+
+            'category_id' => $request->category_id,
+            'title_en' => $request->title_en,
+            'title_ar' => $request->title_ar,
+            'description_en' => $request->description_en,
+            'description_ar' => $request->description_ar,
+            'price' => $request->price,
+            'image' => $image_in_db,
+            'user_id' => Auth::user()->id,
+            'condition' => $request->condition,
+            'authanticate' => $request->authanticate ? 1 : 0,
+            'nigotiable' =>  0,
+            'view' => 0,
+        ]);
+        if (!file_exists(public_path('uploads/products/' . $product->id))) {
+            Image::make($request->file)
+                ->resize(300, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                })
+                ->save(mkdir(public_path('uploads/products/' . $product->id), 0775));
+        }
+        // dd($_SESSION['imagesArray'] );
+        foreach ($_SESSION['imagesArray']  as $image) {
+
+            if ($image) {
+                $img = $image;
+                $destination = public_path('uploads/products/' . $product->id);
+                $product->adImages()->create(['url' => 'uploads/products/' . $product->id . '/' . $img]);
+                $img->move($destination, $img);
+            }
+        }
+
+        ImageProduct::query()->create([
+            'image' => $img,
+        ]);
+        unset($_SESSION['imagesArray']);
+        if ($product) {
+            return redirect()->back()->with('flash_message', 'Added Successfully !');
+        }
+    } //End of Store
+    //     protected function store(Request $request)
+    // {
+    //     // dd($request->all());
     //     $image_in_db = NULL;
     //     if ($request->has('image')) {
     //         $request->validate([
@@ -61,6 +130,7 @@ class ProductController extends Controller
     //         $image_in_db = '/uploads/products/' . $image_name;
     //     }
 
+
     //     $product = Product::query()->create([
 
     //         'category_id' => $request->category_id,
@@ -71,9 +141,9 @@ class ProductController extends Controller
     //         'price' => $request->price,
     //         'image' => $image_in_db,
     //         'user_id' => Auth::user()->id,
-    //         'condition' => $request->condition,
+    //         'condition' => $request->condition ? 1 : 0,
     //         'authanticate' => $request->authanticate ? 1 : 0,
-    //         'nigotiable' =>  0,
+    //         'nigotiable' => $request->nigotiable ? 1 : 0,
     //         'view' => 0,
     //     ]);
     //     if (!file_exists(public_path('uploads/img_adds/' . $product->id))) {
@@ -104,65 +174,6 @@ class ProductController extends Controller
     //         return redirect()->back()->with('flash_message', 'Added Successfully !');
     //     }
     // } //End of Store
-    protected function store(Request $request)
-{
-
-    $image_in_db = NULL;
-    if ($request->has('image')) {
-        $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp',
-        ]);
-
-        $path = public_path() . '/uploads/products';
-        $image = request('image');
-        $image_name = time() . request('image')->getClientOriginalName();
-        $image->move($path, $image_name);
-        $image_in_db = '/uploads/products/' . $image_name;
-    }
-
-
-    $product = Product::query()->create([
-
-        'category_id' => $request->category_id,
-        'title_en' => $request->title_en,
-        'title_ar' => $request->title_ar,
-        'description_en' => $request->description_en,
-        'description_ar' => $request->description_ar,
-        'price' => $request->price,
-        'image' => $image_in_db,
-        'user_id' => Auth::user()->id,
-        'condition' => $request->condition ? 1 : 0,
-        'authanticate' => $request->authanticate ? 1 : 0,
-        'nigotiable' => $request->nigotiable ? 1 : 0,
-    ]);
-    if (!file_exists(public_path('uploads/img_adds/' . $product->id))) {
-                Image::make($request->file)
-                    ->resize(300, null, function ($constraint) {
-                        $constraint->aspectRatio();
-                    })
-                    ->save(mkdir(public_path('uploads/img_adds/' . $product->id), 0775));
-            }
-    foreach( $_SESSION['imagesArray']  as $image){
-
-        if ($image) {
-            $img = $image;
-            // $name = time() . '.' . $img->getClientOriginalExtension();
-            // $mobile = 'min-' . $name;
-
-            $destination = public_path('uploads/img_adds/' . $product->id);
-            $product->adImages()->create(['url' => 'uploads/img_adds/' . $product->id . '/' . $img]);
-            $img->move($destination, $img);
-        }
-    }
-
-    ImageProduct::query()->create([
-        'image' => $img,
-    ]);
-    unset($_SESSION['imagesArray']);
-    if ($product) {
-        return redirect()->back()->with('flash_message', 'Added Successfully !');
-    }
-} //End of Store
 
 
     protected function single(Request $request, $id)
@@ -186,7 +197,8 @@ class ProductController extends Controller
         }
     }
 
-    public function uploadImage (){
+    public function uploadImage()
+    {
 
         $File = $_FILES['file'];
         $FileName = $File['name'];
@@ -195,25 +207,28 @@ class ProductController extends Controller
         $FileError = $File['error'];
         $FileExt = explode('.', $FileName);
         $FileExt = strtolower(end($FileExt));
-        $NewName = uniqid('', true) . md5(uniqid(mt_rand(), true)) .time() .'.' . $FileExt;
-                if(!isset($_SESSION['imagesArray'])){
-                    $_SESSION['imagesArray']= array();
-                }
-                array_push( $_SESSION['imagesArray'], $NewName);
-                // echo $NewName;
+        $NewName = uniqid('', true) . md5(uniqid(mt_rand(), true)) . time() . '.' . $FileExt;
+        if (!isset($_SESSION['imagesArray'])) {
+            dd('test');
+            $_SESSION['imagesArray'] = array();
+        }
+        array_push($_SESSION['imagesArray'], $NewName);
+        // echo $NewName;
     }
-    protected function delete($id){
+    protected function delete($id)
+    {
 
-        $product = Product::where('id' , $id)->first();
+        $product = Product::where('id', $id)->first();
 
         $product->delete();
 
         return redirect()->back();
     }
 
-    protected function promoted(Request $request){
+    protected function promoted(Request $request)
+    {
 
-        $product = Product::where('id' , $request->id)->first();
+        $product = Product::where('id', $request->id)->first();
 
         $product->update([
 
@@ -222,9 +237,22 @@ class ProductController extends Controller
 
         return response()->json('success');
     }
-    protected function promotedAds(Request $request){
+    protected function removePromoted(Request $request)
+    {
 
-        $products = Product::with('user')->where('nigotiable' , 1)->paginate(1);
+        $product = Product::where('id', $request->id)->first();
+
+        $product->update([
+
+            'nigotiable' => 0,
+        ]);
+
+        return response()->json('success');
+    }
+    protected function promotedAds(Request $request)
+    {
+
+        $products = Product::with('user')->where('nigotiable', 1)->paginate(1);
         $categories = Category::get();
 
 

@@ -9,7 +9,7 @@ class AuthImage extends Model
 
     protected $table = 'auths';
     protected $guarded = [];
-    protected $fillable = array('login_image', 'register_image');
+    protected $fillable = array('login_image', 'register_image' , 'contact_us_image');
 
 
 }
