@@ -50,48 +50,48 @@
                                 data-prevArrow='<div class="prev-icon"><i class="las la-angle-left"></i></div>'
                                 data-nextArrow='<div class="next-icon"><i class="las la-angle-right"></i></div>'
                                 data-responsive='[{"breakpoint": 1800,"settings": {"slidesToShow": 6}},{"breakpoint": 1600,"settings": {"slidesToShow": 6}},{"breakpoint": 1400,"settings": {"slidesToShow": 6}},{"breakpoint": 1200,"settings": {"slidesToShow": 6}},{"breakpoint": 991,"settings": {"slidesToShow": 6}},{"breakpoint": 768, "settings": {"slidesToShow": 4}},{"breakpoint": 576, "settings": {"slidesToShow": 4}}]'>
-                                {{-- <div class="single-thumb">
+                                <div class="single-thumb" style="max-height: 84px" aria-hidden="true">
                                     <a class="thumb-link" data-toggle="tab" href="#image-01">
                                         <img src="{{ asset('frontend') }}/assets/img/gallery/proDetailsNav1.jpg"
                                             alt="thumb">
                                     </a>
-                                </div> --}}
-                                {{-- <div class="single-thumb">
+                                </div>
+                                <div class="single-thumb" style="max-height: 84px" aria-hidden="true">
                                     <a class="thumb-link" data-toggle="tab" href="#image-02">
                                         <img src="{{ asset('frontend') }}/assets/img/gallery/proDetailsNav2.jpg"
                                             alt="thumb">
                                     </a>
                                 </div>
-                                <div class="single-thumb">
+                                <div class="single-thumb" style="max-height: 84px" aria-hidden="true">
                                     <a class="thumb-link" data-toggle="tab" href="#image-03">
                                         <img src="{{ asset('frontend') }}/assets/img/gallery/proDetailsNav3.jpg"
                                             alt="thumb">
                                     </a>
-                                </div> --}}
-                                {{-- <div class="single-thumb">
+                                </div>
+                                <div class="single-thumb" style="max-height: 84px" aria-hidden="true">
                                     <a class="thumb-link" data-toggle="tab" href="#image-04">
                                         <img src="{{ asset('frontend') }}/assets/img/gallery/proDetailsNav4.jpg"
                                             alt="thumb">
                                     </a>
                                 </div>
-                                <div class="single-thumb">
+                                <div class="single-thumb" style="max-height: 84px" aria-hidden="true">
                                     <a class="thumb-link" data-toggle="tab" href="#image-05">
                                         <img src="{{ asset('frontend') }}/assets/img/gallery/proDetailsNav5.jpg"
                                             alt="thumb">
                                     </a>
-                                </div> --}}
-                                <div class="single-thumb">
+                                </div>
+                                <div class="single-thumb" style="max-height: 84px" aria-hidden="true">
                                     <a class="thumb-link" data-toggle="tab" href="#image-06">
                                         <img src="{{ asset('frontend') }}/assets/img/gallery/proDetailsNav6.jpg"
                                             alt="thumb">
                                     </a>
                                 </div>
-                                {{-- <div class="single-thumb">
+                                <div class="single-thumb" style="max-height: 84px" aria-hidden="true">
                                     <a class="thumb-link" data-toggle="tab" href="#image-01">
                                         <img src="{{ asset('frontend') }}/assets/img/gallery/proDetailsNav6.jpg"
                                             alt="thumb">
                                     </a>
-                                </div> --}}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -166,7 +166,7 @@
                                             src="{{ asset('frontend') }}/assets/img/icon/checkMark.svg" class="icon"
                                             alt="images">
                                         @if (auth()->check())
-                                            <i class="btn btn-success"></i>
+                                        <i class=" text-success fa-solid fa-circle"></i>
                                         @else
                                             <i class="btn btn-danger"></i>
                                         @endif
@@ -178,14 +178,14 @@
                         </div>
                         <form action="#" class="contactSeller">
                             <div class="row">
-                                <div class="col-lg-8">
+                                <div class="col-lg-6">
                                     <div class="input-form">
                                         <input type="text" placeholder="(704) *** ***"
                                             value="{{ $product->user[0]->phone }}" disabled>
                                         <div class="icon"><i class="las la-phone"></i></div>
                                     </div>
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-lg-6">
                                     <div class="btn-wrapper mb-20">
                                         <a href="#" class="cmn-btn-outline3 w-100">Reveal Contact</a>
                                     </div>
