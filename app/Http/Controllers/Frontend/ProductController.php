@@ -75,28 +75,28 @@ class ProductController extends Controller
             'nigotiable' => $request->nigotiable ? 1 : 0,
             'view' => 0,
         ]);
-        if (!file_exists(public_path('uploads/products/' . $product->id))) {
+        // if (!file_exists(public_path('uploads/products/' . $product->id))) {
             // Image::make($request->file)
             //     ->resize(300, null, function ($constraint) {
             //         $constraint->aspectRatio();
             //     })
-                mkdir(public_path('uploads/products/' . $product->id), 0775);
-        }
-        foreach ($_SESSION['imagesArray']  as $image) {
-            if ($image) {
-                $img = $image;
-                // $name = time() . '.' . $img->getClientOriginalExtension();
-                $mobile = rand(50);
-                $destination = public_path('uploads/products/' . $product->id);
-                $product->adImages()->create(['image' => 'uploads/products/' . $product->id . '/' . $img]);
-                move_uploaded_file($mobile , $destination);
-                ImageProduct::query()->create([
-                    'image' => $img,
-                    'product_id' => $product->id,
-                ]);
-            }
-        }
-        unset($_SESSION['imagesArray']);
+        //         mkdir(public_path('uploads/products/' . $product->id), 0775);
+        // }
+        // foreach ($_SESSION['imagesArray']  as $image) {
+        //     if ($image) {
+        //         $img = $image;
+        //         // $name = time() . '.' . $img->getClientOriginalExtension();
+        //         $mobile = rand(50);
+        //         $destination = public_path('uploads/products/' . $product->id);
+        //         $product->adImages()->create(['image' => 'uploads/products/' . $product->id . '/' . $img]);
+        //         move_uploaded_file($mobile , $destination);
+        //         ImageProduct::query()->create([
+        //             'image' => $img,
+        //             'product_id' => $product->id,
+        //         ]);
+        //     }
+        // }
+        // unset($_SESSION['imagesArray']);
         if ($product) {
             return redirect()->back()->with('flash_message', 'Added Successfully !');
         }

@@ -117,10 +117,10 @@
                                     </div>
                                     <div class="col-md-12">
                                         {{-- *********   image dropzone ********************* --}}
-                                        <div enctype="multipart/form-data"
+                                        {{-- <div enctype="multipart/form-data"
                                             class="dropzone" id="frmTarget">
                                             @csrf
-                                            <input type="hidden" name='image' id='id1234' value="">
+                                            <input type="hidden" name='image' id='id1234' value=""> --}}
                                     </div>
                                         <div class="row ads_image_preview">
                                         </div>
