@@ -150,7 +150,7 @@
     </div>
     <!-- End-of addList-Details -->
 @endsection
-@push('js')
+{{-- @push('js')
     <script>
     Dropzone.options.frmTarget = {
             url:"{{ route('products.store_image') }}",
@@ -185,4 +185,4 @@
         };
 
     </script>
-@endpush
+@endpush --}}

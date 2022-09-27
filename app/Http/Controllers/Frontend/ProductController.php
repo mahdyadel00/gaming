@@ -9,8 +9,8 @@ use App\Models\ImageProduct;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Product;
+use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
-// use Image;
 
 class ProductController extends Controller
 {
@@ -27,12 +27,12 @@ class ProductController extends Controller
     {
         $products = Product::with('user')->where('nigotiable', '!=', 1)->paginate(12);
         $categories = Category::get();
-        if($request->product_name){
-            $products = Product::with('user')->where('nigotiable' , '!=' , 1)->where('title_en' , $request->product_name)->get();
+        if ($request->product_name) {
+            $products = Product::with('user')->where('nigotiable', '!=', 1)->where('title_en', $request->product_name)->get();
         }
         if ($request->ajax()) {
             // $store = $request->store;
-            $html = view('frontend.products.render', compact( 'categories', 'products'))->render();
+            $html = view('frontend.products.render', compact('categories', 'products'))->render();
             return response(['html' => $html, 'count' => $products->count()]);
         }
         return view('frontend.products.index', compact('products', 'categories'));
@@ -49,7 +49,6 @@ class ProductController extends Controller
     }
     protected function store(Request $request)
     {
-        // dd($_SESSION['imagesArray']);
         $image_in_db = NULL;
         if ($request->has('image')) {
             $request->validate([
@@ -75,28 +74,6 @@ class ProductController extends Controller
             'nigotiable' => $request->nigotiable ? 1 : 0,
             'view' => 0,
         ]);
-        // if (!file_exists(public_path('uploads/products/' . $product->id))) {
-            // Image::make($request->file)
-            //     ->resize(300, null, function ($constraint) {
-            //         $constraint->aspectRatio();
-            //     })
-        //         mkdir(public_path('uploads/products/' . $product->id), 0775);
-        // }
-        // foreach ($_SESSION['imagesArray']  as $image) {
-        //     if ($image) {
-        //         $img = $image;
-        //         // $name = time() . '.' . $img->getClientOriginalExtension();
-        //         $mobile = rand(50);
-        //         $destination = public_path('uploads/products/' . $product->id);
-        //         $product->adImages()->create(['image' => 'uploads/products/' . $product->id . '/' . $img]);
-        //         move_uploaded_file($mobile , $destination);
-        //         ImageProduct::query()->create([
-        //             'image' => $img,
-        //             'product_id' => $product->id,
-        //         ]);
-        //     }
-        // }
-        // unset($_SESSION['imagesArray']);
         if ($product) {
             return redirect()->back()->with('flash_message', 'Added Successfully !');
         }
@@ -104,9 +81,10 @@ class ProductController extends Controller
     protected function single(Request $request, $id)
     {
         $product = Product::with('user')->where('id', $id)->first();
+        $product_images = ImageProduct::where('product_id' , $product->id)->get();
         $product_related = Product::where('id', '!=', $id)->limit(3)->get();
         $product->increment('view', 1);
-    return view('frontend.products.single', compact('product', 'product_related'));
+        return view('frontend.products.single', compact('product', 'product_related' , 'product_images'));
     }
 
     protected function search(Request $request)
@@ -119,23 +97,26 @@ class ProductController extends Controller
             return redirect()->back();
         }
     }
-    public function uploadImage()
+    public function uploadImage(Request $request)
     {
-        $File = $_FILES['file'];
-        $FileName = $File['name'];
-        $TmpLocation = $File['tmp_name'];
-        $FileSize = $File['size'];
-        $FileError = $File['error'];
-        $FileExt = explode('.', $FileName);
-        $FileExt = strtolower(end($FileExt));
-        $NewName = md5(uniqid(mt_rand(), true)) . time() . '.' . $FileExt;
-        // if (!isset($_SESSION['imagesArray'])) {
-        //     $_SESSION['imagesArray'] = array();
+        $product = Product::where('id', $request->id)->first();
 
+        $image = $request->file('image');
+        $avatarName = $image->getClientOriginalName();
+        if (!file_exists(public_path() . '/uploads/products/' . $product->id)) {
+            mkdir(public_path() . '/uploads/products/' . $product->id , 0777, true);
+        }
+            $file_echo = (public_path('uploads' . DIRECTORY_SEPARATOR . 'products' . DIRECTORY_SEPARATOR . $product->id) . DIRECTORY_SEPARATOR . $avatarName);
+            Image::make($image)->resize(300, null, function ($constraint) {
+                $constraint->aspectRatio();
+            }) // set true if you want proportional image resize
+              ->save($file_echo);
+            $imageUpload = new ImageProduct();
+            $imageUpload->product_id = $product->id;
+            $imageUpload->image = ('uploads' . DIRECTORY_SEPARATOR . 'products' . DIRECTORY_SEPARATOR . $product->id) . DIRECTORY_SEPARATOR . $avatarName;
+            $imageUpload->save();
+            return response()->json(['success' => 'success']);
         // }
-
-
-        array_push($_SESSION['imagesArray'], $NewName);
     }
     protected function delete($id)
     {

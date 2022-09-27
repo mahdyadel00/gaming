@@ -50,48 +50,14 @@
                                 data-prevArrow='<div class="prev-icon"><i class="las la-angle-left"></i></div>'
                                 data-nextArrow='<div class="next-icon"><i class="las la-angle-right"></i></div>'
                                 data-responsive='[{"breakpoint": 1800,"settings": {"slidesToShow": 6}},{"breakpoint": 1600,"settings": {"slidesToShow": 6}},{"breakpoint": 1400,"settings": {"slidesToShow": 6}},{"breakpoint": 1200,"settings": {"slidesToShow": 6}},{"breakpoint": 991,"settings": {"slidesToShow": 6}},{"breakpoint": 768, "settings": {"slidesToShow": 4}},{"breakpoint": 576, "settings": {"slidesToShow": 4}}]'>
-                                <div class="single-thumb" style="max-height: 84px" aria-hidden="true">
-                                    <a class="thumb-link" data-toggle="tab" href="#image-01">
-                                        <img src="{{ asset('frontend') }}/assets/img/gallery/proDetailsNav1.jpg"
-                                            alt="thumb">
-                                    </a>
-                                </div>
+                                @foreach($product_images as $image)
                                 <div class="single-thumb" style="max-height: 84px" aria-hidden="true">
                                     <a class="thumb-link" data-toggle="tab" href="#image-02">
-                                        <img src="{{ asset('frontend') }}/assets/img/gallery/proDetailsNav2.jpg"
+                                        <img style="height: 90px;" src="{{ asset($image->image) }}"
                                             alt="thumb">
                                     </a>
                                 </div>
-                                <div class="single-thumb" style="max-height: 84px" aria-hidden="true">
-                                    <a class="thumb-link" data-toggle="tab" href="#image-03">
-                                        <img src="{{ asset('frontend') }}/assets/img/gallery/proDetailsNav3.jpg"
-                                            alt="thumb">
-                                    </a>
-                                </div>
-                                <div class="single-thumb" style="max-height: 84px" aria-hidden="true">
-                                    <a class="thumb-link" data-toggle="tab" href="#image-04">
-                                        <img src="{{ asset('frontend') }}/assets/img/gallery/proDetailsNav4.jpg"
-                                            alt="thumb">
-                                    </a>
-                                </div>
-                                <div class="single-thumb" style="max-height: 84px" aria-hidden="true">
-                                    <a class="thumb-link" data-toggle="tab" href="#image-05">
-                                        <img src="{{ asset('frontend') }}/assets/img/gallery/proDetailsNav5.jpg"
-                                            alt="thumb">
-                                    </a>
-                                </div>
-                                <div class="single-thumb" style="max-height: 84px" aria-hidden="true">
-                                    <a class="thumb-link" data-toggle="tab" href="#image-06">
-                                        <img src="{{ asset('frontend') }}/assets/img/gallery/proDetailsNav6.jpg"
-                                            alt="thumb">
-                                    </a>
-                                </div>
-                                <div class="single-thumb" style="max-height: 84px" aria-hidden="true">
-                                    <a class="thumb-link" data-toggle="tab" href="#image-01">
-                                        <img src="{{ asset('frontend') }}/assets/img/gallery/proDetailsNav6.jpg"
-                                            alt="thumb">
-                                    </a>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -113,6 +79,14 @@
                                             data-url="{{ route('favorite.store', [$product->id]) }}"
                                             class="detailsTittle add-product-to-favorite">{{ $product->title_en }}
                                             <i class="lar la-heart icon"></i></a>
+                                            <div class="container">
+                                                <h2>Upload Image</h2><br/>
+                                                <form method="post" action="{{ route('products.store_image') }}" enctype="multipart/form-data"
+                                                    class="dropzone" id="dropzone">
+                                                  @csrf
+                                                  <input type="hidden" name='image' id='id1234' value="{{ $product->id }}">
+                                              </form>
+                                              </div>
                                     @endif
                                 @else
                                     <a href="{{ route('login.show') }}" data-id="{{ $product->id }}"
@@ -319,5 +293,39 @@
                 },
             });
         })
+        Dropzone.options.dropzone = {
+            url:"{{ route('products.store_image') }}",
+            maxFilesize:1,
+            paramName: 'image',
+            addRemoveLinks: true,
+            autoProcessQueue: true,
+            parallelUploads:1,
+            dictRemoveFile: 'Remove file',
+            params: {
+                _token: '{{csrf_token()}}',
+                id: $("#id1234").val(),
+            },
+            acceptedFiles: ".jpeg,.jpg,.png,.gif",
+            success: function (image, response) {
+                console.log(response);
+            },
+            error: function (image, response) {
+                return false;
+            }
+            // removedfile: function(file) {
+            //     $.ajax({
+            //         type: 'POST',
+            //         dataType: 'json',
+            //         url: '{{route('products.store_image')}}',
+            //         data: {'_token': ' {{ csrf_token() }}', id: file.id},
+            //         success: function (data) {
+            //             console.log('success: ' + data);
+            //         }
+            //     })
+            //     var _ref;
+            //     return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
+            // },
+        };
+
     </script>
 @endpush
