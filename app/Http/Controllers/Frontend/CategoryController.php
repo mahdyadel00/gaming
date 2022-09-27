@@ -36,16 +36,14 @@ class CategoryController extends Controller
     {
         $category = Category::where('id', $id)->first();
 
-        $products = Product::where('category_id', $category->id)->paginate(2);
-
+        $products = Product::where('category_id', $category->id)->paginate(12);
         return view('frontend.categories.single', compact('category', 'products'));
     }
     protected function search(Request $request)
     {
         if ($request->category_id) {
-
             $category = Category::where('id', $request->category_id)->first();
-            $products = Product::where('category_id', $category->id)->get();
+            $products = Product::where('category_id', $category->id)->paginate(8);
         }
         // elseif (!$request->category_id || $request->search) {
 

@@ -32,34 +32,27 @@
                                         class="subCap">{{ date_format($product->created_at, 'D M Y') }}</strong></p>
                                 <span class="featurePricing">${{ $product->price }}</span>
                                 <div class="btn-wrapper">
-                                    <span class="pro-btn1">NEW</span>
-                                    <span class="pro-btn2">PROMTED</span>
+                                    @if ($product->condition == 0)
+                                        <span class="pro-btn1">@lang('site.america')</span>
+                                    @endif
+                                    @if ($product->condition == 1)
+                                        <span class="pro-btn1">@lang('site.asia')</span>
+                                    @endif
+                                    @if ($product->condition == 2)
+                                        <span class="pro-btn1">@lang('site.europ')</span>
+                                    @endif
+                                    @if ($product->nigotiable == 1)
+                                        <span class="pro-btn2">@lang('site.promoted')</span>
+                                    @else
+                                        <span class="pro-btn2">@lang('site.un_promoted')</span>
+                                    @endif
                                 </div>
                             </div>
                         </div>
                     </div>
                 @endforeach
+                {{-- {{ $products->links() }} --}}
             </div>
-            <!-- pagination S t a r t -->
-            <div class="row justify-content-center mt-40">
-                <div class="col-lg-12">
-                    <div class="pagination">
-                        <ul class="pagination-list">
-
-                            <li class="wow fadeInRight" data-wow-delay="0.0s"><a href="#" class="page-number"><i
-                                        class="las la-angle-left"></i></a></li>
-                            <li><span class="page-number current">1</span></li>
-                            <li><a href="#" class="page-number">2</a></li>
-                            <li><a href="#" class="page-number">3</a></li>
-                            <li><a href="#" class="page-number">4</a></li>
-                            <li><a href="#" class="page-number">5</a></li>
-                            <li class=" wow fadeInLeft" data-wow-delay="0.0s"><a href="#" class="page-number"><i
-                                        class="las la-angle-right"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <!--End-of pagination -->
         </div>
     </div>
     <!-- End-of phoneCat  -->
