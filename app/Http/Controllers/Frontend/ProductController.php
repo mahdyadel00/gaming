@@ -142,7 +142,7 @@ class ProductController extends Controller
     }
     protected function promotedAds(Request $request)
     {
-        $products = Product::with('user')->where('nigotiable', 1)->paginate(1);
+        $products = Product::with('user')->where('nigotiable', 1)->paginate(12);
         $categories = Category::get();
         return view('frontend.products.promoted', compact('products', 'categories'));
     }
