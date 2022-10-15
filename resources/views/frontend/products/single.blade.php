@@ -81,11 +81,11 @@
                                             <i class="lar la-heart icon"></i></a>
                                             <div class="container">
                                                 <h2>Upload Image</h2><br/>
-                                                <form method="post" action="{{ route('products.store_image') }}" enctype="multipart/form-data"
+                                                {{-- <form method="post" action="{{ route('products.store_image') }}" enctype="multipart/form-data"
                                                     class="dropzone" id="dropzone">
                                                   @csrf
                                                   <input type="hidden" name='image' id='id1234' value="{{ $product->id }}">
-                                              </form>
+                                              </form> --}}
                                               </div>
                                     @endif
                                 @else
@@ -293,39 +293,7 @@
                 },
             });
         })
-        Dropzone.options.dropzone = {
-            url:"{{ route('products.store_image') }}",
-            maxFilesize:1,
-            paramName: 'image',
-            addRemoveLinks: true,
-            autoProcessQueue: true,
-            parallelUploads:1,
-            dictRemoveFile: 'Remove file',
-            params: {
-                _token: '{{csrf_token()}}',
-                id: $("#id1234").val(),
-            },
-            acceptedFiles: ".jpeg,.jpg,.png,.gif",
-            success: function (image, response) {
-                console.log(response);
-            },
-            error: function (image, response) {
-                return false;
-            }
-            // removedfile: function(file) {
-            //     $.ajax({
-            //         type: 'POST',
-            //         dataType: 'json',
-            //         url: '{{route('products.store_image')}}',
-            //         data: {'_token': ' {{ csrf_token() }}', id: file.id},
-            //         success: function (data) {
-            //             console.log('success: ' + data);
-            //         }
-            //     })
-            //     var _ref;
-            //     return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
-            // },
-        };
+
 
     </script>
 @endpush
