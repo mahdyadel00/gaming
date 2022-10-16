@@ -5,16 +5,6 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-xl-8 col-lg-12">
-                    <!-- Bread Crumb S t a r t -->
-                    {{-- <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html">@lang('site.home')</a></li>
-                            <li class="breadcrumb-item"><a href="#">@lang('site.properties')</a></li>
-                            <li class="breadcrumb-item"><a href="#">@lang('site.post_ad')</a></li>
-                        </ol>
-                        <h4 class="priceTittle pt-20 pb-20">@lang('site.post_your_ad')</h4>
-                    </nav> --}}
-                    <!-- /END-->
                     <div class="listingDetails-Wrapper">
                         <div class="listingDetails">
                             <form method="post" action="{{ route('products.store_image') }}" enctype="multipart/form-data"
@@ -22,12 +12,12 @@
                                 @csrf
                                 <input type="hidden" name='image' id='id1234' value="{{ $product->id }}">
                             </form>
-                            {{-- <div class="col-sm-12">
+                            <div class="col-sm-12">
                                 <div class="btn-wrapper mb-10">
-                                    <button form="add-form" type="submit"
-                                        class="cmn-btn4 w-100">@lang('site.continue')</button>
+                                    <a href="{{ route('product.single', $product->id) }}"
+                                        class="cmn-btn4 w-100">@lang('site.go_to_my_post')</a>
                                 </div>
-                            </div> --}}
+                            </div>
 
                         </div>
                     </div>
@@ -52,9 +42,22 @@
                 id: $("#id1234").val(),
             },
             acceptedFiles: ".jpeg,.jpg,.png,.gif",
-            success: function(image, response) {
+            // success: function(image, response) {
+            //     console.log(response);
+            // },
+            success: function(response) {
                 console.log(response);
+                if (response == 'success') {
+                    new Noty({
+                        type: 'success',
+                        layout: 'topRight',
+                        text: "{{ ('Saved successfully') }}",
+                        timeout: 2000,
+                        killer: true
+                    }).show();
+                }
             },
+
             error: function(image, response) {
                 return false;
             }

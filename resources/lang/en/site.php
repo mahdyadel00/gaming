@@ -123,5 +123,6 @@ return [
     'show_more' => 'Show More',
     'promoted_ads' => 'Promoted Ads',
     'remove_Promote_this_ad' => ' Remove Promoted Ads',
+    'go_to_my_post' => ' Go To My Post',
 
 ];
