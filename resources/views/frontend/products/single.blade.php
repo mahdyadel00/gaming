@@ -50,13 +50,12 @@
                                 data-prevArrow='<div class="prev-icon"><i class="las la-angle-left"></i></div>'
                                 data-nextArrow='<div class="next-icon"><i class="las la-angle-right"></i></div>'
                                 data-responsive='[{"breakpoint": 1800,"settings": {"slidesToShow": 6}},{"breakpoint": 1600,"settings": {"slidesToShow": 6}},{"breakpoint": 1400,"settings": {"slidesToShow": 6}},{"breakpoint": 1200,"settings": {"slidesToShow": 6}},{"breakpoint": 991,"settings": {"slidesToShow": 6}},{"breakpoint": 768, "settings": {"slidesToShow": 4}},{"breakpoint": 576, "settings": {"slidesToShow": 4}}]'>
-                                @foreach($product_images as $image)
-                                <div class="single-thumb" style="max-height: 84px" aria-hidden="true">
-                                    <a class="thumb-link" data-toggle="tab" href="#image-02">
-                                        <img style="height: 90px;" src="{{ asset($image->image) }}"
-                                            alt="thumb">
-                                    </a>
-                                </div>
+                                @foreach ($product_images as $image)
+                                    <div class="single-thumb" style="max-height: 84px" aria-hidden="true">
+                                        <a class="thumb-link" data-toggle="tab" href="#image-02">
+                                            <img style="height: 90px;" src="{{ asset($image->image) }}" alt="thumb">
+                                        </a>
+                                    </div>
                                 @endforeach
                             </div>
                         </div>
@@ -79,14 +78,6 @@
                                             data-url="{{ route('favorite.store', [$product->id]) }}"
                                             class="detailsTittle add-product-to-favorite">{{ $product->title_en }}
                                             <i class="lar la-heart icon"></i></a>
-                                            <div class="container">
-                                                <h2>Upload Image</h2><br/>
-                                                {{-- <form method="post" action="{{ route('products.store_image') }}" enctype="multipart/form-data"
-                                                    class="dropzone" id="dropzone">
-                                                  @csrf
-                                                  <input type="hidden" name='image' id='id1234' value="{{ $product->id }}">
-                                              </form> --}}
-                                              </div>
                                     @endif
                                 @else
                                     <a href="{{ route('login.show') }}" data-id="{{ $product->id }}"
@@ -96,8 +87,6 @@
                                 @endif
                             </h4>
                             <p class="detailsCap">@lang('site.posted_on') {{ date_format($product->created_at, 'D M Y') }}</p>
-
-
                             <span class="detailsPricing">${{ $product->price }}
                                 <em style="float: right">
                                     <a href="#" class="btn btn-success">Check Out</a>
@@ -140,7 +129,7 @@
                                             src="{{ asset('frontend') }}/assets/img/icon/checkMark.svg" class="icon"
                                             alt="images">
                                         @if (auth()->check())
-                                        <i class=" text-success fa-solid fa-circle"></i>
+                                            <i class=" text-success fa-solid fa-circle"></i>
                                         @else
                                             <i class="btn btn-danger"></i>
                                         @endif
@@ -293,7 +282,5 @@
                 },
             });
         })
-
-
     </script>
 @endpush
