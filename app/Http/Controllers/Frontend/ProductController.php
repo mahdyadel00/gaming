@@ -19,10 +19,10 @@ class ProductController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        session_start();
-    }
+    // public function __construct()
+    // {
+    //     session_start();
+    // }
     protected function index(Request $request)
     {
         $products = Product::with('user')->where('nigotiable', '!=', 1)->paginate(12);
@@ -31,7 +31,6 @@ class ProductController extends Controller
             $products = Product::with('user')->where('nigotiable', '!=', 1)->where('title_en', $request->product_name)->get();
         }
         if ($request->ajax()) {
-            // $store = $request->store;
             $html = view('frontend.products.render', compact('categories', 'products'))->render();
             return response(['html' => $html, 'count' => $products->count()]);
         }
@@ -75,16 +74,17 @@ class ProductController extends Controller
             'view' => 0,
         ]);
         if ($product) {
-            return redirect()->back()->with('flash_message', 'Added Successfully !');
+
+            return redirect()->route('products.create_image', compact('product'));
         }
     } //End of Store
     protected function single(Request $request, $id)
     {
         $product = Product::with('user')->where('id', $id)->first();
-        $product_images = ImageProduct::where('product_id' , $product->id)->get();
+        $product_images = ImageProduct::where('product_id', $product->id)->get();
         $product_related = Product::where('id', '!=', $id)->limit(3)->get();
         $product->increment('view', 1);
-        return view('frontend.products.single', compact('product', 'product_related' , 'product_images'));
+        return view('frontend.products.single', compact('product', 'product_related', 'product_images'));
     }
 
     protected function search(Request $request)
@@ -97,6 +97,13 @@ class ProductController extends Controller
             return redirect()->back();
         }
     }
+
+    protected function storeImage(Request $request)
+    {
+        $product = Product::where('id', $request->product)->first();
+
+        return view('frontend.products.image_store', compact('product'));
+    }
     public function uploadImage(Request $request)
     {
         $product = Product::where('id', $request->id)->first();
@@ -104,19 +111,19 @@ class ProductController extends Controller
         $image = $request->file('image');
         $avatarName = $image->getClientOriginalName();
         if (!file_exists(public_path() . '/uploads/products/' . $product->id)) {
-            mkdir(public_path() . '/uploads/products/' . $product->id , 0777, true);
+            mkdir(public_path() . '/uploads/products/' . $product->id, 0777, true);
         }
-            $file_echo = (public_path('uploads' . DIRECTORY_SEPARATOR . 'products' . DIRECTORY_SEPARATOR . $product->id) . DIRECTORY_SEPARATOR . $avatarName);
-            Image::make($image)->resize(300, null, function ($constraint) {
-                $constraint->aspectRatio();
-            }) // set true if you want proportional image resize
-              ->save($file_echo);
-            $imageUpload = new ImageProduct();
-            $imageUpload->product_id = $product->id;
-            $imageUpload->image = ('uploads' . DIRECTORY_SEPARATOR . 'products' . DIRECTORY_SEPARATOR . $product->id) . DIRECTORY_SEPARATOR . $avatarName;
-            $imageUpload->save();
-            return response()->json(['success' => 'success']);
-        // }
+        $file_echo = (public_path('uploads' . DIRECTORY_SEPARATOR . 'products' . DIRECTORY_SEPARATOR . $product->id) . DIRECTORY_SEPARATOR . $avatarName);
+        Image::make($image)->resize(300, null, function ($constraint) {
+            $constraint->aspectRatio();
+        }) // set true if you want proportional image resize
+            ->save($file_echo);
+        $imageUpload = new ImageProduct();
+        $imageUpload->product_id = $product->id;
+        $imageUpload->image = ('uploads' . DIRECTORY_SEPARATOR . 'products' . DIRECTORY_SEPARATOR . $product->id) . DIRECTORY_SEPARATOR . $avatarName;
+        $imageUpload->save();
+        return response('success');
+
     }
     protected function delete($id)
     {
@@ -142,7 +149,7 @@ class ProductController extends Controller
     }
     protected function promotedAds(Request $request)
     {
-        $products = Product::with('user')->where('nigotiable', 1)->paginate(1);
+        $products = Product::with('user')->where('nigotiable', 1)->paginate(12);
         $categories = Category::get();
         return view('frontend.products.promoted', compact('products', 'categories'));
     }
