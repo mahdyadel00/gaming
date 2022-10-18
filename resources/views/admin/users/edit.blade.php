@@ -47,12 +47,13 @@
                                         <label>Image</label>
                                         <input type="file" class="form-control modal-title" name='image'
                                             accept="image/jpeg,image/jpg,image/png" required>
-                                            <img src="{{ asset($user->image) }}" height="100px" width="100px" />
+                                        <img src="{{ asset($user->image) }}" height="100px" width="100px" />
                                     </div>
-                                        <div class="col-md-12">
+                                    <div class="col-md-12">
                                         <label class="infoTitle">@lang('site.status')</label>
 
-                                        <input type="checkbox" value="1" {{  $user->status == 1 ? 'checked' : '' }} name="status">
+                                        <input type="checkbox" value="1" {{ $user->status == 1 ? 'checked' : '' }}
+                                            name="status">
 
                                     </div>
 
