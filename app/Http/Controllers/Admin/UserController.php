@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\User;
+use App\Models\Country;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
-use Spatie\Permission\Models\Role;
-use App\Http\Controllers\Controller;
-use App\Models\Country;
-use App\Models\User;
+use Stevebauman\Location\Facades\Location;
 
 class UserController extends Controller
 {
@@ -91,6 +92,10 @@ class UserController extends Controller
 
     protected function update(Request $request, $id)
     {
+        $ip = $request->ip(); //Dynamic IP address
+        //$ip = '162.159.24.227'; /* Static IP address */
+        $data = Location::get($ip);
+
         $user = User::where('id', $id)->first();
         $request->validate([
 
@@ -99,7 +104,6 @@ class UserController extends Controller
             'email' => 'required',
             'phone' => 'required',
             'status' => 'required',
-            'country_id' => 'required',
             'roles_name' => 'required',
         ]);
 
@@ -115,17 +119,30 @@ class UserController extends Controller
             $image->move($path, $image_name);
             $image_in_db = '/uploads/users/' . $image_name;
         }
+        if($data == false){
+            $user->update([
+                'first_name'  => $request->first_name,
+                'last_name'  => $request->last_name,
+                'email'  => $request->email,
+                'phone'  => $request->phone,
+                'status'  => $request->status ? 1 : 0,
+                'country'  => 'Egypt' ,
+                'image'  => $image_in_db,
+                'roles_name'  => $image_in_db,
+            ]);
+        }else{
+            $user->update([
+                'first_name'  => $request->first_name,
+                'last_name'  => $request->last_name,
+                'email'  => $request->email,
+                'phone'  => $request->phone,
+                'status'  => $request->status ? 1 : 0,
+                'country' => $data->countryName,
+                'image'  => $image_in_db,
+                'roles_name'  => $image_in_db,
+            ]);
 
-        $user->update([
-            'first_name'  => $request->first_name,
-            'last_name'  => $request->last_name,
-            'email'  => $request->email,
-            'phone'  => $request->phone,
-            'status'  => $request->status ? 1 : 0,
-            'country_id'  => $request->country_id,
-            'image'  => $image_in_db,
-            'roles_name'  => $image_in_db,
-        ]);
+        }
         return redirect()->route('admin.users.index')->with('flash_message', 'User Updated successfully !');
     }
 

@@ -227,7 +227,6 @@
                     "_token": "{{ csrf_token() }}"
                 },
                 success: function(response) {
-                    // console.log(response);
                     if (response == 'error') {
                         new Noty({
                             type: 'error',

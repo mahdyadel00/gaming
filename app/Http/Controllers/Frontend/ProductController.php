@@ -123,7 +123,6 @@ class ProductController extends Controller
         $imageUpload->image = ('uploads' . DIRECTORY_SEPARATOR . 'products' . DIRECTORY_SEPARATOR . $product->id) . DIRECTORY_SEPARATOR . $avatarName;
         $imageUpload->save();
         return response('success');
-
     }
     protected function delete($id)
     {
